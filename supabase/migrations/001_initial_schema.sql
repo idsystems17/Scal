@@ -53,7 +53,7 @@ CREATE TABLE cliques (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   link_id UUID NOT NULL REFERENCES links(id) ON DELETE CASCADE,
   cliente_id UUID NOT NULL REFERENCES clientes(id) ON DELETE CASCADE,
-  click_id UUID NOT NULL DEFAULT gen_random_uuid(),
+  click_id UUID NOT NULL UNIQUE DEFAULT gen_random_uuid(),
   ip_hash TEXT,
   user_agent TEXT,
   referrer TEXT,

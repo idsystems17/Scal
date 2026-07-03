@@ -86,7 +86,7 @@ export async function POST(
       .eq('click_id', clickId)
       .maybeSingle()
     if (clique?.links) {
-      parceiroId = (clique.links as { parceiro_id: string }).parceiro_id
+      parceiroId = (clique.links as unknown as { parceiro_id: string }).parceiro_id
     }
   }
 

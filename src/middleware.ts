@@ -4,6 +4,17 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
 
+  // Em desenvolvimento sem credenciais Supabase configuradas, permite acesso direto
+  if (process.env.NODE_ENV === 'development' && !process.env.NEXT_PUBLIC_SUPABASE_URL?.includes('.supabase.co')) {
+    return res
+  }
+
+  // Também bypassar se URL for placeholder
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''
+  if (process.env.NODE_ENV === 'development' && supabaseUrl.includes('placeholder')) {
+    return res
+  }
+
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
