@@ -4,23 +4,17 @@ import { createClient } from '@/lib/supabase/server'
 export async function getParceiroDashboard(parceiroId: string) {
   const supabase = await createClient()
   const [canais, tendencia, feed] = await Promise.all([
-    supabase
-      .from('vw_parceiro_dashboard')
-      .select('*')
-      .eq('parceiro_id', parceiroId),
-    supabase
-      .from('vw_parceiro_tendencia')
-      .select('*')
-      .eq('parceiro_id', parceiroId),
+    supabase.from('vw_parceiro_dashboard').select('*').eq('parceiro_id', parceiroId),
+    supabase.from('vw_parceiro_tendencia').select('*').eq('parceiro_id', parceiroId),
     supabase
       .from('conversoes')
-      .select('valor_venda, criado_em, links(canal)')
+      .select('valor_venda, criado_em')
       .eq('parceiro_id', parceiroId)
       .eq('status', 'confirmada')
       .order('criado_em', { ascending: false })
       .limit(5),
   ])
-  return { canais: canais.data, tendencia: tendencia.data, feed: feed.data }
+  return { canais: canais.data ?? [], tendencia: tendencia.data ?? [], feed: feed.data ?? [] }
 }
 
 export async function gerarLink(parceiroId: string, clienteId: string, canal: string, destinoUrl: string) {

@@ -1,7 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Icon } from '@/components/dashboard/Icon'
+import { createClient } from '@/lib/supabase/client'
 
 interface HeaderProps {
   title: string
@@ -9,8 +11,16 @@ interface HeaderProps {
   userName?: string
 }
 
-export function Header({ title, subtitle, userName = 'MA' }: HeaderProps) {
+export function Header({ title, subtitle, userName = 'US' }: HeaderProps) {
+  const router = useRouter()
   const [period, setPeriod] = useState<7 | 30 | 90>(30)
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  async function handleLogout() {
+    const supabase = createClient()
+    await supabase.auth.signOut()
+    router.push('/login')
+  }
 
   return (
     <header
@@ -111,24 +121,71 @@ export function Header({ title, subtitle, userName = 'MA' }: HeaderProps) {
         </span>
       </div>
 
-      {/* Avatar */}
-      <div
-        style={{
-          width: 38,
-          height: 38,
-          borderRadius: '50%',
-          background: 'linear-gradient(135deg, #2563eb, #1e40af)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: 13,
-          fontWeight: 700,
-          color: 'white',
-          cursor: 'pointer',
-          flexShrink: 0,
-        }}
-      >
-        {userName}
+      {/* Avatar + logout menu */}
+      <div style={{ position: 'relative' }}>
+        <div
+          onClick={() => setMenuOpen(v => !v)}
+          style={{
+            width: 38,
+            height: 38,
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, #2563eb, #1e40af)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: 13,
+            fontWeight: 700,
+            color: 'white',
+            cursor: 'pointer',
+            flexShrink: 0,
+            userSelect: 'none',
+          }}
+        >
+          {userName}
+        </div>
+
+        {menuOpen && (
+          <>
+            <div
+              onClick={() => setMenuOpen(false)}
+              style={{ position: 'fixed', inset: 0, zIndex: 40 }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                right: 0,
+                top: 46,
+                background: 'white',
+                border: '1px solid #e6ecf5',
+                borderRadius: 10,
+                boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+                overflow: 'hidden',
+                minWidth: 140,
+                zIndex: 50,
+              }}
+            >
+              <button
+                onClick={handleLogout}
+                style={{
+                  width: '100%',
+                  padding: '10px 16px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontSize: 13,
+                  color: '#dc2626',
+                  fontWeight: 600,
+                }}
+              >
+                <Icon name="logout" size={15} />
+                Sair
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </header>
   )
