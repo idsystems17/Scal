@@ -31,6 +31,15 @@ export async function criarConvite(clienteId: string, emailDestinatario?: string
   return `${appUrl}/convite/${data.token}`
 }
 
+export async function atualizarStatusParceiro(parceiroId: string, status: 'ativo' | 'bloqueado') {
+  const supabase = await createClient()
+  const { error } = await supabase
+    .from('parceiros')
+    .update({ status })
+    .eq('id', parceiroId)
+  if (error) throw error
+}
+
 export async function testarWebhook(clienteId: string) {
   const appUrlTest = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') ?? 'https://scal-sigma.vercel.app'
   const res = await fetch(`${appUrlTest}/api/webhook-test/${clienteId}`, {

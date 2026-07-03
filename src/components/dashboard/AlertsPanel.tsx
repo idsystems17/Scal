@@ -3,7 +3,7 @@
 import { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { Icon } from './Icon'
-import { resolverAlerta } from '@/lib/actions/admin'
+import { resolverAlerta, aplicarTaxaExcedente } from '@/lib/actions/admin'
 
 interface Alerta {
   id: string
@@ -29,6 +29,14 @@ export function AlertsPanel({ alertas }: AlertsPanelProps) {
     setResolved(prev => new Set([...prev, id]))
     startTransition(async () => {
       await resolverAlerta(id)
+      router.refresh()
+    })
+  }
+
+  function handleTaxa(id: string) {
+    setResolved(prev => new Set([...prev, id]))
+    startTransition(async () => {
+      await aplicarTaxaExcedente(id)
       router.refresh()
     })
   }
@@ -84,7 +92,9 @@ export function AlertsPanel({ alertas }: AlertsPanelProps) {
                     Resolver
                   </button>
                   <button
-                    style={{ padding: '6px 12px', borderRadius: 8, border: 'none', background: '#2563eb', color: 'white', fontSize: 12, fontWeight: 500, cursor: 'pointer' }}
+                    onClick={() => handleTaxa(alerta.id)}
+                    disabled={pending}
+                    style={{ padding: '6px 12px', borderRadius: 8, border: 'none', background: '#2563eb', color: 'white', fontSize: 12, fontWeight: 500, cursor: pending ? 'not-allowed' : 'pointer', opacity: pending ? 0.6 : 1 }}
                   >
                     Aplicar taxa 0,5%
                   </button>

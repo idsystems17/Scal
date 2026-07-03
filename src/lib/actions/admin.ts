@@ -33,3 +33,24 @@ export async function resolverAlerta(alertaId: string) {
     detalhes_json: { alerta_id: alertaId },
   })
 }
+
+export async function aplicarTaxaExcedente(alertaId: string) {
+  await adminClient
+    .from('alertas_plano')
+    .update({ resolvido: true, resolvido_em: new Date().toISOString() })
+    .eq('id', alertaId)
+  await adminClient.from('audit_log').insert({
+    ator_tipo: 'admin',
+    acao: 'taxa_excedente_aplicada',
+    detalhes_json: { alerta_id: alertaId, taxa: '0.5%' },
+  })
+}
+
+export async function atualizarStatusTenant(clienteId: string, status: 'ativo' | 'suspenso') {
+  await adminClient.from('clientes').update({ status }).eq('id', clienteId)
+  await adminClient.from('audit_log').insert({
+    ator_tipo: 'admin',
+    acao: 'atualizar_status_tenant',
+    detalhes_json: { cliente_id: clienteId, status },
+  })
+}

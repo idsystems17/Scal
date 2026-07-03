@@ -25,7 +25,7 @@ export default async function ParceiroPage() {
 
   const { data: parceiro } = await supabase
     .from('parceiros')
-    .select('id')
+    .select('id, cliente_id')
     .eq('user_id', user.id)
     .single()
 
@@ -40,7 +40,11 @@ export default async function ParceiroPage() {
     )
   }
 
-  const { canais, tendencia, feed } = await getParceiroDashboard(parceiro.id)
+  const [{ canais, tendencia, feed }, clienteResult] = await Promise.all([
+    getParceiroDashboard(parceiro.id),
+    supabase.from('clientes').select('url_loja').eq('id', parceiro.cliente_id).single(),
+  ])
+  const urlLoja = clienteResult.data?.url_loja ?? ''
 
   const totalCliques = canais.reduce((s, c) => s + Number(c.total_cliques ?? 0), 0)
   const totalVendas = canais.reduce((s, c) => s + Number(c.total_conversoes ?? 0), 0)
@@ -88,7 +92,7 @@ export default async function ParceiroPage() {
         <TrendChart data={trendData} />
         <LiveFeed items={liveFeed} />
       </div>
-      <ChannelTable channels={channels} />
+      <ChannelTable channels={channels} parceiroId={parceiro.id} clienteId={parceiro.cliente_id} urlLojaDefault={urlLoja} />
     </div>
   )
 }

@@ -52,12 +52,14 @@ export function ClienteDashboardClient({ clienteId, webhookUrl, cliente, parceir
   }))
 
   const parceirosMapeados = parceiros.map(p => ({
+    id: String(p.parceiro_id ?? ''),
     nome: String(p.nome ?? ''),
     codigo: String(p.codigo_unico ?? ''),
     clicks: Number(p.total_cliques ?? 0),
     sales: Number(p.total_conversoes ?? 0),
     revenue: Number(p.total_faturado ?? 0),
     status: (Number(p.total_faturado ?? 0) > 10000 ? 'top' : p.status === 'bloqueado' ? 'inativo' : 'ativo') as 'top' | 'ativo' | 'baixa_conversao' | 'inativo',
+    statusReal: (p.status ?? 'ativo') as 'ativo' | 'pendente' | 'bloqueado',
   }))
 
   const alertasPerformance = alertas.map(a => ({

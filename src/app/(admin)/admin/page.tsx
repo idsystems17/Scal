@@ -42,12 +42,14 @@ export default async function AdminPage() {
   }))
 
   const tenantsMapeados = (tenants ?? []).map(t => ({
+    id: String(t.cliente_id ?? ''),
     nome: t.nome_loja ?? 'Loja',
     plataforma: t.plataforma_detectada ?? '—',
     parceiros: Number(t.parceiros_ativos_contagem ?? 0),
     limite_parceiros: Number(t.limite_parceiros_incluidos ?? 20),
     faturamento: Number(t.faturamento_acumulado_scal ?? 0),
     webhook_status: (t.webhook_confirmado ? 'connected' : 'disconnected') as 'connected' | 'disconnected',
+    status: (t.status ?? 'trial') as 'ativo' | 'suspenso' | 'trial' | 'cancelado',
   }))
 
   const anomaliasMapeadas = (anomalias ?? []).map(a => ({

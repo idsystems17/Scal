@@ -1,17 +1,26 @@
+'use client'
+
+import { useState, useTransition } from 'react'
+import { useRouter } from 'next/navigation'
+import { atualizarStatusParceiro } from '@/lib/actions/cliente'
+
 const statusConfig: Record<string, { bg: string; color: string; label: string }> = {
   top: { bg: '#eef4ff', color: '#1d4ed8', label: 'Top performer' },
   ativo: { bg: '#ecfdf3', color: '#16a34a', label: 'Ativo' },
   baixa_conversao: { bg: '#fff1f3', color: '#e11d48', label: 'Baixa conversão' },
   inativo: { bg: '#f1f4f9', color: '#64748b', label: 'Inativo há 15 dias' },
+  bloqueado: { bg: '#f1f4f9', color: '#64748b', label: 'Bloqueado' },
 }
 
 interface Partner {
+  id: string
   nome: string
   codigo: string
   clicks: number
   sales: number
   revenue: number
-  status: 'top' | 'ativo' | 'baixa_conversao' | 'inativo'
+  status: 'top' | 'ativo' | 'baixa_conversao' | 'inativo' | 'bloqueado'
+  statusReal: 'ativo' | 'pendente' | 'bloqueado'
 }
 
 interface PartnersTableProps {
@@ -24,6 +33,28 @@ function initials(name: string) {
 
 export function PartnersTable({ parceiros }: PartnersTableProps) {
   const fmt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0 })
+  const [pendingId, setPendingId] = useState<string | null>(null)
+  const [, startTransition] = useTransition()
+  const router = useRouter()
+
+  function handleToggle(id: string, statusReal: string) {
+    const novoStatus = statusReal === 'bloqueado' ? 'ativo' : 'bloqueado'
+    setPendingId(id)
+    startTransition(async () => {
+      await atualizarStatusParceiro(id, novoStatus)
+      router.refresh()
+      setPendingId(null)
+    })
+  }
+
+  if (parceiros.length === 0) {
+    return (
+      <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '40px 24px', textAlign: 'center', color: '#94a3b8' }}>
+        <p style={{ fontSize: 14, margin: 0 }}>Nenhum parceiro ainda.</p>
+        <p style={{ fontSize: 12, margin: '6px 0 0' }}>Use "Convidar parceiro" para adicionar o primeiro afiliado.</p>
+      </div>
+    )
+  }
 
   return (
     <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
@@ -36,7 +67,7 @@ export function PartnersTable({ parceiros }: PartnersTableProps) {
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-              {['PARCEIRO', 'CÓDIGO', 'CLIQUES', 'VENDAS', 'FATURADO', 'STATUS'].map(h => (
+              {['PARCEIRO', 'CÓDIGO', 'CLIQUES', 'VENDAS', 'FATURADO', 'STATUS', ''].map(h => (
                 <th key={h} style={{ padding: '10px 12px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#94a3b8', letterSpacing: '0.05em' }}>
                   {h}
                 </th>
@@ -44,10 +75,12 @@ export function PartnersTable({ parceiros }: PartnersTableProps) {
             </tr>
           </thead>
           <tbody>
-            {parceiros.map((p, i) => {
-              const s = statusConfig[p.status]
+            {parceiros.map((p) => {
+              const s = statusConfig[p.statusReal === 'bloqueado' ? 'bloqueado' : p.status] ?? statusConfig.ativo
+              const isBloqueado = p.statusReal === 'bloqueado'
+              const isLoading = pendingId === p.id
               return (
-                <tr key={i} style={{ borderBottom: '1px solid #f8fafc' }}>
+                <tr key={p.id} style={{ borderBottom: '1px solid #f8fafc', opacity: isBloqueado ? 0.6 : 1, transition: 'opacity 0.2s' }}>
                   <td style={{ padding: '14px 12px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                       <div style={{ width: 34, height: 34, borderRadius: '50%', background: 'linear-gradient(135deg, #2563eb, #1e40af)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: 'white', flexShrink: 0 }}>
@@ -74,6 +107,23 @@ export function PartnersTable({ parceiros }: PartnersTableProps) {
                     <span style={{ display: 'inline-block', padding: '4px 10px', borderRadius: 20, fontSize: 12, fontWeight: 600, background: s.bg, color: s.color }}>
                       {s.label}
                     </span>
+                  </td>
+                  <td style={{ padding: '14px 12px' }}>
+                    <button
+                      onClick={() => handleToggle(p.id, p.statusReal)}
+                      disabled={isLoading}
+                      style={{
+                        padding: '6px 12px', borderRadius: 8, fontSize: 12, fontWeight: 500,
+                        cursor: isLoading ? 'not-allowed' : 'pointer',
+                        border: isBloqueado ? 'none' : '1px solid #fecdd3',
+                        background: isBloqueado ? '#2563eb' : '#fff1f3',
+                        color: isBloqueado ? 'white' : '#e11d48',
+                        opacity: isLoading ? 0.6 : 1,
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {isLoading ? '...' : isBloqueado ? 'Ativar' : 'Bloquear'}
+                    </button>
                   </td>
                 </tr>
               )
