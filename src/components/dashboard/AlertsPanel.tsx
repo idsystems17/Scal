@@ -1,7 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useTransition } from 'react'
+import { useRouter } from 'next/navigation'
 import { Icon } from './Icon'
+import { resolverAlerta } from '@/lib/actions/admin'
 
 interface Alerta {
   id: string
@@ -18,8 +20,18 @@ interface AlertsPanelProps {
 
 export function AlertsPanel({ alertas }: AlertsPanelProps) {
   const [resolved, setResolved] = useState<Set<string>>(new Set())
+  const [pending, startTransition] = useTransition()
+  const router = useRouter()
 
-  const pending = alertas.filter(a => !resolved.has(a.id))
+  const alertasPendentes = alertas.filter(a => !resolved.has(a.id))
+
+  function handleResolver(id: string) {
+    setResolved(prev => new Set([...prev, id]))
+    startTransition(async () => {
+      await resolverAlerta(id)
+      router.refresh()
+    })
+  }
 
   return (
     <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
@@ -29,7 +41,7 @@ export function AlertsPanel({ alertas }: AlertsPanelProps) {
           <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Lojas que excederam limites do plano</p>
         </div>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '4px 10px', borderRadius: 20, background: '#fef3c7', color: '#d97706', fontSize: 12, fontWeight: 700 }}>
-          {pending.length} pendentes
+          {alertasPendentes.length} pendentes
         </span>
       </div>
 
@@ -65,8 +77,9 @@ export function AlertsPanel({ alertas }: AlertsPanelProps) {
               {!isResolved && (
                 <div style={{ display: 'flex', gap: 8 }}>
                   <button
-                    onClick={() => setResolved(prev => new Set([...prev, alerta.id]))}
-                    style={{ padding: '6px 12px', borderRadius: 8, border: '1px solid #e6ecf5', background: 'white', color: '#475569', fontSize: 12, fontWeight: 500, cursor: 'pointer' }}
+                    onClick={() => handleResolver(alerta.id)}
+                    disabled={pending}
+                    style={{ padding: '6px 12px', borderRadius: 8, border: '1px solid #e6ecf5', background: 'white', color: '#475569', fontSize: 12, fontWeight: 500, cursor: pending ? 'not-allowed' : 'pointer', opacity: pending ? 0.6 : 1 }}
                   >
                     Resolver
                   </button>
