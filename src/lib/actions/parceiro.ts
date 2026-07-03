@@ -28,5 +28,6 @@ export async function gerarLink(parceiroId: string, clienteId: string, canal: st
     canal,
   }).select('codigo').single()
   if (error) throw error
-  return `${process.env.NEXT_PUBLIC_APP_URL}/r/${data.codigo}`
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') ?? 'https://scal-sigma.vercel.app'
+  return `${appUrl}/r/${data.codigo}`
 }

@@ -37,6 +37,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Erro ao gerar convite' }, { status: 500 })
   }
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') ?? ''
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '')
+    || `https://${req.headers.get('host')}`
   return NextResponse.json({ link: `${appUrl}/convite/${data.token}` })
 }

@@ -27,11 +27,13 @@ export async function criarConvite(clienteId: string, emailDestinatario?: string
     .select('token')
     .single()
   if (error) throw error
-  return `${process.env.NEXT_PUBLIC_APP_URL}/convite/${data.token}`
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') ?? 'https://scal-sigma.vercel.app'
+  return `${appUrl}/convite/${data.token}`
 }
 
 export async function testarWebhook(clienteId: string) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/webhook-test/${clienteId}`, {
+  const appUrlTest = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') ?? 'https://scal-sigma.vercel.app'
+  const res = await fetch(`${appUrlTest}/api/webhook-test/${clienteId}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
   })

@@ -67,7 +67,7 @@ export default async function ParceiroPage() {
     color: '#6366f1',
   }))
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? ''
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') ?? 'https://scal-sigma.vercel.app'
   const channels = canais.map(c => ({
     name: c.canal ?? 'Direto',
     abbr: (c.canal ?? 'DI').slice(0, 2).toUpperCase(),
