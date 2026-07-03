@@ -42,15 +42,24 @@ export default function LoginPage() {
       <div style={{
         background: '#fff',
         borderRadius: 16,
-        padding: '48px 40px',
         width: '100%',
         maxWidth: 400,
         boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
+        overflow: 'hidden',
       }}>
-        <div style={{ marginBottom: 32, textAlign: 'center' }}>
-          <img src="/logo.svg" alt="SCAL" style={{ width: 72, height: 72, objectFit: 'contain', margin: '0 auto 16px', display: 'block' }} />
-          <h1 style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', margin: 0 }}>Entrar no SCAL</h1>
-          <p style={{ fontSize: 14, color: '#64748b', margin: '8px 0 0' }}>Acesse sua conta</p>
+        {/* Topo escuro com logo */}
+        <div style={{
+          background: '#0d0d1a',
+          padding: '32px 40px 28px',
+          textAlign: 'center',
+        }}>
+          <img src="/logo.png" alt="SCAL" style={{ width: 180, objectFit: 'contain', display: 'block', margin: '0 auto' }} />
+        </div>
+
+        <div style={{ padding: '32px 40px 40px' }}>
+        <div style={{ marginBottom: 28, textAlign: 'center' }}>
+          <h1 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Entrar na sua conta</h1>
+          <p style={{ fontSize: 14, color: '#64748b', margin: '6px 0 0' }}>Acesse seu painel SCAL</p>
         </div>
 
         <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -133,6 +142,7 @@ export default function LoginPage() {
             {carregando ? 'Entrando...' : 'Entrar'}
           </button>
         </form>
+        </div>
       </div>
     </div>
   )

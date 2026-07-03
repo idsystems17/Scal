@@ -67,14 +67,9 @@ export function Sidebar({ role }: SidebarProps) {
       }}
     >
       {/* Logo */}
-      <div style={{ padding: '24px 20px 20px', borderBottom: '1px solid #f1f5f9' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <img src="/logo.svg" alt="SCAL" style={{ width: 38, height: 38, objectFit: 'contain' }} />
-          <div>
-            <p style={{ fontSize: 16, fontWeight: 800, color: '#0f172a', margin: 0, letterSpacing: '-0.5px' }}>SCAL</p>
-            <p style={{ fontSize: 11, color: '#94a3b8', margin: 0 }}>{roleLabels[role]}</p>
-          </div>
-        </div>
+      <div style={{ background: '#0d0d1a', padding: '16px 20px', borderBottom: '1px solid #1e1e2e' }}>
+        <img src="/logo.png" alt="SCAL" style={{ width: '100%', maxWidth: 160, objectFit: 'contain', display: 'block' }} />
+        <p style={{ fontSize: 11, color: '#6366f1', margin: '6px 0 0', fontWeight: 600, letterSpacing: '0.5px' }}>{roleLabels[role]}</p>
       </div>
 
       {/* Nav */}
