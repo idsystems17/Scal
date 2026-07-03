@@ -37,7 +37,7 @@ export function ChannelTable({ channels }: ChannelTableProps) {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
 
   function handleCopy(url: string, index: number) {
-    navigator.clipboard.writeText(`https://${url}`).then(() => {
+    navigator.clipboard.writeText(url).then(() => {
       setCopiedIndex(index)
       setTimeout(() => setCopiedIndex(null), 2000)
     })
@@ -50,6 +50,12 @@ export function ChannelTable({ channels }: ChannelTableProps) {
         <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Seus links de afiliado ativos</p>
       </div>
 
+      {channels.length === 0 ? (
+        <div style={{ textAlign: 'center', padding: '40px 0', color: '#94a3b8' }}>
+          <p style={{ fontSize: 14, margin: 0 }}>Nenhum link gerado ainda.</p>
+          <p style={{ fontSize: 12, margin: '6px 0 0' }}>Seus links aparecerão aqui após serem criados pelo lojista.</p>
+        </div>
+      ) : (
       <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
@@ -120,6 +126,7 @@ export function ChannelTable({ channels }: ChannelTableProps) {
           </tbody>
         </table>
       </div>
+      )}
     </div>
   )
 }
