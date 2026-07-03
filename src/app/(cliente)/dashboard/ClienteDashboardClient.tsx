@@ -13,12 +13,13 @@ const CANAL_COLORS = ['#6366f1', '#2563eb', '#16a34a', '#db2777']
 
 interface Props {
   clienteId: string
+  webhookUrl: string
   cliente: Record<string, unknown> | null
   parceiros: Record<string, unknown>[]
   alertas: Record<string, unknown>[]
 }
 
-export function ClienteDashboardClient({ clienteId, cliente, parceiros, alertas }: Props) {
+export function ClienteDashboardClient({ clienteId, webhookUrl, cliente, parceiros, alertas }: Props) {
   const [modalConvite, setModalConvite] = useState(false)
 
   const totalFaturado = parceiros.reduce((s, p) => s + Number(p.total_faturado ?? 0), 0)
@@ -97,7 +98,7 @@ export function ClienteDashboardClient({ clienteId, cliente, parceiros, alertas 
           </button>
         </div>
 
-        <WebhookBanner status={webhookStatus} />
+        <WebhookBanner status={webhookStatus} clienteId={clienteId} webhookUrl={webhookUrl} />
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
           {kpis.map((kpi, i) => <KpiCard key={i} data={kpi} />)}

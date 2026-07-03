@@ -27,5 +27,8 @@ export default async function ClientePage() {
 
   const { cliente, parceiros, alertas } = await getClienteDashboard(clienteRow.id)
 
-  return <ClienteDashboardClient clienteId={clienteRow.id} cliente={cliente} parceiros={parceiros ?? []} alertas={alertas ?? []} />
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') ?? 'https://scal-sigma.vercel.app'
+  const webhookUrl = `${appUrl}/webhook/${clienteRow.id}`
+
+  return <ClienteDashboardClient clienteId={clienteRow.id} webhookUrl={webhookUrl} cliente={cliente} parceiros={parceiros ?? []} alertas={alertas ?? []} />
 }
