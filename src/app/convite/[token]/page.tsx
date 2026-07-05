@@ -2,26 +2,12 @@
 
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase/client'
-
-function gerarCodigoUnico(nome: string): string {
-  return nome.split(' ')[0].toUpperCase().slice(0, 6) + Math.random().toString(36).slice(2, 5).toUpperCase()
-}
-
-interface Convite {
-  id: string
-  cliente_id: string
-  token: string
-  usado: boolean
-  expires_at: string
-}
 
 export default function ConvitePage() {
   const params = useParams()
   const router = useRouter()
   const token = params.token as string
 
-  const [convite, setConvite] = useState<Convite | null>(null)
   const [status, setStatus] = useState<'carregando' | 'valido' | 'invalido'>('carregando')
   const [nome, setNome] = useState('')
   const [email, setEmail] = useState('')
@@ -31,26 +17,9 @@ export default function ConvitePage() {
 
   useEffect(() => {
     async function verificarConvite() {
-      const supabase = createClient()
-      const { data, error } = await supabase
-        .from('convites')
-        .select('id, cliente_id, token, usado, expires_at')
-        .eq('token', token)
-        .single()
-
-      if (error || !data) {
-        setStatus('invalido')
-        return
-      }
-
-      const expirado = new Date(data.expires_at) < new Date()
-      if (data.usado || expirado) {
-        setStatus('invalido')
-        return
-      }
-
-      setConvite(data)
-      setStatus('valido')
+      const res = await fetch(`/api/convite/${token}`)
+      const json = await res.json()
+      setStatus(json.valido ? 'valido' : 'invalido')
     }
 
     verificarConvite()
@@ -58,51 +27,23 @@ export default function ConvitePage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!convite) return
     setEnviando(true)
     setErro('')
 
-    const supabase = createClient()
-
-    const { data: authData, error: authError } = await supabase.auth.signUp({
-      email,
-      password: senha,
-      options: {
-        data: {
-          role: 'parceiro',
-          cliente_id: convite.cliente_id,
-          nome,
-        },
-      },
+    const res = await fetch('/api/aceitar-convite', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token, nome, email, senha }),
     })
+    const json = await res.json()
 
-    if (authError || !authData.user) {
-      setErro(authError?.message || 'Erro ao criar conta.')
+    if (!res.ok) {
+      setErro(json.error || 'Erro ao criar conta.')
       setEnviando(false)
       return
     }
 
-    const codigoUnico = gerarCodigoUnico(nome)
-
-    const { error: parceiroError } = await supabase.from('parceiros').insert({
-      user_id: authData.user.id,
-      cliente_id: convite.cliente_id,
-      nome,
-      email,
-      codigo_unico: codigoUnico,
-    })
-
-    if (parceiroError) {
-      setErro('Erro ao cadastrar parceiro. Tente novamente.')
-      setEnviando(false)
-      return
-    }
-
-    await supabase.from('convites').update({ usado: true }).eq('id', convite.id)
-
-    await supabase.rpc('atualizar_contagem_parceiros', { p_cliente_id: convite.cliente_id })
-
-    router.push('/minha-area')
+    router.push(json.autoLoginFalhou ? '/login?cadastro=ok' : '/minha-area')
   }
 
   if (status === 'carregando') {
@@ -168,9 +109,9 @@ export default function ConvitePage() {
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
               required
-              minLength={6}
+              minLength={8}
               className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Mínimo 6 caracteres"
+              placeholder="Mínimo 8 caracteres"
             />
           </div>
 
