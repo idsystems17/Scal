@@ -3,41 +3,47 @@ Data da revisão: 2026-07-05
 Revisado por: IDsistemas
 
 ## Resumo
-Revisão completa do código-fonte (não apenas o diff pendente, já que a árvore de trabalho está limpa e sincronizada com `origin/main` no commit `c0f5835`). Cobriu segredos expostos, controle de acesso, RLS, webhooks, autenticação e dependências. Foram encontrados **2 problemas críticos** que expõem o sistema em produção a acesso não autorizado, e alguns pontos de dureza recomendados antes da venda para clientes reais.
+Revisão completa do código-fonte (não apenas o diff pendente, já que a árvore de trabalho estava limpa e sincronizada com `origin/main` no commit `c0f5835`). Cobriu segredos expostos, controle de acesso, RLS, webhooks, autenticação e dependências. Foram encontrados 2 críticos, 2 altos e 4 médios — **todos corrigidos, testados e em produção** ao final desta rodada (commits `bdde6ba`, `271eded`, `0cb94c7`). Restam apenas itens 🔵 de infraestrutura/compliance já conhecidos, que dependem de decisão da usuária/do irmão.
 
 ## Achados
 
-### 🔴 Crítico
+### 🔴 Crítico — ✅ corrigido
 
-- **`/api/seed-dev` (GET, sem autenticação) está live em produção** — `src/app/api/seed-dev/route.ts`. Usa a `service_role` key para recriar/resetar as 3 contas de teste (admin, cliente, parceiro) com senha fixa `Scal@2024` e **retorna essas credenciais no corpo da resposta JSON**. Não há nenhum guard de ambiente (`NODE_ENV`, flag, IP allowlist). Qualquer pessoa que descubra a URL `https://scal-sigma.vercel.app/api/seed-dev` ganha acesso admin ao sistema. **Ação recomendada: remover a rota (ou protegê-la atrás de uma variável de ambiente que só existe em dev) antes de qualquer venda real.**
+- **`/api/seed-dev` (GET, sem autenticação) estava live em produção** — `src/app/api/seed-dev/route.ts`. Usava a `service_role` key para recriar/resetar as 3 contas de teste (admin, cliente, parceiro) com senha fixa `Scal@2024` e retornava essas credenciais no corpo da resposta JSON, sem nenhum guard. **Corrigido**: exige `?token=` batendo com `SEED_DEV_TOKEN` (env var), fail-closed (404) se não configurado.
 
-- **`/api/kiwify-webhook` não valida assinatura nenhuma** — `src/app/api/kiwify-webhook/route.ts`. Ao contrário do webhook de vendas (`/webhook/[cliente_id]`, que valida HMAC-SHA256), este endpoint aceita qualquer POST e usa `service_role` para: (a) ativar (`status: 'ativo'`) a assinatura de qualquer cliente cujo email seja informado no payload — bypass de pagamento; (b) suspender (`status: 'suspenso'`) a conta de qualquer cliente existente só sabendo o email dele — negação de serviço no negócio do irmão da usuária. **Ação recomendada: adicionar validação de assinatura do Kiwify (a Kiwify assina webhooks — checar docs deles) antes de ativar essa integração de verdade.**
+- **`/api/kiwify-webhook` não validava assinatura nenhuma** — `src/app/api/kiwify-webhook/route.ts`. Aceitava qualquer POST e podia ativar ou suspender a assinatura de qualquer cliente só com o email no payload. **Corrigido**: exige token (query string ou body) batendo com `KIWIFY_WEBHOOK_TOKEN`, fail-closed (401). Token ainda não configurado de propósito — aguardando o irmão da usuária configurar o webhook real no painel da Kiwify primeiro.
 
-### 🟠 Alto
+### 🟠 Alto — ✅ corrigido
 
-- **Sem lockout progressivo no login** (`src/app/(auth)/login/page.tsx`) além do que o Supabase Auth oferece nativamente no plano Free. Sem rate limit próprio por email/IP na aplicação.
-- **Rate limit em memória (`Map`), não distribuído** — `src/lib/security/ratelimit.ts`. Funciona por instância serverless da Vercel; não sobrevive a cold start nem é compartilhado entre instâncias. O limite de 100 req/min por cliente no webhook de vendas é, na prática, mais permissivo do que parece.
+- **Sem lockout progressivo no login.** **Corrigido**: login passou a rodar via `/api/login` no servidor (antes chamava o Supabase direto do navegador), com rate limit de 10 tentativas/15min por IP.
+- **Rate limit em memória (`Map`), não distribuído entre instâncias da Vercel.** **Corrigido**: `checkRateLimit` agora usa a tabela `rate_limits` + função `checar_rate_limit` no Postgres do Supabase (migration `011_rate_limit.sql`), compartilhado entre todas as instâncias.
 
-### 🟡 Médio
+### 🟡 Médio — ✅ corrigido
 
-- **`/api/cadastrar-cliente` (self-signup público) sem rate limiting** — pode ser usado para spam de contas trial ou esgotar cota do Supabase Auth.
-- **Política de senha fraca**: mínimo de 6 caracteres, validado só no client (`minLength={6}` no input do formulário de cadastro). O servidor aceita qualquer senha não vazia.
-- **Enumeração de email no cadastro**: mensagem "Este email já está cadastrado" confirma existência de conta (risco baixo, mas é informação gratuita para um atacante).
-- **`npm audit`**: 2 vulnerabilidades moderadas em `postcss <8.5.10` (XSS via stringify de CSS), trazidas transitivamente pelo Next.js. Corrigir exigiria downgrade do Next (`next audit fix --force` sugere voltar para `next@9.3.3`) — não recomendado. Risco real é baixo (ferramenta de build, não exposta a input do usuário em runtime), mas vale monitorar por uma atualização do Next que resolva sem downgrade.
+- **`/api/cadastrar-cliente` sem rate limiting.** **Corrigido**: 5 tentativas/hora por IP.
+- **Senha mínima de 6 caracteres só validada no client.** **Corrigido**: mínimo 8, validado também no servidor.
+- **Enumeração de email no cadastro.** **Corrigido**: mensagem genérica que não confirma existência da conta.
+- **`npm audit`: 2 vulnerabilidades moderadas em `postcss` (transitiva do Next).** **Corrigido** via `overrides` no `package.json` forçando `postcss@^8.5.10` em toda a árvore, sem downgrade do Next. `npm audit` limpo (0 vulnerabilidades).
 
-### 🔵 Baixo / Boas práticas (já conhecidos, reforçando)
+### 🔵 Baixo / Boas práticas (pendentes, dependem de decisão da usuária/irmão)
 
 - Supabase ainda em plano **Free — zero backup automático**. Bloqueante antes de vender para clientes reais além do irmão.
 - **LGPD**: política de privacidade, termos de uso e endpoint de exclusão/exportação de dados ainda não existem.
 - **Cópia externa de backup (regra 3-2-1)** documentada em `docs/backup-e-continuidade.md` mas intencionalmente não implementada — usuária optou por estudar o assunto e implementar ela mesma.
+- `KIWIFY_WEBHOOK_TOKEN` ainda não configurado — aguardando o irmão chegar nessa etapa do teste.
 
 ## Correções aplicadas (antes / depois)
 
 | Item | Arquivo/Regra alterada | Antes | Depois | Testado em dev? |
 |---|---|---|---|---|
-| — | — | — | Nenhuma correção aplicada nesta sessão (revisão apenas) | — |
-
-> Nenhum item foi corrigido automaticamente. Os dois pontos 🔴 críticos envolvem decisão de produto (remover rota de seed vs. proteger por ambiente; como/quando validar o webhook real da Kiwify) — melhor confirmar com você antes de mexer, já que podem afetar o fluxo de teste que você ainda usa.
+| `/api/seed-dev` sem auth | `src/app/api/seed-dev/route.ts` | Qualquer GET executava, sem checagem | Exige `?token=` = `SEED_DEV_TOKEN`, senão 404 | Sim — sem/com token errado (404), com token certo (200), e em produção |
+| `/api/kiwify-webhook` sem auth | `src/app/api/kiwify-webhook/route.ts` | Qualquer POST ativava/suspendia cliente pelo email | Exige token = `KIWIFY_WEBHOOK_TOKEN`, senão 401 | Sim — sem token, token errado, token no body (todos 401 fail-closed) |
+| Cadastro sem rate limit | `src/app/api/cadastrar-cliente/route.ts` | Sem limite de tentativas | 5/hora por IP (`checkRateLimit`) | Sim — 5 passam, 6ª bloqueia (429) |
+| Senha fraca | `src/app/api/cadastrar-cliente/route.ts`, `src/app/(auth)/cadastro/page.tsx` | Mín. 6 chars só no client | Mín. 8 chars, validado no servidor | Sim — senha curta rejeitada (400) |
+| Enumeração de email | `src/app/api/cadastrar-cliente/route.ts` | "Este email já está cadastrado" | Mensagem genérica | Sim |
+| `npm audit` postcss | `package.json` (`overrides`) | postcss 8.4.31 (Next interno) | postcss 8.5.16 forçado via override | Sim — `npm audit` = 0 vulnerabilidades, build ok |
+| Rate limit em memória | `src/lib/security/ratelimit.ts` + migration `011_rate_limit.sql` | `Map` local, não distribuído | Tabela `rate_limits` + RPC `checar_rate_limit` no Postgres | Sim — testado nas 4 rotas que usam rate limit |
+| Sem lockout no login | `src/app/(auth)/login/page.tsx` + novo `src/app/api/login/route.ts` | Login direto client→Supabase, sem limite | Login via servidor, 10 tentativas/15min por IP | Sim — bloqueio na 11ª tentativa; login e sessão validados nos 3 papéis (admin/cliente/parceiro), incluindo proteção cross-role |
 
 ## O que foi verificado e está OK
 
