@@ -1,18 +1,29 @@
 'use server'
 import { createClient } from '@/lib/supabase/server'
 
-export async function getParceiroDashboard(parceiroId: string) {
+function cutoff(days: number) {
+  return new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString()
+}
+
+export async function getParceiroDashboard(parceiroId: string, days = 30) {
   const supabase = await createClient()
+  const since = cutoff(days)
+
   const [canais, tendencia, feed] = await Promise.all([
     supabase.from('vw_parceiro_dashboard').select('*').eq('parceiro_id', parceiroId),
-    supabase.from('vw_parceiro_tendencia').select('*').eq('parceiro_id', parceiroId),
+    supabase
+      .from('vw_parceiro_tendencia')
+      .select('*')
+      .eq('parceiro_id', parceiroId)
+      .gte('dia', since.slice(0, 10)),
     supabase
       .from('conversoes')
       .select('valor_venda, criado_em')
       .eq('parceiro_id', parceiroId)
       .eq('status', 'confirmada')
+      .gte('criado_em', since)
       .order('criado_em', { ascending: false })
-      .limit(5),
+      .limit(8),
   ])
   return { canais: canais.data ?? [], tendencia: tendencia.data ?? [], feed: feed.data ?? [] }
 }

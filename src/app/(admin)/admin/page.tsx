@@ -1,4 +1,4 @@
-import { getAdminDashboard } from '@/lib/actions/admin'
+import { getAdminDashboard, getMonitorData } from '@/lib/actions/admin'
 import { KpiCard } from '@/components/dashboard/KpiCard'
 import { AlertsPanel } from '@/components/dashboard/AlertsPanel'
 import { MonitorChart } from '@/components/dashboard/MonitorChart'
@@ -17,8 +17,18 @@ function tempoRelativo(iso: string) {
   return `há ${Math.floor(h / 24)} dias`
 }
 
-export default async function AdminPage() {
-  const { tenants, alertas, anomalias } = await getAdminDashboard()
+export default async function AdminPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string>>
+}) {
+  const sp = await searchParams
+  const q = sp.q ?? ''
+
+  const [{ tenants, alertas, anomalias }, monitorData] = await Promise.all([
+    getAdminDashboard(),
+    getMonitorData(),
+  ])
 
   const totalFaturamento = tenants?.reduce((s, t) => s + Number(t.faturamento_acumulado_scal ?? 0), 0) ?? 0
   const totalParceiros = tenants?.reduce((s, t) => s + Number(t.parceiros_ativos_contagem ?? 0), 0) ?? 0
@@ -58,12 +68,6 @@ export default async function AdminPage() {
     loja: (a.payload_json as { cliente_id?: string } | null)?.cliente_id ?? '—',
   }))
 
-  const monitorData = {
-    labels: ['00h', '04h', '08h', '12h', '16h', '20h', 'Agora'],
-    sucesso: [12, 18, 24, 31, 28, 22, 15],
-    erros: [0, 1, 0, 2, 1, 0, 0],
-  }
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '12px 20px', borderRadius: 12, background: 'white', border: '1px solid #e6ecf5' }}>
@@ -82,7 +86,7 @@ export default async function AdminPage() {
           <AnomalyList anomalias={anomaliasMapeadas} />
         </div>
       </div>
-      <TenantsTable tenants={tenantsMapeados} />
+      <TenantsTable tenants={tenantsMapeados} searchQuery={q} />
     </div>
   )
 }

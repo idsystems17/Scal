@@ -1,7 +1,14 @@
 import { adminClient } from '@/lib/supabase/admin'
 import { TenantsTable } from '@/components/dashboard/TenantsTable'
 
-export default async function LojasPage() {
+export default async function LojasPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string>>
+}) {
+  const sp = await searchParams
+  const q = sp.q ?? ''
+
   const { data: tenants } = await adminClient
     .from('vw_admin_dashboard')
     .select('*')
@@ -24,7 +31,7 @@ export default async function LojasPage() {
         <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Empresas ativas</h2>
         <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Todas as empresas na plataforma</p>
       </div>
-      <TenantsTable tenants={tenantsMapeados} />
+      <TenantsTable tenants={tenantsMapeados} searchQuery={q} />
     </div>
   )
 }

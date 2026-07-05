@@ -9,7 +9,13 @@ import { PartnersTable } from '@/components/dashboard/PartnersTable'
 import { ConviteModal } from '@/components/dashboard/ConviteModal'
 
 const brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0 })
-const CANAL_COLORS = ['#6366f1', '#2563eb', '#16a34a', '#db2777']
+const CANAL_COLORS = ['#6366f1', '#2563eb', '#16a34a', '#db2777', '#f59e0b', '#64748b']
+
+interface CanalReceita {
+  label: string
+  pct: number
+  color: string
+}
 
 interface Props {
   clienteId: string
@@ -17,9 +23,11 @@ interface Props {
   cliente: Record<string, unknown> | null
   parceiros: Record<string, unknown>[]
   alertas: Record<string, unknown>[]
+  canalReceita: CanalReceita[]
+  searchQuery?: string
 }
 
-export function ClienteDashboardClient({ clienteId, webhookUrl, cliente, parceiros, alertas }: Props) {
+export function ClienteDashboardClient({ clienteId, webhookUrl, cliente, parceiros, alertas, canalReceita, searchQuery = '' }: Props) {
   const [modalConvite, setModalConvite] = useState(false)
 
   const totalFaturado = parceiros.reduce((s, p) => s + Number(p.total_faturado ?? 0), 0)
@@ -45,11 +53,9 @@ export function ClienteDashboardClient({ clienteId, webhookUrl, cliente, parceir
     pct: Math.round(Number(p.total_faturado ?? 0) / maxFaturado * 100),
   }))
 
-  const canalReceita = CANAL_COLORS.slice(0, 4).map((color, i) => ({
-    label: ['Instagram', 'WhatsApp', 'YouTube', 'Outros'][i],
-    pct: [40, 30, 20, 10][i],
-    color,
-  }))
+  const donutData = canalReceita.length > 0
+    ? canalReceita
+    : [{ label: 'Sem dados', pct: 100, color: CANAL_COLORS[5] }]
 
   const parceirosMapeados = parceiros.map(p => ({
     id: String(p.parceiro_id ?? ''),
@@ -77,7 +83,6 @@ export function ClienteDashboardClient({ clienteId, webhookUrl, cliente, parceir
       {modalConvite && <ConviteModal clienteId={clienteId} onClose={() => setModalConvite(false)} />}
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-        {/* Header da seção com botão convidar */}
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <button
             onClick={() => setModalConvite(true)}
@@ -108,7 +113,7 @@ export function ClienteDashboardClient({ clienteId, webhookUrl, cliente, parceir
 
         <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 16 }}>
           <BarRanking items={topParceiros} />
-          <DonutChart data={canalReceita} />
+          <DonutChart data={donutData} />
         </div>
 
         {alertasPerformance.length > 0 && (
@@ -121,7 +126,7 @@ export function ClienteDashboardClient({ clienteId, webhookUrl, cliente, parceir
           </div>
         )}
 
-        <PartnersTable parceiros={parceirosMapeados} />
+        <PartnersTable parceiros={parceirosMapeados} searchQuery={searchQuery} />
       </div>
     </>
   )

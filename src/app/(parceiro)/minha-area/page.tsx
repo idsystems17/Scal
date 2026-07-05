@@ -18,7 +18,14 @@ function tempoRelativo(iso: string) {
   return `há ${Math.floor(h / 24)} dias`
 }
 
-export default async function ParceiroPage() {
+export default async function ParceiroPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string>>
+}) {
+  const sp = await searchParams
+  const days = Number(sp.period ?? 30)
+
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
@@ -41,7 +48,7 @@ export default async function ParceiroPage() {
   }
 
   const [{ canais, tendencia, feed }, clienteResult] = await Promise.all([
-    getParceiroDashboard(parceiro.id),
+    getParceiroDashboard(parceiro.id, days),
     supabase.from('clientes').select('url_loja').eq('id', parceiro.cliente_id).single(),
   ])
   const urlLoja = clienteResult.data?.url_loja ?? ''

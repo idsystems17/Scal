@@ -17,11 +17,14 @@ interface Tenant {
 
 interface TenantsTableProps {
   tenants: Tenant[]
+  searchQuery?: string
 }
 
-export function TenantsTable({ tenants }: TenantsTableProps) {
+export function TenantsTable({ tenants, searchQuery = '' }: TenantsTableProps) {
   const fmt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0 })
   const [pendingId, setPendingId] = useState<string | null>(null)
+  const q = searchQuery.toLowerCase()
+  const filtered = q ? tenants.filter(t => t.nome.toLowerCase().includes(q) || t.plataforma.toLowerCase().includes(q)) : tenants
   const [, startTransition] = useTransition()
   const router = useRouter()
 
@@ -54,7 +57,10 @@ export function TenantsTable({ tenants }: TenantsTableProps) {
             </tr>
           </thead>
           <tbody>
-            {tenants.map((t) => {
+            {filtered.length === 0 && (
+            <tr><td colSpan={7} style={{ padding: '32px', textAlign: 'center', color: '#94a3b8', fontSize: 13 }}>Nenhuma empresa encontrada.</td></tr>
+          )}
+          {filtered.map((t) => {
               const excedeu = t.parceiros > t.limite_parceiros
               const isSuspenso = t.status === 'suspenso'
               const isLoading = pendingId === t.id

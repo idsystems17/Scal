@@ -6,6 +6,12 @@ import { Icon } from '@/components/dashboard/Icon'
 
 type Role = 'parceiro' | 'cliente' | 'admin'
 
+const helpHrefByRole: Record<Role, string> = {
+  parceiro: '/minha-area/suporte',
+  cliente: '/dashboard/integracoes',
+  admin: '/admin/infraestrutura',
+}
+
 interface NavItem {
   label: string
   icon: string
@@ -135,9 +141,12 @@ export function Sidebar({ role, counts = {} }: SidebarProps) {
           <p style={{ fontSize: 11, opacity: 0.8, margin: '0 0 12px', lineHeight: 1.5 }}>
             Acesse nossa central de suporte e documentação
           </p>
-          <button style={{ width: '100%', padding: '8px', borderRadius: 8, background: 'white', color: '#1d4ed8', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
+          <Link
+            href={helpHrefByRole[role]}
+            style={{ display: 'block', width: '100%', padding: '8px', borderRadius: 8, background: 'white', color: '#1d4ed8', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', textAlign: 'center', textDecoration: 'none', boxSizing: 'border-box' }}
+          >
             Central de ajuda
-          </button>
+          </Link>
         </div>
       </div>
     </aside>

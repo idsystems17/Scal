@@ -25,15 +25,18 @@ interface Partner {
 
 interface PartnersTableProps {
   parceiros: Partner[]
+  searchQuery?: string
 }
 
 function initials(name: string) {
   return name.split(' ').slice(0, 2).map(n => n[0]).join('').toUpperCase()
 }
 
-export function PartnersTable({ parceiros }: PartnersTableProps) {
+export function PartnersTable({ parceiros, searchQuery = '' }: PartnersTableProps) {
   const fmt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0 })
   const [pendingId, setPendingId] = useState<string | null>(null)
+  const q = searchQuery.toLowerCase()
+  const filtered = q ? parceiros.filter(p => p.nome.toLowerCase().includes(q) || p.codigo.toLowerCase().includes(q)) : parceiros
   const [, startTransition] = useTransition()
   const router = useRouter()
 
@@ -75,7 +78,10 @@ export function PartnersTable({ parceiros }: PartnersTableProps) {
             </tr>
           </thead>
           <tbody>
-            {parceiros.map((p) => {
+            {filtered.length === 0 && (
+            <tr><td colSpan={7} style={{ padding: '32px', textAlign: 'center', color: '#94a3b8', fontSize: 13 }}>Nenhum parceiro encontrado.</td></tr>
+          )}
+          {filtered.map((p) => {
               const s = statusConfig[p.statusReal === 'bloqueado' ? 'bloqueado' : p.status] ?? statusConfig.ativo
               const isBloqueado = p.statusReal === 'bloqueado'
               const isLoading = pendingId === p.id

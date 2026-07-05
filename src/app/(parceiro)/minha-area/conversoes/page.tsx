@@ -12,7 +12,16 @@ function tempoRelativo(iso: string) {
   return new Date(iso).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: '2-digit' })
 }
 
-export default async function ConversoesPage() {
+export default async function ConversoesPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string>>
+}) {
+  const sp = await searchParams
+  const days = Number(sp.period ?? 30)
+  const q = sp.q ?? ''
+  const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString()
+
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
@@ -25,25 +34,44 @@ export default async function ConversoesPage() {
 
   if (!parceiro) redirect('/minha-area')
 
-  const { data: conversoes } = await supabase
+  let query = supabase
     .from('conversoes')
     .select('id, valor_venda, status, pedido_externo_id, criado_em')
     .eq('parceiro_id', parceiro.id)
+    .gte('criado_em', since)
     .order('criado_em', { ascending: false })
-    .limit(100)
+    .limit(500)
+
+  if (q) {
+    query = query.ilike('pedido_externo_id', `%${q}%`)
+  }
+
+  const { data: conversoes } = await query
+
+  const totalConfirmado = conversoes?.filter(c => c.status === 'confirmada').reduce((s, c) => s + Number(c.valor_venda), 0) ?? 0
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-      <div>
-        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Conversões</h2>
-        <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Histórico de vendas atribuídas a você</p>
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+        <div>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Conversões</h2>
+          <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>
+            Últimos {days} dias{q ? ` · busca: "${q}"` : ''}
+          </p>
+        </div>
+        <div style={{ textAlign: 'right' }}>
+          <p style={{ fontSize: 12, color: '#94a3b8', margin: 0 }}>Volume confirmado</p>
+          <p style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', margin: '2px 0 0' }}>{brl.format(totalConfirmado)}</p>
+        </div>
       </div>
 
       <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         {!conversoes || conversoes.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '48px 0', color: '#94a3b8' }}>
-            <p style={{ fontSize: 15, fontWeight: 600, margin: 0 }}>Nenhuma conversão ainda</p>
-            <p style={{ fontSize: 13, margin: '8px 0 0' }}>Suas vendas atribuídas aparecerão aqui.</p>
+            <p style={{ fontSize: 15, fontWeight: 600, margin: 0 }}>
+              {q ? `Nenhuma conversão encontrada para "${q}"` : 'Nenhuma conversão neste período'}
+            </p>
+            <p style={{ fontSize: 13, margin: '8px 0 0' }}>Tente ampliar o período ou alterar a busca.</p>
           </div>
         ) : (
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
