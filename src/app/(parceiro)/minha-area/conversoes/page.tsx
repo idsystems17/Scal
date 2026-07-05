@@ -1,0 +1,80 @@
+import { redirect } from 'next/navigation'
+import { createClient } from '@/lib/supabase/server'
+
+const brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })
+
+function tempoRelativo(iso: string) {
+  const diff = Date.now() - new Date(iso).getTime()
+  const min = Math.floor(diff / 60000)
+  if (min < 60) return `há ${min} min`
+  const h = Math.floor(min / 60)
+  if (h < 24) return `há ${h}h`
+  return new Date(iso).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: '2-digit' })
+}
+
+export default async function ConversoesPage() {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect('/login')
+
+  const { data: parceiro } = await supabase
+    .from('parceiros')
+    .select('id')
+    .eq('user_id', user.id)
+    .single()
+
+  if (!parceiro) redirect('/minha-area')
+
+  const { data: conversoes } = await supabase
+    .from('conversoes')
+    .select('id, valor_venda, status, pedido_externo_id, criado_em')
+    .eq('parceiro_id', parceiro.id)
+    .order('criado_em', { ascending: false })
+    .limit(100)
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <div>
+        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Conversões</h2>
+        <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Histórico de vendas atribuídas a você</p>
+      </div>
+
+      <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+        {!conversoes || conversoes.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: '48px 0', color: '#94a3b8' }}>
+            <p style={{ fontSize: 15, fontWeight: 600, margin: 0 }}>Nenhuma conversão ainda</p>
+            <p style={{ fontSize: 13, margin: '8px 0 0' }}>Suas vendas atribuídas aparecerão aqui.</p>
+          </div>
+        ) : (
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                {['PEDIDO', 'VALOR', 'STATUS', 'DATA'].map(h => (
+                  <th key={h} style={{ padding: '10px 12px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#94a3b8', letterSpacing: '0.05em' }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {conversoes.map(c => (
+                <tr key={c.id} style={{ borderBottom: '1px solid #f8fafc' }}>
+                  <td style={{ padding: '14px 12px', fontFamily: 'monospace', fontSize: 12, color: '#64748b' }}>{c.pedido_externo_id}</td>
+                  <td style={{ padding: '14px 12px', fontSize: 13, fontWeight: 700, color: '#0f172a' }}>{brl.format(Number(c.valor_venda))}</td>
+                  <td style={{ padding: '14px 12px' }}>
+                    <span style={{
+                      padding: '3px 10px', borderRadius: 20, fontSize: 12, fontWeight: 600,
+                      background: c.status === 'confirmada' ? '#ecfdf3' : '#fff1f3',
+                      color: c.status === 'confirmada' ? '#16a34a' : '#e11d48',
+                    }}>
+                      {c.status === 'confirmada' ? 'Confirmada' : 'Cancelada'}
+                    </span>
+                  </td>
+                  <td style={{ padding: '14px 12px', fontSize: 12, color: '#64748b' }}>{tempoRelativo(c.criado_em)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+    </div>
+  )
+}
