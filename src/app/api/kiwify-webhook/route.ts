@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { adminClient } from '@/lib/supabase/admin'
+import { timingSafeEqual } from '@/lib/security/hmac'
 
 // Eventos Kiwify que ativam ou suspendem o acesso ao SCAL
 export async function POST(req: NextRequest) {
@@ -8,6 +9,12 @@ export async function POST(req: NextRequest) {
     payload = await req.json()
   } catch {
     return NextResponse.json({ error: 'invalid_json' }, { status: 400 })
+  }
+
+  const secret = process.env.KIWIFY_WEBHOOK_TOKEN
+  const tokenRecebido = req.nextUrl.searchParams.get('token') ?? String(payload.token ?? '')
+  if (!secret || !timingSafeEqual(secret, tokenRecebido)) {
+    return NextResponse.json({ error: 'invalid_token' }, { status: 401 })
   }
 
   const evento = String(payload.event ?? payload.type ?? '')

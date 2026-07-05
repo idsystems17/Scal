@@ -1,8 +1,15 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { adminClient } from '@/lib/supabase/admin'
+import { timingSafeEqual } from '@/lib/security/hmac'
 
 // Rota temporária — remover antes de ir para produção real
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const token = process.env.SEED_DEV_TOKEN
+  const provided = req.nextUrl.searchParams.get('token') ?? ''
+  if (!token || !timingSafeEqual(token, provided)) {
+    return NextResponse.json({ error: 'not_found' }, { status: 404 })
+  }
+
   const resultados: Record<string, unknown>[] = []
 
   // ---- 1. CLIENTE ----

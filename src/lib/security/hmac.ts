@@ -9,7 +9,7 @@ export function validateWebhookSignature(
   return timingSafeEqual(expected, receivedSignature)
 }
 
-function timingSafeEqual(a: string, b: string): boolean {
+export function timingSafeEqual(a: string, b: string): boolean {
   if (a.length !== b.length) return false
   let result = 0
   for (let i = 0; i < a.length; i++) {
