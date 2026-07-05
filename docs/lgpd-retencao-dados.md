@@ -3,6 +3,8 @@
 Status: rascunho para decisão da responsável pelo produto. Nenhum destes prazos está implementado ainda — hoje todas as tabelas acumulam dados indefinidamente.
 
 > **Atualização 2026-07-05**: `/politica-privacidade` e `/termos-de-uso` já existem como páginas públicas do site (`src/app/(legal)/`), com aceite obrigatório no cadastro. Os prazos de retenção abaixo ainda não estão implementados via cron — a política pública fala em termos gerais ("pelo tempo necessário") até esses prazos serem confirmados e automatizados.
+>
+> **Decisão da usuária (2026-07-05): NÃO implementar o cron de exclusão ainda.** Mesmo raciocínio da cópia externa de backup (ver `docs/backup-e-continuidade.md`) — é infraestrutura que ela vai precisar manter e entender depois (uma rotina que apaga dado de produção sozinha), então ela quer confirmar os prazos com o contador e estudar a implementação antes de sair rodando. Manter como pendência ativa e visível a cada retomada do projeto, junto com a cópia 3-2-1 de backup.
 
 | Tabela | Dado pessoal envolvido | Prazo proposto | Justificativa |
 |---|---|---|---|
