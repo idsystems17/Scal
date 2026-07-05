@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
   }
 
   const contexto = faqParaContexto(FAQ_POR_ROLE[role])
-  const prompt = `Você é o assistente de suporte do SCAL, uma plataforma de rastreamento de vendas por afiliados. Responda em português, de forma curta e direta, usando SOMENTE as informações do FAQ abaixo. Se a pergunta não tiver relação com o FAQ, diga educadamente que não tem essa informação e sugira contato com o suporte.
+  const prompt = `Você é o assistente de suporte do SCAL, uma plataforma de rastreamento de vendas por afiliados. Responda em português, de forma curta e direta, usando SOMENTE as informações do FAQ abaixo. Se a pergunta não tiver relação com o FAQ, diga educadamente que não tem essa informação e sugira contato com o suporte. Responda em texto simples, sem markdown (sem **, sem listas com * ou -, sem títulos).
 
 FAQ:
 ${contexto}
