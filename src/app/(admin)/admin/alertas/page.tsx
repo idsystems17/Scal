@@ -13,7 +13,7 @@ export default async function AlertasPage() {
     cliente_nome: (a.clientes as { nome_loja: string } | null)?.nome_loja ?? 'Empresa',
     tipo: a.tipo === 'limite_parceiros_excedido' ? 'limite_parceiros' : 'limite_faturamento' as 'limite_parceiros' | 'limite_faturamento',
     valor_atual: a.valor_no_momento ?? '—',
-    limite: a.tipo === 'limite_parceiros_excedido' ? '20 parceiros' : 'R$ 100.000',
+    limite: a.tipo === 'limite_parceiros_excedido' ? '20 parceiros' : 'R$ 50.000',
     resolvido: a.resolvido,
   }))
 

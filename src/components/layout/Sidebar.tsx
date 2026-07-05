@@ -8,8 +8,8 @@ type Role = 'parceiro' | 'cliente' | 'admin'
 
 const helpHrefByRole: Record<Role, string> = {
   parceiro: '/minha-area/suporte',
-  cliente: '/dashboard/integracoes',
-  admin: '/admin/infraestrutura',
+  cliente: '/dashboard/suporte',
+  admin: '/admin/suporte',
 }
 
 interface NavItem {
@@ -34,16 +34,20 @@ const navByRole: Record<Role, NavItem[]> = {
     { label: 'Parceiros', icon: 'users', href: '/dashboard/parceiros', badgeKey: 'parceiros' },
     { label: 'Vendas', icon: 'cart', href: '/dashboard/vendas' },
     { label: 'Canais', icon: 'chart', href: '/dashboard/canais' },
+    { label: 'Materiais', icon: 'box', href: '/dashboard/materiais' },
     { label: 'Integrações', icon: 'plug', href: '/dashboard/integracoes' },
     { label: 'Configurações', icon: 'gear', href: '/dashboard/configuracoes' },
+    { label: 'Suporte', icon: 'support', href: '/dashboard/suporte' },
   ],
   admin: [
     { label: 'Overview', icon: 'grid', href: '/admin', exact: true },
     { label: 'Alertas de plano', icon: 'alert', href: '/admin/alertas', badgeKey: 'alertas' },
     { label: 'Empresas ativas', icon: 'server', href: '/admin/lojas' },
+    { label: 'Materiais', icon: 'box', href: '/admin/materiais' },
     { label: 'Segurança', icon: 'shield', href: '/admin/seguranca' },
     { label: 'Infraestrutura', icon: 'chart', href: '/admin/infraestrutura' },
     { label: 'Financeiro', icon: 'wallet', href: '/admin/financeiro' },
+    { label: 'Suporte', icon: 'support', href: '/admin/suporte' },
   ],
 }
 
