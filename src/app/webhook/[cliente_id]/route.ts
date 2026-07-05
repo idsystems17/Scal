@@ -9,7 +9,7 @@ export async function POST(
 ) {
   const { cliente_id } = await params
 
-  if (!checkRateLimit(`webhook:${cliente_id}`, 100, 60_000)) {
+  if (!(await checkRateLimit(`webhook:${cliente_id}`, 100, 60_000))) {
     return NextResponse.json({ error: 'rate_limited' }, { status: 429 })
   }
 

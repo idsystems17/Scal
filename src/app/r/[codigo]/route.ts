@@ -10,7 +10,7 @@ export async function GET(
   const { codigo } = await params
   const ip = req.headers.get('x-forwarded-for')?.split(',')[0] ?? 'unknown'
 
-  if (!checkRateLimit(`click:${hashIP(ip)}`, 60, 60_000)) {
+  if (!(await checkRateLimit(`click:${hashIP(ip)}`, 60, 60_000))) {
     return NextResponse.json({ error: 'rate_limited' }, { status: 429 })
   }
 

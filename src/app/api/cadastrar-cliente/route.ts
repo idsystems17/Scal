@@ -5,7 +5,7 @@ import { hashIP } from '@/lib/security/hash'
 
 export async function POST(req: NextRequest) {
   const ip = req.headers.get('x-forwarded-for')?.split(',')[0] ?? 'unknown'
-  if (!checkRateLimit(`cadastro:${hashIP(ip)}`, 5, 60 * 60_000)) {
+  if (!(await checkRateLimit(`cadastro:${hashIP(ip)}`, 5, 60 * 60_000))) {
     return NextResponse.json({ error: 'Muitas tentativas. Tente novamente mais tarde.' }, { status: 429 })
   }
 

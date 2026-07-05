@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase/client'
 
 function EyeIcon({ open }: { open: boolean }) {
   return open ? (
@@ -32,18 +31,21 @@ export default function LoginPage() {
     setErro('')
     setCarregando(true)
 
-    const supabase = createClient()
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password: senha })
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, senha }),
+    })
+    const json = await res.json()
 
-    if (error || !data.user) {
-      setErro('Email ou senha inválidos.')
+    if (!res.ok) {
+      setErro(json.error || 'Email ou senha inválidos.')
       setCarregando(false)
       return
     }
 
-    const role = data.user.user_metadata?.role as string | undefined
-    if (role === 'admin') router.push('/admin')
-    else if (role === 'cliente') router.push('/dashboard')
+    if (json.role === 'admin') router.push('/admin')
+    else if (json.role === 'cliente') router.push('/dashboard')
     else router.push('/minha-area')
   }
 
