@@ -94,6 +94,9 @@ export default function LoginPage() {
                   <EyeIcon open={mostrarSenha} />
                 </button>
               </div>
+              <p style={{ textAlign: 'right', margin: '8px 0 0' }}>
+                <a href="/esqueci-senha" style={{ fontSize: 12, color: '#6366f1', fontWeight: 600, textDecoration: 'none' }}>Esqueci minha senha</a>
+              </p>
             </div>
 
             {erro && (

@@ -41,7 +41,9 @@ export async function proxy(req: NextRequest) {
     path.startsWith('/convite/') ||
     path.startsWith('/api/') ||
     path.startsWith('/politica-privacidade') ||
-    path.startsWith('/termos-de-uso')
+    path.startsWith('/termos-de-uso') ||
+    path.startsWith('/esqueci-senha') ||
+    path.startsWith('/redefinir-senha')
 
   if (isPublic) return res
 
