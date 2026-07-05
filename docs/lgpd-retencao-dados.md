@@ -2,6 +2,8 @@
 
 Status: rascunho para decisão da responsável pelo produto. Nenhum destes prazos está implementado ainda — hoje todas as tabelas acumulam dados indefinidamente.
 
+> **Atualização 2026-07-05**: `/politica-privacidade` e `/termos-de-uso` já existem como páginas públicas do site (`src/app/(legal)/`), com aceite obrigatório no cadastro. Os prazos de retenção abaixo ainda não estão implementados via cron — a política pública fala em termos gerais ("pelo tempo necessário") até esses prazos serem confirmados e automatizados.
+
 | Tabela | Dado pessoal envolvido | Prazo proposto | Justificativa |
 |---|---|---|---|
 | `cliques` | `ip_hash`, `user_agent`, `referrer` | Excluir cliques sem conversão associada após **6 meses** | Cookie de atribuição já expira em 30 dias (`src/app/r/[codigo]/route.ts`). Depois disso o clique não tem mais função de atribuição — só teria valor estatístico. Já vem hasheado, então o risco é baixo, mas o volume é o maior do sistema. |
