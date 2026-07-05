@@ -52,14 +52,14 @@ export default function CadastroPage() {
               { label: 'Nome da empresa', value: nomeLoja, set: setNomeLoja, type: 'text', placeholder: 'Ex: Empresa da Maria' },
               { label: 'URL do site', value: urlLoja, set: setUrlLoja, type: 'url', placeholder: 'https://suaempresa.com.br' },
               { label: 'Email', value: email, set: setEmail, type: 'email', placeholder: 'seu@email.com' },
-              { label: 'Senha', value: senha, set: setSenha, type: 'password', placeholder: 'Mínimo 6 caracteres' },
+              { label: 'Senha', value: senha, set: setSenha, type: 'password', placeholder: 'Mínimo 8 caracteres' },
             ].map(({ label, value, set, type, placeholder }) => (
               <div key={label}>
                 <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#374151', marginBottom: 6 }}>{label}</label>
                 <input
                   type={type}
                   required
-                  minLength={type === 'password' ? 6 : undefined}
+                  minLength={type === 'password' ? 8 : undefined}
                   value={value}
                   onChange={e => set(e.target.value)}
                   placeholder={placeholder}
