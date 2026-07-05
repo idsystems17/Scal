@@ -34,7 +34,7 @@ const navByRole: Record<Role, NavItem[]> = {
   admin: [
     { label: 'Overview', icon: 'grid', href: '/admin', exact: true },
     { label: 'Alertas de plano', icon: 'alert', href: '/admin/alertas', badgeKey: 'alertas' },
-    { label: 'Lojas ativas', icon: 'server', href: '/admin/lojas' },
+    { label: 'Empresas ativas', icon: 'server', href: '/admin/lojas' },
     { label: 'Segurança', icon: 'shield', href: '/admin/seguranca' },
     { label: 'Infraestrutura', icon: 'chart', href: '/admin/infraestrutura' },
     { label: 'Financeiro', icon: 'wallet', href: '/admin/financeiro' },
@@ -43,7 +43,7 @@ const navByRole: Record<Role, NavItem[]> = {
 
 const roleLabels: Record<Role, string> = {
   parceiro: 'Área do Parceiro',
-  cliente: 'Dashboard Lojista',
+  cliente: 'Dashboard Empresa',
   admin: 'Admin SCAL',
 }
 

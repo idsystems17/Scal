@@ -43,14 +43,14 @@ export default function CadastroPage() {
 
         <div style={{ padding: '32px 40px 40px' }}>
           <div style={{ marginBottom: 24, textAlign: 'center' }}>
-            <h1 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Criar conta de lojista</h1>
-            <p style={{ fontSize: 14, color: '#64748b', margin: '6px 0 0' }}>Configure sua loja no SCAL</p>
+            <h1 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Criar conta de empresa</h1>
+            <p style={{ fontSize: 14, color: '#64748b', margin: '6px 0 0' }}>Configure sua empresa no SCAL</p>
           </div>
 
           <form onSubmit={handleCadastro} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
             {[
-              { label: 'Nome da loja', value: nomeLoja, set: setNomeLoja, type: 'text', placeholder: 'Ex: Loja da Maria' },
-              { label: 'URL da loja', value: urlLoja, set: setUrlLoja, type: 'url', placeholder: 'https://sualoja.com.br' },
+              { label: 'Nome da empresa', value: nomeLoja, set: setNomeLoja, type: 'text', placeholder: 'Ex: Empresa da Maria' },
+              { label: 'URL do site', value: urlLoja, set: setUrlLoja, type: 'url', placeholder: 'https://suaempresa.com.br' },
               { label: 'Email', value: email, set: setEmail, type: 'email', placeholder: 'seu@email.com' },
               { label: 'Senha', value: senha, set: setSenha, type: 'password', placeholder: 'Mínimo 6 caracteres' },
             ].map(({ label, value, set, type, placeholder }) => (

@@ -34,7 +34,7 @@ export default async function ParceiroPage() {
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '60vh' }}>
         <div style={{ textAlign: 'center', color: '#64748b' }}>
           <p style={{ fontSize: 18, fontWeight: 600, margin: '0 0 8px' }}>Conta não configurada</p>
-          <p style={{ fontSize: 14 }}>Entre em contato com o lojista para ativar seu acesso.</p>
+          <p style={{ fontSize: 14 }}>Entre em contato com a empresa para ativar seu acesso.</p>
         </div>
       </div>
     )

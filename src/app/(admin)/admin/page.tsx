@@ -26,15 +26,15 @@ export default async function AdminPage() {
   const totalTenants = tenants?.length ?? 0
 
   const kpis = [
-    { label: 'Lojas ativas', value: num.format(totalTenants), delta: '—', deltaPositive: true, sub: 'clientes SCAL', icon: 'server' },
-    { label: 'Parceiros totais', value: num.format(totalParceiros), delta: '—', deltaPositive: true, sub: 'em todas as lojas', icon: 'users' },
+    { label: 'Empresas ativas', value: num.format(totalTenants), delta: '—', deltaPositive: true, sub: 'clientes SCAL', icon: 'server' },
+    { label: 'Parceiros totais', value: num.format(totalParceiros), delta: '—', deltaPositive: true, sub: 'em todas as empresas', icon: 'users' },
     { label: 'Faturamento total', value: brl.format(totalFaturamento), delta: '—', deltaPositive: true, sub: 'via SCAL', icon: 'wallet' },
     { label: 'Alertas abertos', value: num.format(totalAlertas), delta: '—', deltaPositive: totalAlertas === 0, sub: 'pendentes', icon: 'alert' },
   ]
 
   const alertasMapeados = (alertas ?? []).map(a => ({
     id: a.id,
-    cliente_nome: (a.clientes as { nome_loja: string } | null)?.nome_loja ?? 'Loja',
+    cliente_nome: (a.clientes as { nome_loja: string } | null)?.nome_loja ?? 'Empresa',
     tipo: a.tipo === 'limite_parceiros_excedido' ? 'limite_parceiros' : 'limite_faturamento' as 'limite_parceiros' | 'limite_faturamento',
     valor_atual: a.valor_no_momento ?? '—',
     limite: a.tipo === 'limite_parceiros_excedido' ? '20 parceiros' : 'R$ 100.000',
@@ -43,7 +43,7 @@ export default async function AdminPage() {
 
   const tenantsMapeados = (tenants ?? []).map(t => ({
     id: String(t.cliente_id ?? ''),
-    nome: t.nome_loja ?? 'Loja',
+    nome: t.nome_loja ?? 'Empresa',
     plataforma: t.plataforma_detectada ?? '—',
     parceiros: Number(t.parceiros_ativos_contagem ?? 0),
     limite_parceiros: Number(t.limite_parceiros_incluidos ?? 20),
