@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { getClienteDashboard } from '@/lib/actions/cliente'
+import { getClienteDashboard, getClienteKpiDeltas } from '@/lib/actions/cliente'
 import { ClienteDashboardClient } from './ClienteDashboardClient'
 
 const CANAL_COLORS = ['#6366f1', '#2563eb', '#16a34a', '#db2777', '#f59e0b', '#64748b']
@@ -90,9 +90,10 @@ export default async function ClientePage({
     )
   }
 
-  const [{ cliente, parceiros, alertas }, canalReceita] = await Promise.all([
+  const [{ cliente, parceiros, alertas }, canalReceita, deltas] = await Promise.all([
     getClienteDashboard(clienteRow.id),
     getReceitaPorCanal(clienteRow.id, supabase, days),
+    getClienteKpiDeltas(clienteRow.id, days),
   ])
 
   const appUrl = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') ?? 'https://scal-sigma.vercel.app'
@@ -107,6 +108,8 @@ export default async function ClientePage({
       alertas={alertas ?? []}
       canalReceita={canalReceita}
       searchQuery={q}
+      deltas={deltas}
+      periodDays={days}
     />
   )
 }

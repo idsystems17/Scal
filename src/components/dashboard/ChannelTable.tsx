@@ -4,6 +4,8 @@ import { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { Icon } from './Icon'
 import { gerarLink } from '@/lib/actions/parceiro'
+import { useSort } from '@/lib/useSort'
+import { SortableTh } from './SortableTh'
 
 interface Channel {
   name: string
@@ -12,8 +14,10 @@ interface Channel {
   clicks: number
   conversoes: number
   ctr: string
+  ctrValue: number
   ctrPositive: boolean
   volume: string
+  volumeValue: number
 }
 
 const abbrColors: Record<string, { bg: string; color: string }> = {
@@ -43,7 +47,8 @@ interface ChannelTableProps {
 }
 
 export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }: ChannelTableProps) {
-  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+  const [copiedUrl, setCopiedUrl] = useState<string | null>(null)
+  const { sorted, sortKey, direction, toggleSort } = useSort<Channel, keyof Channel>(channels)
   const [modalAberto, setModalAberto] = useState(false)
   const [canal, setCanal] = useState('Instagram')
   const [destinoUrl, setDestinoUrl] = useState(urlLojaDefault)
@@ -53,10 +58,10 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
   const [gerando, startTransition] = useTransition()
   const router = useRouter()
 
-  function handleCopy(url: string, index: number) {
+  function handleCopy(url: string) {
     navigator.clipboard.writeText(url).then(() => {
-      setCopiedIndex(index)
-      setTimeout(() => setCopiedIndex(null), 2000)
+      setCopiedUrl(url)
+      setTimeout(() => setCopiedUrl(null), 2000)
     })
   }
 
@@ -208,18 +213,19 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>
                 <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  {['CANAL / LINK', 'CLIQUES', 'CONVERSÕES', 'CTR', 'VOLUME', ''].map((h) => (
-                    <th key={h} style={{ padding: '10px 12px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#94a3b8', letterSpacing: '0.05em', whiteSpace: 'nowrap' }}>
-                      {h}
-                    </th>
-                  ))}
+                  <SortableTh label="CANAL / LINK" sortKey="name" activeKey={sortKey} direction={direction} onSort={toggleSort} />
+                  <SortableTh label="CLIQUES" sortKey="clicks" activeKey={sortKey} direction={direction} onSort={toggleSort} />
+                  <SortableTh label="CONVERSÕES" sortKey="conversoes" activeKey={sortKey} direction={direction} onSort={toggleSort} />
+                  <SortableTh label="CTR" sortKey="ctrValue" activeKey={sortKey} direction={direction} onSort={toggleSort} />
+                  <SortableTh label="VOLUME" sortKey="volumeValue" activeKey={sortKey} direction={direction} onSort={toggleSort} />
+                  <th style={{ padding: '10px 12px' }} />
                 </tr>
               </thead>
               <tbody>
-                {channels.map((ch, i) => {
+                {sorted.map((ch) => {
                   const colors = abbrColors[ch.abbr] || { bg: '#f1f5f9', color: '#64748b' }
                   return (
-                    <tr key={i} style={{ borderBottom: '1px solid #f8fafc' }}>
+                    <tr key={ch.url} style={{ borderBottom: '1px solid #f8fafc' }}>
                       <td style={{ padding: '14px 12px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                           <div style={{ width: 32, height: 32, borderRadius: 8, background: colors.bg, color: colors.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>
@@ -247,18 +253,18 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
                       </td>
                       <td style={{ padding: '14px 12px' }}>
                         <button
-                          onClick={() => handleCopy(ch.url, i)}
+                          onClick={() => handleCopy(ch.url)}
                           style={{
                             display: 'flex', alignItems: 'center', gap: 4,
                             padding: '6px 12px', borderRadius: 8, border: '1px solid #e6ecf5',
-                            background: copiedIndex === i ? '#ecfdf3' : 'white',
-                            color: copiedIndex === i ? '#16a34a' : '#475569',
+                            background: copiedUrl === ch.url ? '#ecfdf3' : 'white',
+                            color: copiedUrl === ch.url ? '#16a34a' : '#475569',
                             fontSize: 12, fontWeight: 500, cursor: 'pointer',
                             transition: 'all 0.2s', whiteSpace: 'nowrap',
                           }}
                         >
-                          <Icon name={copiedIndex === i ? 'check' : 'copy'} size={14} />
-                          {copiedIndex === i ? 'Copiado ✓' : 'Copiar link'}
+                          <Icon name={copiedUrl === ch.url ? 'check' : 'copy'} size={14} />
+                          {copiedUrl === ch.url ? 'Copiado ✓' : 'Copiar link'}
                         </button>
                       </td>
                     </tr>

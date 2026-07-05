@@ -1,4 +1,4 @@
-import { getAdminDashboard, getMonitorData } from '@/lib/actions/admin'
+import { getAdminDashboard, getMonitorData, getAdminKpiDeltas } from '@/lib/actions/admin'
 import { KpiCard } from '@/components/dashboard/KpiCard'
 import { AlertsPanel } from '@/components/dashboard/AlertsPanel'
 import { MonitorChart } from '@/components/dashboard/MonitorChart'
@@ -24,10 +24,12 @@ export default async function AdminPage({
 }) {
   const sp = await searchParams
   const q = sp.q ?? ''
+  const days = Number(sp.period ?? 30)
 
-  const [{ tenants, alertas, anomalias }, monitorData] = await Promise.all([
+  const [{ tenants, alertas, anomalias }, monitorData, deltas] = await Promise.all([
     getAdminDashboard(),
     getMonitorData(),
+    getAdminKpiDeltas(days),
   ])
 
   const totalFaturamento = tenants?.reduce((s, t) => s + Number(t.faturamento_acumulado_scal ?? 0), 0) ?? 0
@@ -36,10 +38,10 @@ export default async function AdminPage({
   const totalTenants = tenants?.length ?? 0
 
   const kpis = [
-    { label: 'Empresas ativas', value: num.format(totalTenants), delta: '—', deltaPositive: true, sub: 'clientes SCAL', icon: 'server' },
-    { label: 'Parceiros totais', value: num.format(totalParceiros), delta: '—', deltaPositive: true, sub: 'em todas as empresas', icon: 'users' },
-    { label: 'Faturamento total', value: brl.format(totalFaturamento), delta: '—', deltaPositive: true, sub: 'via SCAL', icon: 'wallet' },
-    { label: 'Alertas abertos', value: num.format(totalAlertas), delta: '—', deltaPositive: totalAlertas === 0, sub: 'pendentes', icon: 'alert' },
+    { label: 'Empresas ativas', value: num.format(totalTenants), delta: deltas.empresas.label, deltaPositive: deltas.empresas.positive, sub: `clientes SCAL · vs ${days}d anteriores`, icon: 'server' },
+    { label: 'Parceiros totais', value: num.format(totalParceiros), delta: deltas.parceiros.label, deltaPositive: deltas.parceiros.positive, sub: `em todas as empresas · vs ${days}d anteriores`, icon: 'users' },
+    { label: 'Faturamento total', value: brl.format(totalFaturamento), delta: deltas.faturamento.label, deltaPositive: deltas.faturamento.positive, sub: `via SCAL · receita ${days}d`, icon: 'wallet' },
+    { label: 'Alertas abertos', value: num.format(totalAlertas), delta: deltas.alertas.label, deltaPositive: deltas.alertas.positive, sub: `pendentes · abertos em ${days}d`, icon: 'alert' },
   ]
 
   const alertasMapeados = (alertas ?? []).map(a => ({
@@ -47,7 +49,7 @@ export default async function AdminPage({
     cliente_nome: (a.clientes as { nome_loja: string } | null)?.nome_loja ?? 'Empresa',
     tipo: a.tipo === 'limite_parceiros_excedido' ? 'limite_parceiros' : 'limite_faturamento' as 'limite_parceiros' | 'limite_faturamento',
     valor_atual: a.valor_no_momento ?? '—',
-    limite: a.tipo === 'limite_parceiros_excedido' ? '20 parceiros' : 'R$ 100.000',
+    limite: a.tipo === 'limite_parceiros_excedido' ? '20 parceiros' : 'R$ 50.000',
     resolvido: a.resolvido,
   }))
 

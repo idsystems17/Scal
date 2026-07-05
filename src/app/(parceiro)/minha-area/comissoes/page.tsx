@@ -1,6 +1,8 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { Pagination } from '@/components/dashboard/Pagination'
 
+const PAGE_SIZE = 20
 const brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })
 
 function tempoRelativo(iso: string) {
@@ -19,6 +21,7 @@ export default async function ComissoesPage({
 }) {
   const sp = await searchParams
   const days = Number(sp.period ?? 30)
+  const page = Math.max(1, Number(sp.page ?? 1))
   const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString()
 
   const supabase = await createClient()
@@ -33,18 +36,25 @@ export default async function ComissoesPage({
 
   if (!parceiro) redirect('/minha-area')
 
-  const { data: conversoes } = await supabase
+  const { data: todasNoPeriodo } = await supabase
     .from('conversoes')
-    .select('id, valor_venda, status, pedido_externo_id, criado_em')
+    .select('valor_venda, status')
     .eq('parceiro_id', parceiro.id)
     .gte('criado_em', since)
-    .order('criado_em', { ascending: false })
-    .limit(500)
 
-  const confirmadas = conversoes?.filter(c => c.status === 'confirmada') ?? []
+  const confirmadas = (todasNoPeriodo ?? []).filter(c => c.status === 'confirmada')
   const totalVolume = confirmadas.reduce((s, c) => s + Number(c.valor_venda), 0)
   const totalConversoes = confirmadas.length
   const ticketMedio = totalConversoes > 0 ? totalVolume / totalConversoes : 0
+
+  const { data: conversoes, count } = await supabase
+    .from('conversoes')
+    .select('id, valor_venda, status, pedido_externo_id, criado_em', { count: 'exact' })
+    .eq('parceiro_id', parceiro.id)
+    .gte('criado_em', since)
+    .order('criado_em', { ascending: false })
+    .range((page - 1) * PAGE_SIZE, page * PAGE_SIZE - 1)
+  const totalPages = Math.max(1, Math.ceil((count ?? 0) / PAGE_SIZE))
 
   const kpis = [
     { label: 'Volume gerado', value: brl.format(totalVolume), sub: `últimos ${days} dias`, color: '#6366f1' },
@@ -124,6 +134,7 @@ export default async function ComissoesPage({
             </tbody>
           </table>
         )}
+        <Pagination page={page} totalPages={totalPages} />
       </div>
     </div>
   )

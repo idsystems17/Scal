@@ -3,6 +3,8 @@
 import { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { atualizarStatusParceiro } from '@/lib/actions/cliente'
+import { useSort } from '@/lib/useSort'
+import { SortableTh } from './SortableTh'
 
 const statusConfig: Record<string, { bg: string; color: string; label: string }> = {
   top: { bg: '#eef4ff', color: '#1d4ed8', label: 'Top performer' },
@@ -37,6 +39,7 @@ export function PartnersTable({ parceiros, searchQuery = '' }: PartnersTableProp
   const [pendingId, setPendingId] = useState<string | null>(null)
   const q = searchQuery.toLowerCase()
   const filtered = q ? parceiros.filter(p => p.nome.toLowerCase().includes(q) || p.codigo.toLowerCase().includes(q)) : parceiros
+  const { sorted, sortKey, direction, toggleSort } = useSort<Partner, keyof Partner>(filtered)
   const [, startTransition] = useTransition()
   const router = useRouter()
 
@@ -70,18 +73,20 @@ export function PartnersTable({ parceiros, searchQuery = '' }: PartnersTableProp
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-              {['PARCEIRO', 'CÓDIGO', 'CLIQUES', 'VENDAS', 'FATURADO', 'STATUS', ''].map(h => (
-                <th key={h} style={{ padding: '10px 12px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#94a3b8', letterSpacing: '0.05em' }}>
-                  {h}
-                </th>
-              ))}
+              <SortableTh label="PARCEIRO" sortKey="nome" activeKey={sortKey} direction={direction} onSort={toggleSort} />
+              <SortableTh label="CÓDIGO" sortKey="codigo" activeKey={sortKey} direction={direction} onSort={toggleSort} />
+              <SortableTh label="CLIQUES" sortKey="clicks" activeKey={sortKey} direction={direction} onSort={toggleSort} />
+              <SortableTh label="VENDAS" sortKey="sales" activeKey={sortKey} direction={direction} onSort={toggleSort} />
+              <SortableTh label="FATURADO" sortKey="revenue" activeKey={sortKey} direction={direction} onSort={toggleSort} />
+              <SortableTh label="STATUS" sortKey="status" activeKey={sortKey} direction={direction} onSort={toggleSort} />
+              <th style={{ padding: '10px 12px' }} />
             </tr>
           </thead>
           <tbody>
-            {filtered.length === 0 && (
+            {sorted.length === 0 && (
             <tr><td colSpan={7} style={{ padding: '32px', textAlign: 'center', color: '#94a3b8', fontSize: 13 }}>Nenhum parceiro encontrado.</td></tr>
           )}
-          {filtered.map((p) => {
+          {sorted.map((p) => {
               const s = statusConfig[p.statusReal === 'bloqueado' ? 'bloqueado' : p.status] ?? statusConfig.ativo
               const isBloqueado = p.statusReal === 'bloqueado'
               const isLoading = pendingId === p.id

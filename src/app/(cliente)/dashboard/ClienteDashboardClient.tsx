@@ -7,6 +7,7 @@ import { BarRanking } from '@/components/dashboard/BarRanking'
 import { DonutChart } from '@/components/dashboard/DonutChart'
 import { PartnersTable } from '@/components/dashboard/PartnersTable'
 import { ConviteModal } from '@/components/dashboard/ConviteModal'
+import { Delta } from '@/lib/deltas'
 
 const brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0 })
 const CANAL_COLORS = ['#6366f1', '#2563eb', '#16a34a', '#db2777', '#f59e0b', '#64748b']
@@ -25,9 +26,11 @@ interface Props {
   alertas: Record<string, unknown>[]
   canalReceita: CanalReceita[]
   searchQuery?: string
+  deltas: { faturamento: Delta; parceirosAtivos: Delta; conversaoMedia: Delta; ticketMedio: Delta }
+  periodDays: number
 }
 
-export function ClienteDashboardClient({ clienteId, webhookUrl, cliente, parceiros, alertas, canalReceita, searchQuery = '' }: Props) {
+export function ClienteDashboardClient({ clienteId, webhookUrl, cliente, parceiros, alertas, canalReceita, searchQuery = '', deltas, periodDays }: Props) {
   const [modalConvite, setModalConvite] = useState(false)
 
   const totalFaturado = parceiros.reduce((s, p) => s + Number(p.total_faturado ?? 0), 0)
@@ -38,10 +41,10 @@ export function ClienteDashboardClient({ clienteId, webhookUrl, cliente, parceir
   const ticketMedio = totalVendas > 0 ? totalFaturado / totalVendas : 0
 
   const kpis = [
-    { label: 'Faturamento via SCAL', value: brl.format(totalFaturado), delta: '—', deltaPositive: true, sub: 'total acumulado', icon: 'wallet' },
-    { label: 'Parceiros ativos', value: `${parceirosAtivos}/${parceiros.length}`, delta: '—', deltaPositive: true, sub: 'do total', icon: 'users' },
-    { label: 'Conversão média', value: `${taxaMedia.toFixed(1).replace('.', ',')}%`, delta: '—', deltaPositive: taxaMedia >= 2, sub: 'cliques → vendas', icon: 'percent' },
-    { label: 'Ticket médio', value: brl.format(ticketMedio), delta: '—', deltaPositive: true, sub: 'por venda', icon: 'cart' },
+    { label: 'Faturamento via SCAL', value: brl.format(totalFaturado), delta: deltas.faturamento.label, deltaPositive: deltas.faturamento.positive, sub: `total acumulado · receita ${periodDays}d`, icon: 'wallet' },
+    { label: 'Parceiros ativos', value: `${parceirosAtivos}/${parceiros.length}`, delta: deltas.parceirosAtivos.label, deltaPositive: deltas.parceirosAtivos.positive, sub: `do total · vs ${periodDays}d anteriores`, icon: 'users' },
+    { label: 'Conversão média', value: `${taxaMedia.toFixed(1).replace('.', ',')}%`, delta: deltas.conversaoMedia.label, deltaPositive: deltas.conversaoMedia.positive, sub: `cliques → vendas · ${periodDays}d`, icon: 'percent' },
+    { label: 'Ticket médio', value: brl.format(ticketMedio), delta: deltas.ticketMedio.label, deltaPositive: deltas.ticketMedio.positive, sub: `por venda · ${periodDays}d`, icon: 'cart' },
   ]
 
   const maxFaturado = Math.max(...parceiros.map(p => Number(p.total_faturado ?? 0)), 1)

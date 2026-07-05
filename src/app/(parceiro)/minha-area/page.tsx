@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { getParceiroDashboard } from '@/lib/actions/parceiro'
+import { getParceiroDashboard, getParceiroKpiDeltas } from '@/lib/actions/parceiro'
 import { KpiCard } from '@/components/dashboard/KpiCard'
 import { TrendChart } from '@/components/dashboard/TrendChart'
 import { LiveFeed } from '@/components/dashboard/LiveFeed'
@@ -47,9 +47,10 @@ export default async function ParceiroPage({
     )
   }
 
-  const [{ canais, tendencia, feed }, clienteResult] = await Promise.all([
+  const [{ canais, tendencia, feed }, clienteResult, deltas] = await Promise.all([
     getParceiroDashboard(parceiro.id, days),
     supabase.from('clientes').select('url_loja').eq('id', parceiro.cliente_id).single(),
+    getParceiroKpiDeltas(parceiro.id, days),
   ])
   const urlLoja = clienteResult.data?.url_loja ?? ''
 
@@ -59,10 +60,10 @@ export default async function ParceiroPage({
   const taxaConversao = totalCliques > 0 ? (totalVendas / totalCliques * 100) : 0
 
   const kpis = [
-    { label: 'Cliques totais', value: num.format(totalCliques), delta: '—', deltaPositive: true, sub: 'todos os canais', icon: 'click' },
-    { label: 'Vendas atribuídas', value: num.format(totalVendas), delta: '—', deltaPositive: true, sub: 'confirmadas', icon: 'cart' },
-    { label: 'Volume de vendas', value: brl.format(totalVolume), delta: '—', deltaPositive: true, sub: 'receita total', icon: 'wallet' },
-    { label: 'Taxa de conversão', value: `${taxaConversao.toFixed(2).replace('.', ',')}%`, delta: '—', deltaPositive: taxaConversao >= 2, sub: 'cliques → vendas', icon: 'percent' },
+    { label: 'Cliques totais', value: num.format(totalCliques), delta: deltas.cliques.label, deltaPositive: deltas.cliques.positive, sub: `todos os canais · ${days}d`, icon: 'click' },
+    { label: 'Vendas atribuídas', value: num.format(totalVendas), delta: deltas.vendas.label, deltaPositive: deltas.vendas.positive, sub: `confirmadas · ${days}d`, icon: 'cart' },
+    { label: 'Volume de vendas', value: brl.format(totalVolume), delta: deltas.volume.label, deltaPositive: deltas.volume.positive, sub: `receita total · ${days}d`, icon: 'wallet' },
+    { label: 'Taxa de conversão', value: `${taxaConversao.toFixed(2).replace('.', ',')}%`, delta: deltas.taxaConversao.label, deltaPositive: deltas.taxaConversao.positive, sub: `cliques → vendas · ${days}d`, icon: 'percent' },
   ]
 
   const trendData = {
@@ -86,8 +87,10 @@ export default async function ParceiroPage({
     clicks: Number(c.total_cliques ?? 0),
     conversoes: Number(c.total_conversoes ?? 0),
     ctr: `${Number(c.ctr_pct ?? 0).toFixed(2).replace('.', ',')}%`,
+    ctrValue: Number(c.ctr_pct ?? 0),
     ctrPositive: Number(c.ctr_pct ?? 0) >= 2,
     volume: brl.format(Number(c.volume_vendas ?? 0)),
+    volumeValue: Number(c.volume_vendas ?? 0),
   }))
 
   return (

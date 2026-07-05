@@ -30,8 +30,10 @@ export default async function MeusLinksPage() {
     clicks: Number(c.total_cliques ?? 0),
     conversoes: Number(c.total_conversoes ?? 0),
     ctr: `${Number(c.ctr_pct ?? 0).toFixed(2).replace('.', ',')}%`,
+    ctrValue: Number(c.ctr_pct ?? 0),
     ctrPositive: Number(c.ctr_pct ?? 0) >= 2,
     volume: new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0 }).format(Number(c.volume_vendas ?? 0)),
+    volumeValue: Number(c.volume_vendas ?? 0),
   }))
 
   return (
