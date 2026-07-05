@@ -11,16 +11,23 @@ export default function CadastroPage() {
   const [senha, setSenha] = useState('')
   const [erro, setErro] = useState('')
   const [carregando, setCarregando] = useState(false)
+  const [aceite, setAceite] = useState(false)
 
   async function handleCadastro(e: React.FormEvent) {
     e.preventDefault()
     setErro('')
+
+    if (!aceite) {
+      setErro('Você precisa aceitar os Termos de Uso e a Política de Privacidade para continuar.')
+      return
+    }
+
     setCarregando(true)
 
     const res = await fetch('/api/cadastrar-cliente', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nomeLoja, urlLoja, email, senha }),
+      body: JSON.stringify({ nomeLoja, urlLoja, email, senha, aceiteTermos: aceite }),
     })
 
     const json = await res.json()
@@ -67,6 +74,21 @@ export default function CadastroPage() {
                 />
               </div>
             ))}
+
+            <label style={{ display: 'flex', alignItems: 'flex-start', gap: 8, fontSize: 13, color: '#374151', cursor: 'pointer' }}>
+              <input
+                type="checkbox"
+                checked={aceite}
+                onChange={e => setAceite(e.target.checked)}
+                style={{ marginTop: 2 }}
+              />
+              <span>
+                Li e concordo com os{' '}
+                <a href="/termos-de-uso" target="_blank" rel="noopener noreferrer" style={{ color: '#6366f1', fontWeight: 600, textDecoration: 'none' }}>Termos de Uso</a>
+                {' '}e a{' '}
+                <a href="/politica-privacidade" target="_blank" rel="noopener noreferrer" style={{ color: '#6366f1', fontWeight: 600, textDecoration: 'none' }}>Política de Privacidade</a>
+              </span>
+            </label>
 
             {erro && (
               <div style={{ background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 8, padding: '10px 14px', fontSize: 13, color: '#dc2626' }}>

@@ -39,7 +39,9 @@ export async function proxy(req: NextRequest) {
     path.startsWith('/r/') ||
     path.startsWith('/webhook/') ||
     path.startsWith('/convite/') ||
-    path.startsWith('/api/')
+    path.startsWith('/api/') ||
+    path.startsWith('/politica-privacidade') ||
+    path.startsWith('/termos-de-uso')
 
   if (isPublic) return res
 

@@ -110,6 +110,12 @@ export default function LoginPage() {
               {carregando ? 'Entrando...' : 'Entrar'}
             </button>
           </form>
+
+          <p style={{ textAlign: 'center', fontSize: 12, color: '#94a3b8', margin: '20px 0 0' }}>
+            <a href="/termos-de-uso" style={{ color: '#94a3b8', textDecoration: 'underline' }}>Termos de Uso</a>
+            {' · '}
+            <a href="/politica-privacidade" style={{ color: '#94a3b8', textDecoration: 'underline' }}>Política de Privacidade</a>
+          </p>
         </div>
       </div>
     </div>

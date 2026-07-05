@@ -9,10 +9,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Muitas tentativas. Tente novamente mais tarde.' }, { status: 429 })
   }
 
-  const { nomeLoja, urlLoja, email, senha } = await req.json()
+  const { nomeLoja, urlLoja, email, senha, aceiteTermos } = await req.json()
 
   if (!nomeLoja || !urlLoja || !email || !senha) {
     return NextResponse.json({ error: 'Todos os campos são obrigatórios.' }, { status: 400 })
+  }
+
+  if (aceiteTermos !== true) {
+    return NextResponse.json({ error: 'É necessário aceitar os Termos de Uso e a Política de Privacidade.' }, { status: 400 })
   }
 
   if (typeof senha !== 'string' || senha.length < 8) {
