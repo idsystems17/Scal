@@ -29,7 +29,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const notifications: Notification[] = (alertas ?? []).map(a => ({
     id: a.id,
     title: a.tipo === 'limite_parceiros_excedido' ? 'Limite de parceiros' : 'Limite de faturamento',
-    text: `${(a.clientes as { nome_loja: string } | null)?.nome_loja ?? 'Empresa'}: ${a.valor_no_momento}`,
+    text: `${(a.clientes as unknown as { nome_loja: string } | null)?.nome_loja ?? 'Empresa'}: ${a.valor_no_momento}`,
     time: tempoRelativo(a.notificado_em),
     type: 'alert' as const,
     href: '/admin/alertas',
