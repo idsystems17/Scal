@@ -3,6 +3,7 @@ import { headers } from 'next/headers'
 import { adminClient } from '@/lib/supabase/admin'
 import { hashIP } from '@/lib/security/hash'
 import { calcDelta, periodWindows } from '@/lib/deltas'
+import { validarUrlMaterial } from '@/lib/validarUrlMaterial'
 
 async function getActorIpHash() {
   const h = await headers()
@@ -121,7 +122,7 @@ export async function getMateriaisGlobais() {
 }
 
 export async function criarMaterialGlobal(titulo: string, url: string) {
-  const { error } = await adminClient.from('materiais').insert({ titulo, url, criado_por: 'admin', cliente_id: null })
+  const { error } = await adminClient.from('materiais').insert({ titulo, url: validarUrlMaterial(url), criado_por: 'admin', cliente_id: null })
   if (error) throw error
 }
 

@@ -35,15 +35,25 @@ export function MateriaisManager({ titulo, subtitulo, materiais, onCreate, onDel
       setErro('Preencha título e link.')
       return
     }
+    let parsed: URL
     try {
-      new URL(urlInput.trim())
+      parsed = new URL(urlInput.trim())
     } catch {
       setErro('Informe um link válido (com https://).')
       return
     }
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+      setErro('O link precisa começar com http:// ou https://.')
+      return
+    }
     setErro('')
     startTransition(async () => {
-      await onCreate!(tituloInput.trim(), urlInput.trim())
+      try {
+        await onCreate!(tituloInput.trim(), urlInput.trim())
+      } catch {
+        setErro('Não foi possível salvar o material. Verifique o link e tente novamente.')
+        return
+      }
       setTituloInput('')
       setUrlInput('')
       router.refresh()

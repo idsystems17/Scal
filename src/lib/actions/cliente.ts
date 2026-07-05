@@ -1,6 +1,7 @@
 'use server'
 import { createClient } from '@/lib/supabase/server'
 import { calcDelta, periodWindows } from '@/lib/deltas'
+import { validarUrlMaterial } from '@/lib/validarUrlMaterial'
 
 export async function getClienteKpiDeltas(clienteId: string, days: number) {
   const supabase = await createClient()
@@ -102,7 +103,7 @@ export async function getMateriaisCliente(clienteId: string) {
 
 export async function criarMaterialCliente(clienteId: string, titulo: string, url: string) {
   const supabase = await createClient()
-  const { error } = await supabase.from('materiais').insert({ cliente_id: clienteId, titulo, url, criado_por: 'cliente' })
+  const { error } = await supabase.from('materiais').insert({ cliente_id: clienteId, titulo, url: validarUrlMaterial(url), criado_por: 'cliente' })
   if (error) throw error
 }
 
