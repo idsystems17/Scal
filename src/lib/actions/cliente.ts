@@ -40,6 +40,18 @@ export async function atualizarStatusParceiro(parceiroId: string, status: 'ativo
   if (error) throw error
 }
 
+export async function atualizarConfiguracoes(
+  clienteId: string,
+  dados: { nome_loja?: string; url_loja?: string }
+) {
+  const supabase = await createClient()
+  const { error } = await supabase
+    .from('clientes')
+    .update(dados)
+    .eq('id', clienteId)
+  if (error) throw error
+}
+
 export async function testarWebhook(clienteId: string) {
   const appUrlTest = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') ?? 'https://scal-sigma.vercel.app'
   const res = await fetch(`${appUrlTest}/api/webhook-test/${clienteId}`, {
