@@ -4,6 +4,8 @@ import { FaturamentoChart } from '@/components/dashboard/FaturamentoChart'
 import { DonutChart } from '@/components/dashboard/DonutChart'
 import { BarRanking } from '@/components/dashboard/BarRanking'
 
+export const dynamic = 'force-dynamic'
+
 const PRECO_ANUAL_ASSINATURA = 349.0
 const LIMITE_FATURAMENTO_TAXA = 50000
 const PERCENTUAL_TAXA = 0.005

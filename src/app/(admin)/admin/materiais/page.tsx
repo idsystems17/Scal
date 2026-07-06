@@ -2,6 +2,8 @@ import { getMateriaisGlobais, criarMaterialGlobal, excluirMaterialGlobal, getCon
 import { MateriaisManager } from '@/components/dashboard/MateriaisManager'
 import { LogoConfigForm } from '@/components/dashboard/LogoConfigForm'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdminMateriaisPage() {
   const [materiais, { logoUrl }] = await Promise.all([
     getMateriaisGlobais(),

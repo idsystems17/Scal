@@ -2,6 +2,8 @@ import { adminClient } from '@/lib/supabase/admin'
 import { MonitorChart } from '@/components/dashboard/MonitorChart'
 import { getMonitorData } from '@/lib/actions/admin'
 
+export const dynamic = 'force-dynamic'
+
 const num = new Intl.NumberFormat('pt-BR')
 
 function tempoRelativo(iso: string) {

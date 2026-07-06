@@ -3,6 +3,8 @@ import { IntegracaoChecklist } from '@/components/dashboard/IntegracaoChecklist'
 
 const appUrl = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') ?? 'https://scal-sigma.vercel.app'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdminIntegracaoPage() {
   const { data: clientes } = await adminClient
     .from('clientes')

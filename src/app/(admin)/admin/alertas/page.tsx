@@ -1,6 +1,8 @@
 import { adminClient } from '@/lib/supabase/admin'
 import { AlertsPanel } from '@/components/dashboard/AlertsPanel'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AlertasPage() {
   const { data: alertas } = await adminClient
     .from('alertas_plano')
