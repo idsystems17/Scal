@@ -168,3 +168,4 @@ O deploy é automático: todo push para `main` no GitHub dispara um build e depl
 - Backup: Supabase em plano Free (zero backup automático) — upgrade para Pro é obrigatório antes de vender para clientes reais
 - Cópia externa de backup (regra 3-2-1) e cron de exclusão por prazo de retenção LGPD — documentados, aguardando estudo/decisão da responsável técnica antes de implementar
 - `/api/seed-dev` — remover ou manter protegido por token permanentemente antes do lançamento público
+- Cobrança variável de 0,5% via Asaas (boleto/Pix sobre valor atribuído acima de R$ 50 mil) — briefing em `docs/briefing-cobranca-asaas-scal.md`, não é prioridade imediata, aguarda validação do restante do SCAL e decisão sobre 4 perguntas em aberto (cobrança automática vs. aprovação manual, prazo de vencimento, régua de atraso, cálculo mensal vs. por venda)
