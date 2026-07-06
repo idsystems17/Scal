@@ -40,14 +40,14 @@ const navByRole: Record<Role, NavItem[]> = {
     { label: 'Suporte', icon: 'support', href: '/dashboard/suporte' },
   ],
   admin: [
-    { label: 'Overview', icon: 'grid', href: '/admin', exact: true },
-    { label: 'Alertas de plano', icon: 'alert', href: '/admin/alertas', badgeKey: 'alertas' },
-    { label: 'E-commerces ativos', icon: 'server', href: '/admin/lojas' },
-    { label: 'Integração', icon: 'plug', href: '/admin/integracao' },
-    { label: 'Materiais', icon: 'box', href: '/admin/materiais' },
-    { label: 'Segurança', icon: 'shield', href: '/admin/seguranca' },
+    { label: 'Home', icon: 'grid', href: '/admin', exact: true },
     { label: 'Infraestrutura', icon: 'chart', href: '/admin/infraestrutura' },
     { label: 'Financeiro', icon: 'wallet', href: '/admin/financeiro' },
+    { label: 'E-commerces', icon: 'server', href: '/admin/lojas' },
+    { label: 'Integração', icon: 'plug', href: '/admin/integracao' },
+    { label: 'Materiais', icon: 'box', href: '/admin/materiais' },
+    { label: 'Alertas de plano', icon: 'alert', href: '/admin/alertas', badgeKey: 'alertas' },
+    { label: 'Segurança', icon: 'shield', href: '/admin/seguranca' },
     { label: 'Suporte', icon: 'support', href: '/admin/suporte' },
   ],
 }
@@ -55,7 +55,7 @@ const navByRole: Record<Role, NavItem[]> = {
 const roleLabels: Record<Role, string> = {
   parceiro: 'Área do Parceiro',
   cliente: 'Dashboard E-commerce',
-  admin: 'Admin SCAL',
+  admin: '',
 }
 
 interface SidebarProps {
@@ -91,7 +91,9 @@ export function Sidebar({ role, counts = {}, logoUrl }: SidebarProps) {
       {/* Logo */}
       <div style={{ background: '#0B081A', padding: '16px 20px', borderBottom: '1px solid #1e1e2e' }}>
         <img src={logoUrl || '/logo.png'} alt="SCAL" style={{ width: '100%', maxWidth: 160, objectFit: 'contain', display: 'block' }} />
-        <p style={{ fontSize: 11, color: '#9B6AFF', margin: '6px 0 0', fontWeight: 600, letterSpacing: '0.5px' }}>{roleLabels[role]}</p>
+        {roleLabels[role] && (
+          <p style={{ fontSize: 11, color: '#9B6AFF', margin: '6px 0 0', fontWeight: 600, letterSpacing: '0.5px' }}>{roleLabels[role]}</p>
+        )}
       </div>
 
       {/* Nav */}

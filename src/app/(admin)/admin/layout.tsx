@@ -41,7 +41,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     <div style={{ display: 'flex', minHeight: '100vh' }}>
       <Sidebar role="admin" counts={{ alertas: alertaCount ?? 0 }} logoUrl={logoUrl} />
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
-        <Header title="Painel Admin" subtitle="Central de operações SCAL" userName="AD" notifications={notifications} />
+        <Header title="Painel Admin" subtitle="Central de operações SCAL" titleColor="#9B6AFF" userName="AD" notifications={notifications} />
         <main style={{ flex: 1, padding: '32px', overflowY: 'auto' }}>
           {children}
         </main>

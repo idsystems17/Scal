@@ -17,6 +17,7 @@ export interface Notification {
 interface HeaderProps {
   title: string
   subtitle: string
+  titleColor?: string
   userName?: string
   notifications?: Notification[]
 }
@@ -86,18 +87,24 @@ function HeaderControls({ notifications = [] }: { notifications: Notification[] 
 
       {/* Period */}
       <div style={{ display: 'flex', background: 'white', border: '1px solid #e6ecf5', borderRadius: 10, padding: 3, gap: 2 }}>
-        {([7, 30, 90] as const).map(p => (
+        {([
+          { value: 7, label: '7d' },
+          { value: 30, label: '30d' },
+          { value: 90, label: '90d' },
+          { value: 180, label: '6m' },
+          { value: 365, label: '1a' },
+        ] as const).map(({ value, label }) => (
           <button
-            key={p}
-            onClick={() => pushParam('period', String(p))}
+            key={value}
+            onClick={() => pushParam('period', String(value))}
             style={{
               padding: '6px 12px', borderRadius: 7, border: 'none',
-              background: currentPeriod === p ? '#2563eb' : 'transparent',
-              color: currentPeriod === p ? 'white' : '#64748b',
+              background: currentPeriod === value ? '#2563eb' : 'transparent',
+              color: currentPeriod === value ? 'white' : '#64748b',
               fontSize: 12, fontWeight: 600, cursor: 'pointer', transition: 'all 0.15s',
             }}
           >
-            {p}d
+            {label}
           </button>
         ))}
       </div>
@@ -225,7 +232,7 @@ function Avatar({ userName }: { userName: string }) {
   )
 }
 
-export function Header({ title, subtitle, userName = 'US', notifications = [] }: HeaderProps) {
+export function Header({ title, subtitle, titleColor = '#0B081A', userName = 'US', notifications = [] }: HeaderProps) {
   return (
     <header style={{
       position: 'sticky', top: 0, zIndex: 10,
@@ -235,7 +242,7 @@ export function Header({ title, subtitle, userName = 'US', notifications = [] }:
       display: 'flex', alignItems: 'center', gap: 16,
     }}>
       <div style={{ flex: 1 }}>
-        <h1 style={{ fontSize: 20, fontWeight: 800, color: '#0B081A', margin: 0, letterSpacing: '-0.5px' }}>{title}</h1>
+        <h1 style={{ fontSize: 20, fontWeight: 800, color: titleColor, margin: 0, letterSpacing: '-0.5px' }}>{title}</h1>
         <p style={{ fontSize: 12, color: '#94a3b8', margin: '2px 0 0' }}>{subtitle}</p>
       </div>
       <Suspense fallback={<div style={{ width: 420, height: 36 }} />}>
