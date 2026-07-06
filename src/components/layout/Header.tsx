@@ -17,7 +17,9 @@ export interface Notification {
 interface HeaderProps {
   title: string
   subtitle: string
+  background?: string
   titleColor?: string
+  subtitleColor?: string
   userName?: string
   notifications?: Notification[]
 }
@@ -232,18 +234,18 @@ function Avatar({ userName }: { userName: string }) {
   )
 }
 
-export function Header({ title, subtitle, titleColor = '#0B081A', userName = 'US', notifications = [] }: HeaderProps) {
+export function Header({ title, subtitle, background = 'rgba(244, 247, 252, 0.85)', titleColor = '#0B081A', subtitleColor = '#94a3b8', userName = 'US', notifications = [] }: HeaderProps) {
   return (
     <header style={{
       position: 'sticky', top: 0, zIndex: 10,
-      background: 'rgba(244, 247, 252, 0.85)',
+      background,
       backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
       borderBottom: '1px solid #e9eef6', padding: '16px 32px',
       display: 'flex', alignItems: 'center', gap: 16,
     }}>
       <div style={{ flex: 1 }}>
         <h1 style={{ fontSize: 20, fontWeight: 800, color: titleColor, margin: 0, letterSpacing: '-0.5px' }}>{title}</h1>
-        <p style={{ fontSize: 12, color: '#94a3b8', margin: '2px 0 0' }}>{subtitle}</p>
+        <p style={{ fontSize: 12, color: subtitleColor, margin: '2px 0 0' }}>{subtitle}</p>
       </div>
       <Suspense fallback={<div style={{ width: 420, height: 36 }} />}>
         <HeaderControls notifications={notifications} />
