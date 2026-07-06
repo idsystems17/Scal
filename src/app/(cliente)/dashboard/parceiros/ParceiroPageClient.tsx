@@ -30,7 +30,7 @@ export default function ParceiroPageClient({ clienteId, parceiros }: Props) {
 
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
         <div>
-          <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Parceiros</h2>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0B081A', margin: 0 }}>Parceiros</h2>
           <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Gerencie seus afiliados e convide novos</p>
         </div>
         <button
@@ -38,7 +38,7 @@ export default function ParceiroPageClient({ clienteId, parceiros }: Props) {
           style={{
             display: 'flex', alignItems: 'center', gap: 8,
             padding: '10px 20px',
-            background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+            background: 'linear-gradient(135deg, #9B6AFF, #C2A4FF)',
             color: 'white', border: 'none', borderRadius: 10,
             fontSize: 14, fontWeight: 600, cursor: 'pointer',
             boxShadow: '0 2px 8px rgba(99,102,241,0.3)',

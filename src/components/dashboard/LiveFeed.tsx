@@ -15,7 +15,7 @@ export function LiveFeed({ items }: LiveFeedProps) {
       <div style={{ marginBottom: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#16a34a', boxShadow: '0 0 0 3px #dcfce7', animation: 'pulse 2s infinite' }} />
-          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: 0 }}>Últimas atribuições</h3>
+          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Últimas atribuições</h3>
         </div>
         <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0 16px' }}>Vendas em tempo real</p>
       </div>
@@ -35,7 +35,7 @@ export function LiveFeed({ items }: LiveFeedProps) {
           >
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: item.color, flexShrink: 0 }} />
             <div style={{ flex: 1 }}>
-              <p style={{ fontSize: 13, fontWeight: 600, color: '#0f172a', margin: 0 }}>
+              <p style={{ fontSize: 13, fontWeight: 600, color: '#0B081A', margin: 0 }}>
                 Venda de {item.value}
               </p>
               <p style={{ fontSize: 11, color: '#94a3b8', margin: '2px 0 0' }}>

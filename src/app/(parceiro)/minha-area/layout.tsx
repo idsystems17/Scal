@@ -2,6 +2,7 @@ import { Sidebar } from '@/components/layout/Sidebar'
 import { Header } from '@/components/layout/Header'
 import type { Notification } from '@/components/layout/Header'
 import { createClient } from '@/lib/supabase/server'
+import { getConfigPlataforma } from '@/lib/actions/admin'
 
 const brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0 })
 
@@ -26,6 +27,8 @@ export default async function ParceiroLayout({ children }: { children: React.Rea
     .select('id')
     .eq('user_id', user?.id ?? '')
     .maybeSingle()
+
+  const { logoUrl } = await getConfigPlataforma()
 
   let conversaoCount = 0
   let notifications: Notification[] = []
@@ -58,7 +61,7 @@ export default async function ParceiroLayout({ children }: { children: React.Rea
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
-      <Sidebar role="parceiro" counts={{ conversoes: conversaoCount }} />
+      <Sidebar role="parceiro" counts={{ conversoes: conversaoCount }} logoUrl={logoUrl} />
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
         <Header title={`Olá, ${primeiroNome}`} subtitle="Acompanhe o desempenho dos seus links" userName={iniciais} notifications={notifications} />
         <main style={{ flex: 1, padding: '32px', overflowY: 'auto' }}>

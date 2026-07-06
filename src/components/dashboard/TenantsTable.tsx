@@ -44,15 +44,15 @@ export function TenantsTable({ tenants, searchQuery = '' }: TenantsTableProps) {
   return (
     <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
       <div style={{ marginBottom: 20 }}>
-        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: 0 }}>Empresas ativas</h3>
-        <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Visão geral das empresas na plataforma</p>
+        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>E-commerces ativos</h3>
+        <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Visão geral dos e-commerces na plataforma</p>
       </div>
 
       <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-              <SortableTh label="CLIENTE" sortKey="nome" activeKey={sortKey} direction={direction} onSort={toggleSort} />
+              <SortableTh label="E-COMMERCE" sortKey="nome" activeKey={sortKey} direction={direction} onSort={toggleSort} />
               <SortableTh label="PLATAFORMA" sortKey="plataforma" activeKey={sortKey} direction={direction} onSort={toggleSort} />
               <SortableTh label="PARCEIROS" sortKey="parceiros" activeKey={sortKey} direction={direction} onSort={toggleSort} />
               <SortableTh label="FATURAMENTO" sortKey="faturamento" activeKey={sortKey} direction={direction} onSort={toggleSort} />
@@ -63,7 +63,7 @@ export function TenantsTable({ tenants, searchQuery = '' }: TenantsTableProps) {
           </thead>
           <tbody>
             {sorted.length === 0 && (
-            <tr><td colSpan={7} style={{ padding: '32px', textAlign: 'center', color: '#94a3b8', fontSize: 13 }}>Nenhuma empresa encontrada.</td></tr>
+            <tr><td colSpan={7} style={{ padding: '32px', textAlign: 'center', color: '#94a3b8', fontSize: 13 }}>Nenhum e-commerce encontrado.</td></tr>
           )}
           {sorted.map((t) => {
               const excedeu = t.parceiros > t.limite_parceiros
@@ -71,7 +71,7 @@ export function TenantsTable({ tenants, searchQuery = '' }: TenantsTableProps) {
               const isLoading = pendingId === t.id
               return (
                 <tr key={t.id} style={{ borderBottom: '1px solid #f8fafc', opacity: isSuspenso ? 0.65 : 1, transition: 'opacity 0.2s' }}>
-                  <td style={{ padding: '14px 12px', fontSize: 13, fontWeight: 600, color: '#0f172a' }}>
+                  <td style={{ padding: '14px 12px', fontSize: 13, fontWeight: 600, color: '#0B081A' }}>
                     {t.nome}
                   </td>
                   <td style={{ padding: '14px 12px' }}>
@@ -80,13 +80,13 @@ export function TenantsTable({ tenants, searchQuery = '' }: TenantsTableProps) {
                     </span>
                   </td>
                   <td style={{ padding: '14px 12px' }}>
-                    <span style={{ fontSize: 13, fontWeight: 600, color: excedeu ? '#e11d48' : '#0f172a' }}>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: excedeu ? '#e11d48' : '#0B081A' }}>
                       {t.parceiros}
                     </span>
                     <span style={{ fontSize: 12, color: '#94a3b8' }}>/{t.limite_parceiros}</span>
                     {excedeu && <span style={{ marginLeft: 6, fontSize: 11, color: '#e11d48', fontWeight: 700 }}>(!)</span>}
                   </td>
-                  <td style={{ padding: '14px 12px', fontSize: 13, fontWeight: 700, color: '#0f172a' }}>
+                  <td style={{ padding: '14px 12px', fontSize: 13, fontWeight: 700, color: '#0B081A' }}>
                     {fmt.format(t.faturamento)}
                   </td>
                   <td style={{ padding: '14px 12px' }}>

@@ -24,7 +24,7 @@ const abbrColors: Record<string, { bg: string; color: string }> = {
   IG: { bg: '#fce7f3', color: '#db2777' },
   WA: { bg: '#dcfce7', color: '#16a34a' },
   YT: { bg: '#fee2e2', color: '#dc2626' },
-  TT: { bg: '#ede9fe', color: '#7c3aed' },
+  TT: { bg: '#ede9fe', color: '#9B6AFF' },
   BL: { bg: '#dbeafe', color: '#2563eb' },
   EM: { bg: '#fef3c7', color: '#d97706' },
   DI: { bg: '#f1f5f9', color: '#64748b' },
@@ -115,7 +115,7 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
             style={{ background: 'white', borderRadius: 16, padding: 28, width: '100%', maxWidth: 460, boxShadow: '0 20px 60px rgba(0,0,0,0.2)' }}
           >
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: '#0f172a', margin: 0 }}>Gerar link de afiliado</h3>
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: '#0B081A', margin: 0 }}>Gerar link de afiliado</h3>
               <button onClick={fecharModal} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94a3b8', padding: 4 }}>
                 <Icon name="x" size={18} />
               </button>
@@ -128,7 +128,7 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
                   <select
                     value={canal}
                     onChange={e => setCanal(e.target.value)}
-                    style={{ width: '100%', padding: '10px 12px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 14, color: '#0f172a', background: 'white', outline: 'none' }}
+                    style={{ width: '100%', padding: '10px 12px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 14, color: '#0B081A', background: 'white', outline: 'none' }}
                   >
                     {CANAIS.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
@@ -141,7 +141,7 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
                     value={destinoUrl}
                     onChange={e => setDestinoUrl(e.target.value)}
                     placeholder="https://exemplo.com/produto"
-                    style={{ width: '100%', padding: '10px 12px', border: `1.5px solid ${erro ? '#fca5a5' : '#e2e8f0'}`, borderRadius: 8, fontSize: 14, color: '#0f172a', outline: 'none', boxSizing: 'border-box' }}
+                    style={{ width: '100%', padding: '10px 12px', border: `1.5px solid ${erro ? '#fca5a5' : '#e2e8f0'}`, borderRadius: 8, fontSize: 14, color: '#0B081A', outline: 'none', boxSizing: 'border-box' }}
                   />
                   {erro && <p style={{ fontSize: 12, color: '#dc2626', margin: '4px 0 0' }}>{erro}</p>}
                 </div>
@@ -149,7 +149,7 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
                 <button
                   onClick={handleGerar}
                   disabled={gerando}
-                  style={{ padding: '11px', borderRadius: 10, border: 'none', background: gerando ? '#e2e8f0' : 'linear-gradient(135deg, #6366f1, #8b5cf6)', color: gerando ? '#94a3b8' : 'white', fontWeight: 700, fontSize: 14, cursor: gerando ? 'not-allowed' : 'pointer' }}
+                  style={{ padding: '11px', borderRadius: 10, border: 'none', background: gerando ? '#e2e8f0' : 'linear-gradient(135deg, #9B6AFF, #C2A4FF)', color: gerando ? '#94a3b8' : 'white', fontWeight: 700, fontSize: 14, cursor: gerando ? 'not-allowed' : 'pointer' }}
                 >
                   {gerando ? 'Gerando...' : 'Gerar link'}
                 </button>
@@ -191,12 +191,12 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
       <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
           <div>
-            <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: 0 }}>Desempenho por canal</h3>
+            <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Desempenho por canal</h3>
             <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Seus links de afiliado ativos</p>
           </div>
           <button
             onClick={abrirModal}
-            style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '8px 16px', background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', color: 'white', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}
+            style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '8px 16px', background: 'linear-gradient(135deg, #9B6AFF, #C2A4FF)', color: 'white', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}
           >
             <Icon name="plus" size={14} />
             Novo canal
@@ -232,12 +232,12 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
                             {ch.abbr}
                           </div>
                           <div>
-                            <p style={{ fontSize: 13, fontWeight: 600, color: '#0f172a', margin: 0 }}>{ch.name}</p>
+                            <p style={{ fontSize: 13, fontWeight: 600, color: '#0B081A', margin: 0 }}>{ch.name}</p>
                             <p style={{ fontSize: 11, color: '#94a3b8', margin: '2px 0 0', fontFamily: 'monospace' }}>{ch.url}</p>
                           </div>
                         </div>
                       </td>
-                      <td style={{ padding: '14px 12px', fontSize: 13, fontWeight: 600, color: '#0f172a' }}>
+                      <td style={{ padding: '14px 12px', fontSize: 13, fontWeight: 600, color: '#0B081A' }}>
                         {ch.clicks.toLocaleString('pt-BR')}
                       </td>
                       <td style={{ padding: '14px 12px', fontSize: 13, color: '#475569' }}>
@@ -248,7 +248,7 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
                           {ch.ctr}
                         </span>
                       </td>
-                      <td style={{ padding: '14px 12px', fontSize: 13, fontWeight: 600, color: '#0f172a' }}>
+                      <td style={{ padding: '14px 12px', fontSize: 13, fontWeight: 600, color: '#0B081A' }}>
                         {ch.volume}
                       </td>
                       <td style={{ padding: '14px 12px' }}>

@@ -2,6 +2,7 @@ import { Sidebar } from '@/components/layout/Sidebar'
 import { Header } from '@/components/layout/Header'
 import type { Notification } from '@/components/layout/Header'
 import { createClient } from '@/lib/supabase/server'
+import { getConfigPlataforma } from '@/lib/actions/admin'
 
 function tempoRelativo(iso: string) {
   const diff = Date.now() - new Date(iso).getTime()
@@ -15,7 +16,7 @@ function tempoRelativo(iso: string) {
 export default async function ClienteLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  const nome = (user?.user_metadata?.nome as string) || 'Empresa'
+  const nome = (user?.user_metadata?.nome as string) || 'E-commerce'
   const iniciais = nome.split(' ').slice(0, 2).map((n: string) => n[0]).join('').toUpperCase()
 
   const { data: clienteRow } = await supabase
@@ -23,6 +24,8 @@ export default async function ClienteLayout({ children }: { children: React.Reac
     .select('id')
     .eq('user_id', user?.id ?? '')
     .maybeSingle()
+
+  const { logoUrl } = await getConfigPlataforma()
 
   let parceiroCount = 0
   let notifications: Notification[] = []
@@ -55,7 +58,7 @@ export default async function ClienteLayout({ children }: { children: React.Reac
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
-      <Sidebar role="cliente" counts={{ parceiros: parceiroCount }} />
+      <Sidebar role="cliente" counts={{ parceiros: parceiroCount }} logoUrl={logoUrl} />
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
         <Header title="Dashboard" subtitle={`Visão geral — ${nome}`} userName={iniciais} notifications={notifications} />
         <main style={{ flex: 1, padding: '32px', overflowY: 'auto' }}>

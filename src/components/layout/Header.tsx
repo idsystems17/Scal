@@ -71,7 +71,7 @@ function HeaderControls({ notifications = [] }: { notifications: Notification[] 
           placeholder="Buscar..."
           style={{
             border: 'none', outline: 'none', background: 'transparent',
-            fontSize: 13, color: '#0f172a', width: '100%', fontFamily: 'inherit',
+            fontSize: 13, color: '#0B081A', width: '100%', fontFamily: 'inherit',
           }}
         />
         {searchValue && (
@@ -132,7 +132,7 @@ function HeaderControls({ notifications = [] }: { notifications: Notification[] 
               overflow: 'hidden', minWidth: 300, maxWidth: 360, zIndex: 50,
             }}>
               <div style={{ padding: '12px 16px', borderBottom: '1px solid #f1f5f9' }}>
-                <span style={{ fontSize: 13, fontWeight: 700, color: '#0f172a' }}>Notificações</span>
+                <span style={{ fontSize: 13, fontWeight: 700, color: '#0B081A' }}>Notificações</span>
               </div>
               {notifications.length === 0 ? (
                 <div style={{ padding: '24px 16px', textAlign: 'center', color: '#94a3b8', fontSize: 13 }}>
@@ -154,10 +154,10 @@ function HeaderControls({ notifications = [] }: { notifications: Notification[] 
                     >
                       <div style={{
                         width: 8, height: 8, borderRadius: '50%', flexShrink: 0, marginTop: 5,
-                        background: n.type === 'alert' ? '#e11d48' : n.type === 'success' ? '#16a34a' : '#6366f1',
+                        background: n.type === 'alert' ? '#e11d48' : n.type === 'success' ? '#16a34a' : '#9B6AFF',
                       }} />
                       <div style={{ flex: 1, minWidth: 0 }}>
-                        <p style={{ margin: 0, fontSize: 13, fontWeight: 600, color: '#0f172a', lineHeight: 1.3 }}>{n.title}</p>
+                        <p style={{ margin: 0, fontSize: 13, fontWeight: 600, color: '#0B081A', lineHeight: 1.3 }}>{n.title}</p>
                         <p style={{ margin: '2px 0 0', fontSize: 12, color: '#64748b', lineHeight: 1.4 }}>{n.text}</p>
                         <p style={{ margin: '4px 0 0', fontSize: 11, color: '#94a3b8' }}>{n.time}</p>
                       </div>
@@ -235,7 +235,7 @@ export function Header({ title, subtitle, userName = 'US', notifications = [] }:
       display: 'flex', alignItems: 'center', gap: 16,
     }}>
       <div style={{ flex: 1 }}>
-        <h1 style={{ fontSize: 20, fontWeight: 800, color: '#0f172a', margin: 0, letterSpacing: '-0.5px' }}>{title}</h1>
+        <h1 style={{ fontSize: 20, fontWeight: 800, color: '#0B081A', margin: 0, letterSpacing: '-0.5px' }}>{title}</h1>
         <p style={{ fontSize: 12, color: '#94a3b8', margin: '2px 0 0' }}>{subtitle}</p>
       </div>
       <Suspense fallback={<div style={{ width: 420, height: 36 }} />}>

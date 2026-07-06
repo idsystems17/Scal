@@ -1,7 +1,7 @@
 const ATUALIZADO_EM = '2026-07-05'
 
 const secaoStyle: React.CSSProperties = { marginTop: 32 }
-const h2Style: React.CSSProperties = { fontSize: 18, fontWeight: 700, color: '#0f172a', marginBottom: 10 }
+const h2Style: React.CSSProperties = { fontSize: 18, fontWeight: 700, color: '#0B081A', marginBottom: 10 }
 const h3Style: React.CSSProperties = { fontSize: 15, fontWeight: 700, color: '#1e293b', margin: '18px 0 8px' }
 const pStyle: React.CSSProperties = { fontSize: 14.5, lineHeight: 1.7, color: '#334155', margin: '0 0 12px' }
 const liStyle: React.CSSProperties = { fontSize: 14.5, lineHeight: 1.7, color: '#334155', marginBottom: 6 }
@@ -9,12 +9,12 @@ const liStyle: React.CSSProperties = { fontSize: 14.5, lineHeight: 1.7, color: '
 export default function PoliticaPrivacidadePage() {
   return (
     <div style={{ minHeight: '100vh', background: '#f4f7fc' }}>
-      <div style={{ background: '#0d0d1a', padding: '28px 24px', textAlign: 'center' }}>
-        <img src="/logo.png" alt="SCAL" style={{ width: 140, objectFit: 'contain', display: 'block', margin: '0 auto' }} />
+      <div style={{ background: '#0B081A', padding: '28px 24px', textAlign: 'center' }}>
+        <img src="/logo.svg" alt="SCAL" style={{ width: 140, objectFit: 'contain', display: 'block', margin: '0 auto' }} />
       </div>
 
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 24px 80px' }}>
-        <h1 style={{ fontSize: 26, fontWeight: 800, color: '#0f172a', marginBottom: 6 }}>Política de Privacidade</h1>
+        <h1 style={{ fontSize: 26, fontWeight: 800, color: '#0B081A', marginBottom: 6 }}>Política de Privacidade</h1>
         <p style={{ fontSize: 13, color: '#94a3b8', marginBottom: 30 }}>Última atualização: {ATUALIZADO_EM}</p>
 
         <p style={pStyle}>

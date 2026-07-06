@@ -50,7 +50,7 @@ export const MOCK_CLIENTE: ClienteDashboard = {
   canal_receita: [
     { label: 'Instagram', pct: 46, color: '#2563eb' },
     { label: 'WhatsApp', pct: 27, color: '#0ea5e9' },
-    { label: 'YouTube', pct: 15, color: '#7c3aed' },
+    { label: 'YouTube', pct: 15, color: '#9B6AFF' },
     { label: 'TikTok', pct: 12, color: '#14b8a6' },
   ],
   alertas_performance: [

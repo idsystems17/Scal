@@ -1,5 +1,6 @@
 import { adminClient } from '@/lib/supabase/admin'
 import { TenantsTable } from '@/components/dashboard/TenantsTable'
+import { NovoClienteButton } from '@/components/dashboard/NovoClienteButton'
 
 export default async function LojasPage({
   searchParams,
@@ -16,7 +17,7 @@ export default async function LojasPage({
 
   const tenantsMapeados = (tenants ?? []).map(t => ({
     id: String(t.cliente_id ?? ''),
-    nome: t.nome_loja ?? 'Empresa',
+    nome: t.nome_loja ?? 'E-commerce',
     plataforma: t.plataforma_detectada ?? '—',
     parceiros: Number(t.parceiros_ativos_contagem ?? 0),
     limite_parceiros: Number(t.limite_parceiros_incluidos ?? 20),
@@ -27,9 +28,12 @@ export default async function LojasPage({
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-      <div>
-        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Empresas ativas</h2>
-        <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Todas as empresas na plataforma</p>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16, flexWrap: 'wrap' }}>
+        <div>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0B081A', margin: 0 }}>E-commerces ativos</h2>
+          <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Todos os e-commerces na plataforma</p>
+        </div>
+        <NovoClienteButton />
       </div>
       <TenantsTable tenants={tenantsMapeados} searchQuery={q} />
     </div>

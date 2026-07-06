@@ -65,14 +65,14 @@ export default async function VendasPage({
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
         <div>
-          <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Vendas</h2>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0B081A', margin: 0 }}>Vendas</h2>
           <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>
             Últimos {days} dias{q ? ` · busca: "${q}"` : ''}
           </p>
         </div>
         <div style={{ textAlign: 'right' }}>
           <p style={{ fontSize: 12, color: '#94a3b8', margin: 0 }}>Total confirmado</p>
-          <p style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', margin: '2px 0 0' }}>{brl.format(total)}</p>
+          <p style={{ fontSize: 22, fontWeight: 700, color: '#0B081A', margin: '2px 0 0' }}>{brl.format(total)}</p>
         </div>
       </div>
 
@@ -100,7 +100,7 @@ export default async function VendasPage({
                   <tr key={c.id} style={{ borderBottom: '1px solid #f8fafc' }}>
                     <td style={{ padding: '14px 12px', fontFamily: 'monospace', fontSize: 12, color: '#64748b' }}>{c.pedido_externo_id}</td>
                     <td style={{ padding: '14px 12px', fontSize: 13, color: '#475569' }}>{parceiro?.nome ?? '—'}</td>
-                    <td style={{ padding: '14px 12px', fontSize: 13, fontWeight: 700, color: '#0f172a' }}>{brl.format(Number(c.valor_venda))}</td>
+                    <td style={{ padding: '14px 12px', fontSize: 13, fontWeight: 700, color: '#0B081A' }}>{brl.format(Number(c.valor_venda))}</td>
                     <td style={{ padding: '14px 12px' }}>
                       <span style={{
                         padding: '3px 10px', borderRadius: 20, fontSize: 12, fontWeight: 600,

@@ -63,7 +63,7 @@ export function ConviteModal({ clienteId, onClose }: ConviteModalProps) {
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
           <div>
-            <h2 style={{ fontSize: 17, fontWeight: 700, color: '#0f172a', margin: 0 }}>Convidar parceiro</h2>
+            <h2 style={{ fontSize: 17, fontWeight: 700, color: '#0B081A', margin: 0 }}>Convidar parceiro</h2>
             <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>O link expira em 7 dias</p>
           </div>
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94a3b8', fontSize: 20, lineHeight: 1, padding: 4 }}>×</button>
@@ -96,7 +96,7 @@ export function ConviteModal({ clienteId, onClose }: ConviteModalProps) {
             <button
               type="submit"
               disabled={carregando}
-              style={{ padding: '12px', background: carregando ? '#a5b4fc' : 'linear-gradient(135deg, #6366f1, #8b5cf6)', color: 'white', border: 'none', borderRadius: 8, fontSize: 14, fontWeight: 600, cursor: carregando ? 'not-allowed' : 'pointer' }}
+              style={{ padding: '12px', background: carregando ? '#a5b4fc' : 'linear-gradient(135deg, #9B6AFF, #C2A4FF)', color: 'white', border: 'none', borderRadius: 8, fontSize: 14, fontWeight: 600, cursor: carregando ? 'not-allowed' : 'pointer' }}
             >
               {carregando ? 'Gerando...' : 'Gerar link de convite'}
             </button>

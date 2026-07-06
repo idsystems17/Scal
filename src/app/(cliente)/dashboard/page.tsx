@@ -3,7 +3,7 @@ import { createClient } from '@/lib/supabase/server'
 import { getClienteDashboard, getClienteKpiDeltas } from '@/lib/actions/cliente'
 import { ClienteDashboardClient } from './ClienteDashboardClient'
 
-const CANAL_COLORS = ['#6366f1', '#2563eb', '#16a34a', '#db2777', '#f59e0b', '#64748b']
+const CANAL_COLORS = ['#9B6AFF', '#2563eb', '#16a34a', '#db2777', '#f59e0b', '#64748b']
 
 async function getReceitaPorCanal(clienteId: string, supabase: Awaited<ReturnType<typeof createClient>>, days: number) {
   const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString()

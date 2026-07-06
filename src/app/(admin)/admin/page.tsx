@@ -38,15 +38,15 @@ export default async function AdminPage({
   const totalTenants = tenants?.length ?? 0
 
   const kpis = [
-    { label: 'Empresas ativas', value: num.format(totalTenants), delta: deltas.empresas.label, deltaPositive: deltas.empresas.positive, sub: `clientes SCAL · vs ${days}d anteriores`, icon: 'server' },
-    { label: 'Parceiros totais', value: num.format(totalParceiros), delta: deltas.parceiros.label, deltaPositive: deltas.parceiros.positive, sub: `em todas as empresas · vs ${days}d anteriores`, icon: 'users' },
+    { label: 'E-commerces ativos', value: num.format(totalTenants), delta: deltas.empresas.label, deltaPositive: deltas.empresas.positive, sub: `e-commerces SCAL · vs ${days}d anteriores`, icon: 'server' },
+    { label: 'Parceiros totais', value: num.format(totalParceiros), delta: deltas.parceiros.label, deltaPositive: deltas.parceiros.positive, sub: `em todos os e-commerces · vs ${days}d anteriores`, icon: 'users' },
     { label: 'Faturamento total', value: brl.format(totalFaturamento), delta: deltas.faturamento.label, deltaPositive: deltas.faturamento.positive, sub: `via SCAL · receita ${days}d`, icon: 'wallet' },
     { label: 'Alertas abertos', value: num.format(totalAlertas), delta: deltas.alertas.label, deltaPositive: deltas.alertas.positive, sub: `pendentes · abertos em ${days}d`, icon: 'alert' },
   ]
 
   const alertasMapeados = (alertas ?? []).map(a => ({
     id: a.id,
-    cliente_nome: (a.clientes as { nome_loja: string } | null)?.nome_loja ?? 'Empresa',
+    cliente_nome: (a.clientes as { nome_loja: string } | null)?.nome_loja ?? 'E-commerce',
     tipo: a.tipo === 'limite_parceiros_excedido' ? 'limite_parceiros' : 'limite_faturamento' as 'limite_parceiros' | 'limite_faturamento',
     valor_atual: a.valor_no_momento ?? '—',
     limite: a.tipo === 'limite_parceiros_excedido' ? '20 parceiros' : 'R$ 50.000',
@@ -55,7 +55,7 @@ export default async function AdminPage({
 
   const tenantsMapeados = (tenants ?? []).map(t => ({
     id: String(t.cliente_id ?? ''),
-    nome: t.nome_loja ?? 'Empresa',
+    nome: t.nome_loja ?? 'E-commerce',
     plataforma: t.plataforma_detectada ?? '—',
     parceiros: Number(t.parceiros_ativos_contagem ?? 0),
     limite_parceiros: Number(t.limite_parceiros_incluidos ?? 20),

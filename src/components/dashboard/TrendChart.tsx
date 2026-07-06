@@ -36,7 +36,7 @@ export function TrendChart({ data }: TrendChartProps) {
   return (
     <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
       <div style={{ marginBottom: 20 }}>
-        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: 0 }}>Tendência de desempenho</h3>
+        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Tendência de desempenho</h3>
         <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Evolução de cliques e conversões</p>
       </div>
       <ResponsiveContainer width="100%" height={220}>

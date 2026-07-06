@@ -32,7 +32,7 @@ const plataformas = [
   },
   {
     nome: 'Eduzz',
-    cor: '#8b5cf6',
+    cor: '#C2A4FF',
     passos: [
       'Acesse Eduzz → Produtor → Ferramentas → Webhooks',
       'Adicione a URL do webhook SCAL',
@@ -72,7 +72,7 @@ export default async function IntegracoesPage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       <div>
-        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Integrações</h2>
+        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0B081A', margin: 0 }}>Integrações</h2>
         <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Configure o webhook para receber notificações de vendas</p>
       </div>
 
@@ -85,7 +85,7 @@ export default async function IntegracoesPage() {
 
       {/* Segredo do webhook */}
       <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: '0 0 8px' }}>Assinatura secreta (HMAC)</h3>
+        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: '0 0 8px' }}>Assinatura secreta (HMAC)</h3>
         <p style={{ fontSize: 12, color: '#64748b', margin: '0 0 12px' }}>
           Use esse valor para assinar os webhooks enviados pela plataforma. O SCAL valida cada requisição com HMAC-SHA256.
         </p>
@@ -99,7 +99,7 @@ export default async function IntegracoesPage() {
 
       {/* Guias por plataforma */}
       <div>
-        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: '0 0 16px' }}>Como configurar por plataforma</h3>
+        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: '0 0 16px' }}>Como configurar por plataforma</h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           {plataformas.map((p) => (
             <div
@@ -108,7 +108,7 @@ export default async function IntegracoesPage() {
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
                 <div style={{ width: 12, height: 12, borderRadius: '50%', background: p.cor, flexShrink: 0 }} />
-                <h4 style={{ fontSize: 14, fontWeight: 700, color: '#0f172a', margin: 0 }}>{p.nome}</h4>
+                <h4 style={{ fontSize: 14, fontWeight: 700, color: '#0B081A', margin: 0 }}>{p.nome}</h4>
               </div>
               <ol style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {p.passos.map((passo, i) => (
@@ -127,9 +127,9 @@ export default async function IntegracoesPage() {
 
       {/* Payload de exemplo */}
       <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: '0 0 12px' }}>Payload JSON aceito</h3>
+        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: '0 0 12px' }}>Payload JSON aceito</h3>
         <pre style={{
-          margin: 0, padding: '16px', background: '#0f172a', borderRadius: 10, overflowX: 'auto',
+          margin: 0, padding: '16px', background: '#0B081A', borderRadius: 10, overflowX: 'auto',
           fontSize: 12, lineHeight: 1.7, color: '#e2e8f0',
         }}>{`{
   "pedido_id": "KW-12345",       // obrigatório

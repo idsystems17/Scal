@@ -41,7 +41,7 @@ export default async function ParceiroPage({
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '60vh' }}>
         <div style={{ textAlign: 'center', color: '#64748b' }}>
           <p style={{ fontSize: 18, fontWeight: 600, margin: '0 0 8px' }}>Conta não configurada</p>
-          <p style={{ fontSize: 14 }}>Entre em contato com a empresa para ativar seu acesso.</p>
+          <p style={{ fontSize: 14 }}>Entre em contato com o e-commerce para ativar seu acesso.</p>
         </div>
       </div>
     )
@@ -76,7 +76,7 @@ export default async function ParceiroPage({
     value: brl.format(Number(f.valor_venda ?? 0)),
     channel: 'Venda confirmada',
     time: tempoRelativo(f.criado_em),
-    color: '#6366f1',
+    color: '#9B6AFF',
   }))
 
   const appUrl = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') ?? 'https://scal-sigma.vercel.app'

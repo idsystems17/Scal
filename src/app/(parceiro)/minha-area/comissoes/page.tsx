@@ -57,7 +57,7 @@ export default async function ComissoesPage({
   const totalPages = Math.max(1, Math.ceil((count ?? 0) / PAGE_SIZE))
 
   const kpis = [
-    { label: 'Volume gerado', value: brl.format(totalVolume), sub: `últimos ${days} dias`, color: '#6366f1' },
+    { label: 'Volume gerado', value: brl.format(totalVolume), sub: `últimos ${days} dias`, color: '#9B6AFF' },
     { label: 'Vendas confirmadas', value: String(totalConversoes), sub: 'atribuídas a você', color: '#2563eb' },
     { label: 'Ticket médio', value: brl.format(ticketMedio), sub: 'por venda', color: '#16a34a' },
   ]
@@ -65,7 +65,7 @@ export default async function ComissoesPage({
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       <div>
-        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Comissões</h2>
+        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0B081A', margin: 0 }}>Comissões</h2>
         <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Volume de vendas gerado pelos seus links — últimos {days} dias</p>
       </div>
 
@@ -88,7 +88,7 @@ export default async function ComissoesPage({
         <div>
           <p style={{ fontSize: 13, fontWeight: 700, color: '#1d4ed8', margin: 0 }}>Como funcionam as comissões no SCAL</p>
           <p style={{ fontSize: 13, color: '#3b82f6', margin: '4px 0 0', lineHeight: 1.5 }}>
-            O SCAL rastreia o volume de vendas gerado pelos seus links. O valor da sua comissão (%) é combinado diretamente com a empresa — entre em contato com ela para saber o percentual acordado.
+            O SCAL rastreia o volume de vendas gerado pelos seus links. O valor da sua comissão (%) é combinado diretamente com o e-commerce — entre em contato com ele para saber o percentual acordado.
           </p>
         </div>
       </div>
@@ -96,7 +96,7 @@ export default async function ComissoesPage({
       {/* Tabela de vendas */}
       <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         <div style={{ marginBottom: 20 }}>
-          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: 0 }}>Histórico de vendas atribuídas</h3>
+          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Histórico de vendas atribuídas</h3>
           <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>{confirmadas.length} venda{confirmadas.length !== 1 ? 's' : ''} confirmada{confirmadas.length !== 1 ? 's' : ''} no período</p>
         </div>
 
@@ -119,7 +119,7 @@ export default async function ComissoesPage({
                 <tr key={c.id} style={{ borderBottom: '1px solid #f8fafc' }}>
                   <td style={{ padding: '14px 12px', fontSize: 12, color: '#64748b' }}>{tempoRelativo(c.criado_em)}</td>
                   <td style={{ padding: '14px 12px', fontFamily: 'monospace', fontSize: 12, color: '#64748b' }}>{c.pedido_externo_id}</td>
-                  <td style={{ padding: '14px 12px', fontSize: 13, fontWeight: 700, color: '#0f172a' }}>{brl.format(Number(c.valor_venda))}</td>
+                  <td style={{ padding: '14px 12px', fontSize: 13, fontWeight: 700, color: '#0B081A' }}>{brl.format(Number(c.valor_venda))}</td>
                   <td style={{ padding: '14px 12px' }}>
                     <span style={{
                       padding: '3px 10px', borderRadius: 20, fontSize: 12, fontWeight: 600,

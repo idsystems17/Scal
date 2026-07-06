@@ -21,8 +21,8 @@ export default async function ClienteMateriaisPage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       <div>
-        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Materiais de marketing</h2>
-        <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Materiais da sua empresa — visíveis apenas para os seus parceiros</p>
+        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0B081A', margin: 0 }}>Materiais de marketing</h2>
+        <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Materiais do seu e-commerce — visíveis apenas para os seus parceiros</p>
       </div>
 
       <MateriaisManager

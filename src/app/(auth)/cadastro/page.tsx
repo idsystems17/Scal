@@ -44,19 +44,19 @@ export default function CadastroPage() {
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', background: '#f4f7fc' }}>
       <div style={{ background: '#fff', borderRadius: 16, width: '100%', maxWidth: 440, boxShadow: '0 4px 24px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
-        <div style={{ background: '#0d0d1a', padding: '28px 40px 24px', textAlign: 'center' }}>
-          <img src="/logo.png" alt="SCAL" style={{ width: 160, objectFit: 'contain', display: 'block', margin: '0 auto' }} />
+        <div style={{ background: '#0B081A', padding: '28px 40px 24px', textAlign: 'center' }}>
+          <img src="/logo.svg" alt="SCAL" style={{ width: 160, objectFit: 'contain', display: 'block', margin: '0 auto' }} />
         </div>
 
         <div style={{ padding: '32px 40px 40px' }}>
           <div style={{ marginBottom: 24, textAlign: 'center' }}>
-            <h1 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Criar conta de empresa</h1>
-            <p style={{ fontSize: 14, color: '#64748b', margin: '6px 0 0' }}>Configure sua empresa no SCAL</p>
+            <h1 style={{ fontSize: 20, fontWeight: 700, color: '#0B081A', margin: 0 }}>Criar conta de e-commerce</h1>
+            <p style={{ fontSize: 14, color: '#64748b', margin: '6px 0 0' }}>Configure seu e-commerce no SCAL</p>
           </div>
 
           <form onSubmit={handleCadastro} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
             {[
-              { label: 'Nome da empresa', value: nomeLoja, set: setNomeLoja, type: 'text', placeholder: 'Ex: Empresa da Maria' },
+              { label: 'Nome do e-commerce', value: nomeLoja, set: setNomeLoja, type: 'text', placeholder: 'Ex: Loja da Maria' },
               { label: 'URL do site', value: urlLoja, set: setUrlLoja, type: 'url', placeholder: 'https://suaempresa.com.br' },
               { label: 'Email', value: email, set: setEmail, type: 'email', placeholder: 'seu@email.com' },
               { label: 'Senha', value: senha, set: setSenha, type: 'password', placeholder: 'Mínimo 8 caracteres' },
@@ -70,7 +70,7 @@ export default function CadastroPage() {
                   value={value}
                   onChange={e => set(e.target.value)}
                   placeholder={placeholder}
-                  style={{ width: '100%', padding: '10px 14px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 14, color: '#0f172a', outline: 'none', boxSizing: 'border-box', background: '#f8fafc' }}
+                  style={{ width: '100%', padding: '10px 14px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 14, color: '#0B081A', outline: 'none', boxSizing: 'border-box', background: '#f8fafc' }}
                 />
               </div>
             ))}
@@ -84,9 +84,9 @@ export default function CadastroPage() {
               />
               <span>
                 Li e concordo com os{' '}
-                <a href="/termos-de-uso" target="_blank" rel="noopener noreferrer" style={{ color: '#6366f1', fontWeight: 600, textDecoration: 'none' }}>Termos de Uso</a>
+                <a href="/termos-de-uso" target="_blank" rel="noopener noreferrer" style={{ color: '#9B6AFF', fontWeight: 600, textDecoration: 'none' }}>Termos de Uso</a>
                 {' '}e a{' '}
-                <a href="/politica-privacidade" target="_blank" rel="noopener noreferrer" style={{ color: '#6366f1', fontWeight: 600, textDecoration: 'none' }}>Política de Privacidade</a>
+                <a href="/politica-privacidade" target="_blank" rel="noopener noreferrer" style={{ color: '#9B6AFF', fontWeight: 600, textDecoration: 'none' }}>Política de Privacidade</a>
               </span>
             </label>
 
@@ -99,14 +99,14 @@ export default function CadastroPage() {
             <button
               type="submit"
               disabled={carregando}
-              style={{ padding: '12px', background: carregando ? '#a5b4fc' : 'linear-gradient(135deg, #6366f1, #8b5cf6)', color: '#fff', border: 'none', borderRadius: 8, fontSize: 14, fontWeight: 600, cursor: carregando ? 'not-allowed' : 'pointer', marginTop: 4 }}
+              style={{ padding: '12px', background: carregando ? '#a5b4fc' : 'linear-gradient(135deg, #9B6AFF, #C2A4FF)', color: '#fff', border: 'none', borderRadius: 8, fontSize: 14, fontWeight: 600, cursor: carregando ? 'not-allowed' : 'pointer', marginTop: 4 }}
             >
               {carregando ? 'Criando conta...' : 'Criar conta'}
             </button>
 
             <p style={{ textAlign: 'center', fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>
               Já tem conta?{' '}
-              <a href="/login" style={{ color: '#6366f1', fontWeight: 600, textDecoration: 'none' }}>Entrar</a>
+              <a href="/login" style={{ color: '#9B6AFF', fontWeight: 600, textDecoration: 'none' }}>Entrar</a>
             </p>
           </form>
         </div>

@@ -53,7 +53,7 @@ export default async function ConfiguracoesPage({
 
   const inputStyle: React.CSSProperties = {
     width: '100%', padding: '10px 14px', borderRadius: 10, border: '1px solid #e2e8f0',
-    fontSize: 14, color: '#0f172a', background: 'white', boxSizing: 'border-box',
+    fontSize: 14, color: '#0B081A', background: 'white', boxSizing: 'border-box',
     outline: 'none',
   }
 
@@ -69,8 +69,8 @@ export default async function ConfiguracoesPage({
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24, maxWidth: 640 }}>
       <div>
-        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Configurações</h2>
-        <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Dados da empresa e segurança da conta</p>
+        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0B081A', margin: 0 }}>Configurações</h2>
+        <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Dados do e-commerce e segurança da conta</p>
       </div>
 
       {saved && (
@@ -85,12 +85,12 @@ export default async function ConfiguracoesPage({
         </div>
       )}
 
-      {/* Dados da empresa */}
+      {/* Dados do e-commerce */}
       <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: '0 0 20px' }}>Dados da empresa</h3>
+        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: '0 0 20px' }}>Dados do e-commerce</h3>
         <form action={salvarDados} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>
-            <label style={labelStyle} htmlFor="nome_loja">Nome da empresa</label>
+            <label style={labelStyle} htmlFor="nome_loja">Nome do e-commerce</label>
             <input
               id="nome_loja"
               name="nome_loja"
@@ -119,7 +119,7 @@ export default async function ConfiguracoesPage({
 
       {/* Alterar senha */}
       <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: '0 0 8px' }}>Segurança da conta</h3>
+        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: '0 0 8px' }}>Segurança da conta</h3>
         <p style={{ fontSize: 12, color: '#94a3b8', margin: '0 0 20px' }}>E-mail: <strong style={{ color: '#475569' }}>{user.email}</strong></p>
         <form action={alterarSenha} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>

@@ -50,7 +50,7 @@ export default async function InfraestruturaPage() {
   const TIPO_LABELS: Record<string, { label: string; color: string; bg: string }> = {
     clique: { label: 'Clique', color: '#2563eb', bg: '#eff6ff' },
     webhook_recebido: { label: 'Webhook', color: '#16a34a', bg: '#ecfdf3' },
-    conversao_confirmada: { label: 'Conversão', color: '#6366f1', bg: '#eef2ff' },
+    conversao_confirmada: { label: 'Conversão', color: '#9B6AFF', bg: '#eef2ff' },
     estorno: { label: 'Estorno', color: '#d97706', bg: '#fffbeb' },
     erro: { label: 'Erro', color: '#e11d48', bg: '#fff1f3' },
   }
@@ -58,7 +58,7 @@ export default async function InfraestruturaPage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       <div>
-        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Infraestrutura</h2>
+        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0B081A', margin: 0 }}>Infraestrutura</h2>
         <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Monitoramento de redirecionamentos, webhooks e performance</p>
       </div>
 
@@ -66,9 +66,9 @@ export default async function InfraestruturaPage() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
         {[
           { label: 'Cliques 24h', value: num.format(cliques24h ?? 0), sub: 'redirecionamentos', color: '#2563eb' },
-          { label: 'Conversões 24h', value: num.format(conversoes24h ?? 0), sub: 'webhooks confirmados', color: '#6366f1' },
+          { label: 'Conversões 24h', value: num.format(conversoes24h ?? 0), sub: 'webhooks confirmados', color: '#9B6AFF' },
           { label: 'Webhooks 24h', value: num.format(webhooks24h ?? 0), sub: 'eventos recebidos', color: '#16a34a' },
-          { label: 'Taxa de erro', value: `${taxaErro.toFixed(1).replace('.', ',')}%`, sub: `${num.format(erros24h ?? 0)} erros`, color: (erros24h ?? 0) > 5 ? '#e11d48' : '#0f172a' },
+          { label: 'Taxa de erro', value: `${taxaErro.toFixed(1).replace('.', ',')}%`, sub: `${num.format(erros24h ?? 0)} erros`, color: (erros24h ?? 0) > 5 ? '#e11d48' : '#0B081A' },
         ].map((k, i) => (
           <div key={i} style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
             <p style={{ fontSize: 11, color: '#94a3b8', margin: '0 0 8px', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{k.label}</p>
@@ -85,11 +85,11 @@ export default async function InfraestruturaPage() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 16 }}>
         {/* Volume 7d */}
         <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: '0 0 20px' }}>Volume 7 dias</h3>
+          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: '0 0 20px' }}>Volume 7 dias</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {[
               { label: 'Total de cliques', value: num.format(cliques7d ?? 0), color: '#2563eb' },
-              { label: 'Média diária', value: num.format(Math.round((cliques7d ?? 0) / 7)), color: '#6366f1' },
+              { label: 'Média diária', value: num.format(Math.round((cliques7d ?? 0) / 7)), color: '#9B6AFF' },
             ].map((item, i) => (
               <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px', background: '#f8fafc', borderRadius: 10 }}>
                 <span style={{ fontSize: 13, color: '#64748b' }}>{item.label}</span>
@@ -101,7 +101,7 @@ export default async function InfraestruturaPage() {
 
         {/* Status webhooks */}
         <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: '0 0 8px' }}>Status webhooks por empresa</h3>
+          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: '0 0 8px' }}>Status webhooks por e-commerce</h3>
           <p style={{ fontSize: 12, color: '#94a3b8', margin: '0 0 16px' }}>
             {webhookStatus?.filter(w => w.webhook_confirmado).length ?? 0} de {webhookStatus?.length ?? 0} configurados
           </p>
@@ -110,7 +110,7 @@ export default async function InfraestruturaPage() {
               <div key={w.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', borderRadius: 8, background: '#f8fafc' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <div style={{ width: 8, height: 8, borderRadius: '50%', background: w.webhook_confirmado ? '#16a34a' : '#94a3b8', flexShrink: 0 }} />
-                  <span style={{ fontSize: 13, color: '#0f172a', fontWeight: 500 }}>{w.nome_loja}</span>
+                  <span style={{ fontSize: 13, color: '#0B081A', fontWeight: 500 }}>{w.nome_loja}</span>
                 </div>
                 <span style={{ fontSize: 11, color: '#94a3b8' }}>
                   {w.webhook_ultimo_evento ? tempoRelativo(w.webhook_ultimo_evento) : 'Nunca'}
@@ -124,7 +124,7 @@ export default async function InfraestruturaPage() {
       {/* Log de eventos recentes */}
       <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         <div style={{ marginBottom: 20 }}>
-          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: 0 }}>Eventos recentes</h3>
+          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Eventos recentes</h3>
           <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Últimos 20 eventos do sistema</p>
         </div>
 

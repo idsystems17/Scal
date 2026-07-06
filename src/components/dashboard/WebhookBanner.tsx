@@ -96,7 +96,7 @@ export function WebhookBanner({ status, clienteId, webhookUrl }: WebhookBannerPr
             <button
               onClick={testarWebhook}
               disabled={testando}
-              style={{ padding: '9px 18px', background: testando ? '#e2e8f0' : '#0f172a', color: testando ? '#94a3b8' : 'white', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: testando ? 'not-allowed' : 'pointer' }}
+              style={{ padding: '9px 18px', background: testando ? '#e2e8f0' : '#0B081A', color: testando ? '#94a3b8' : 'white', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: testando ? 'not-allowed' : 'pointer' }}
             >
               {testando ? 'Testando...' : 'Enviar teste'}
             </button>

@@ -13,8 +13,8 @@ function tempoRelativo(iso: string) {
 }
 
 const ACAO_LABELS: Record<string, string> = {
-  suspender_cliente: 'Empresa suspensa',
-  reativar_cliente: 'Empresa reativada',
+  suspender_cliente: 'E-commerce suspenso',
+  reativar_cliente: 'E-commerce reativado',
   resolver_alerta: 'Alerta resolvido',
   aplicar_taxa: 'Taxa aplicada',
   bloquear_parceiro: 'Parceiro bloqueado',
@@ -23,7 +23,7 @@ const ACAO_LABELS: Record<string, string> = {
 }
 
 const ATOR_COLORS: Record<string, string> = {
-  admin: '#6366f1',
+  admin: '#9B6AFF',
   cliente: '#2563eb',
   parceiro: '#16a34a',
   sistema: '#64748b',
@@ -70,15 +70,15 @@ export default async function SegurancaPage({
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       <div>
-        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Segurança</h2>
+        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0B081A', margin: 0 }}>Segurança</h2>
         <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Auditoria de ações e detecção de anomalias — últimos {days} dias</p>
       </div>
 
       {/* KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
         {[
-          { label: 'Ações auditadas', value: num.format(totalAudits ?? 0), sub: `últimos ${days} dias`, color: '#0f172a' },
-          { label: 'Erros nas últimas 24h', value: num.format(erros24h?.length ?? 0), sub: 'webhooks e sistema', color: (erros24h?.length ?? 0) > 10 ? '#e11d48' : '#0f172a' },
+          { label: 'Ações auditadas', value: num.format(totalAudits ?? 0), sub: `últimos ${days} dias`, color: '#0B081A' },
+          { label: 'Erros nas últimas 24h', value: num.format(erros24h?.length ?? 0), sub: 'webhooks e sistema', color: (erros24h?.length ?? 0) > 10 ? '#e11d48' : '#0B081A' },
           { label: 'Assinaturas inválidas', value: num.format(webhooksInvalidos?.length ?? 0), sub: `últimos ${days} dias`, color: (webhooksInvalidos?.length ?? 0) > 0 ? '#e11d48' : '#16a34a' },
         ].map((k, i) => (
           <div key={i} style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
@@ -96,7 +96,7 @@ export default async function SegurancaPage({
 
       {anomalias.length === 0 && (
         <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: '0 0 8px' }}>Detecção de anomalias</h3>
+          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: '0 0 8px' }}>Detecção de anomalias</h3>
           <div style={{ padding: '24px 0', textAlign: 'center', color: '#16a34a' }}>
             <p style={{ fontSize: 14, fontWeight: 600, margin: 0 }}>Nenhuma anomalia nas últimas 24h</p>
             <p style={{ fontSize: 13, color: '#64748b', margin: '6px 0 0' }}>Tudo funcionando normalmente.</p>
@@ -107,7 +107,7 @@ export default async function SegurancaPage({
       {/* Audit log */}
       <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         <div style={{ marginBottom: 20 }}>
-          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: 0 }}>Log de auditoria</h3>
+          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Log de auditoria</h3>
           <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>{num.format(totalAudits ?? 0)} ações nos últimos {days} dias</p>
         </div>
 
@@ -142,7 +142,7 @@ export default async function SegurancaPage({
                         {a.ator_tipo ?? 'sistema'}
                       </span>
                     </td>
-                    <td style={{ padding: '12px 12px', fontSize: 13, fontWeight: 600, color: '#0f172a' }}>
+                    <td style={{ padding: '12px 12px', fontSize: 13, fontWeight: 600, color: '#0B081A' }}>
                       {ACAO_LABELS[a.acao] ?? a.acao}
                     </td>
                     <td style={{ padding: '12px 12px', fontSize: 12, color: '#64748b', maxWidth: 300, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>

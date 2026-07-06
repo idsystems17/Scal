@@ -23,7 +23,7 @@ export function DevRoleSwitcher() {
         bottom: 20,
         right: 20,
         zIndex: 9999,
-        background: '#0f172a',
+        background: '#0B081A',
         border: '1px solid #334155',
         borderRadius: 12,
         padding: '10px 14px',

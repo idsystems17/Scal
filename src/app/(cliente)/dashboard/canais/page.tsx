@@ -8,11 +8,11 @@ const CANAL_COLORS: Record<string, string> = {
   Instagram: '#e11d48',
   WhatsApp: '#16a34a',
   YouTube: '#dc2626',
-  TikTok: '#0f172a',
+  TikTok: '#0B081A',
   Facebook: '#2563eb',
   Twitter: '#0ea5e9',
   Telegram: '#0284c7',
-  Direto: '#6366f1',
+  Direto: '#9B6AFF',
 }
 
 function canalColor(canal: string) {
@@ -50,7 +50,7 @@ export default async function CanaisPage({
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
         <div>
-          <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Canais</h2>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0B081A', margin: 0 }}>Canais</h2>
           <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Performance por canal de divulgação — últimos {days} dias</p>
         </div>
         <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '48px', textAlign: 'center', color: '#94a3b8' }}>
@@ -119,7 +119,7 @@ export default async function CanaisPage({
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       <div>
-        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Canais</h2>
+        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0B081A', margin: 0 }}>Canais</h2>
         <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Performance por canal de divulgação — últimos {days} dias</p>
       </div>
 
@@ -132,7 +132,7 @@ export default async function CanaisPage({
         ].map((k, i) => (
           <div key={i} style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
             <p style={{ fontSize: 11, color: '#94a3b8', margin: '0 0 8px', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{k.label}</p>
-            <p style={{ fontSize: 24, fontWeight: 800, color: '#0f172a', margin: 0 }}>{k.value}</p>
+            <p style={{ fontSize: 24, fontWeight: 800, color: '#0B081A', margin: 0 }}>{k.value}</p>
             <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>{k.sub}</p>
           </div>
         ))}
@@ -141,7 +141,7 @@ export default async function CanaisPage({
       {/* Tabela de canais */}
       <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         <div style={{ marginBottom: 20 }}>
-          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: 0 }}>Detalhamento por canal</h3>
+          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Detalhamento por canal</h3>
           <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>{canais.length} canal{canais.length !== 1 ? 'is' : ''} ativo{canais.length !== 1 ? 's' : ''}</p>
         </div>
 
@@ -163,12 +163,12 @@ export default async function CanaisPage({
                   <td style={{ padding: '14px 12px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                       <div style={{ width: 10, height: 10, borderRadius: '50%', background: color, flexShrink: 0 }} />
-                      <span style={{ fontSize: 13, fontWeight: 600, color: '#0f172a' }}>{c.canal}</span>
+                      <span style={{ fontSize: 13, fontWeight: 600, color: '#0B081A' }}>{c.canal}</span>
                     </div>
                   </td>
                   <td style={{ padding: '14px 12px', fontSize: 13, color: '#475569' }}>{num.format(c.cliques)}</td>
-                  <td style={{ padding: '14px 12px', fontSize: 13, fontWeight: 600, color: '#0f172a' }}>{num.format(c.conversoes)}</td>
-                  <td style={{ padding: '14px 12px', fontSize: 13, fontWeight: 700, color: '#0f172a' }}>{brl.format(c.volume)}</td>
+                  <td style={{ padding: '14px 12px', fontSize: 13, fontWeight: 600, color: '#0B081A' }}>{num.format(c.conversoes)}</td>
+                  <td style={{ padding: '14px 12px', fontSize: 13, fontWeight: 700, color: '#0B081A' }}>{brl.format(c.volume)}</td>
                   <td style={{ padding: '14px 12px' }}>
                     <span style={{
                       fontSize: 12, fontWeight: 600, padding: '3px 8px', borderRadius: 6,

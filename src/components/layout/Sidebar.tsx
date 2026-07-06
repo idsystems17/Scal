@@ -42,7 +42,7 @@ const navByRole: Record<Role, NavItem[]> = {
   admin: [
     { label: 'Overview', icon: 'grid', href: '/admin', exact: true },
     { label: 'Alertas de plano', icon: 'alert', href: '/admin/alertas', badgeKey: 'alertas' },
-    { label: 'Empresas ativas', icon: 'server', href: '/admin/lojas' },
+    { label: 'E-commerces ativos', icon: 'server', href: '/admin/lojas' },
     { label: 'Integração', icon: 'plug', href: '/admin/integracao' },
     { label: 'Materiais', icon: 'box', href: '/admin/materiais' },
     { label: 'Segurança', icon: 'shield', href: '/admin/seguranca' },
@@ -54,16 +54,17 @@ const navByRole: Record<Role, NavItem[]> = {
 
 const roleLabels: Record<Role, string> = {
   parceiro: 'Área do Parceiro',
-  cliente: 'Dashboard Empresa',
+  cliente: 'Dashboard E-commerce',
   admin: 'Admin SCAL',
 }
 
 interface SidebarProps {
   role: Role
   counts?: Record<string, number>
+  logoUrl?: string | null
 }
 
-export function Sidebar({ role, counts = {} }: SidebarProps) {
+export function Sidebar({ role, counts = {}, logoUrl }: SidebarProps) {
   const pathname = usePathname()
   const items = navByRole[role]
 
@@ -88,9 +89,9 @@ export function Sidebar({ role, counts = {} }: SidebarProps) {
       }}
     >
       {/* Logo */}
-      <div style={{ background: '#0d0d1a', padding: '16px 20px', borderBottom: '1px solid #1e1e2e' }}>
-        <img src="/logo.png" alt="SCAL" style={{ width: '100%', maxWidth: 160, objectFit: 'contain', display: 'block' }} />
-        <p style={{ fontSize: 11, color: '#6366f1', margin: '6px 0 0', fontWeight: 600, letterSpacing: '0.5px' }}>{roleLabels[role]}</p>
+      <div style={{ background: '#0B081A', padding: '16px 20px', borderBottom: '1px solid #1e1e2e' }}>
+        <img src={logoUrl || '/logo.svg'} alt="SCAL" style={{ width: '100%', maxWidth: 160, objectFit: 'contain', display: 'block' }} />
+        <p style={{ fontSize: 11, color: '#9B6AFF', margin: '6px 0 0', fontWeight: 600, letterSpacing: '0.5px' }}>{roleLabels[role]}</p>
       </div>
 
       {/* Nav */}

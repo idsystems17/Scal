@@ -72,7 +72,7 @@ export async function getMateriaisParceiro() {
   const supabase = await createClient()
   const { data } = await supabase
     .from('materiais')
-    .select('id, titulo, url, criado_em, cliente_id')
+    .select('id, titulo, url, tipo, criado_em, cliente_id')
     .order('criado_em', { ascending: false })
   return data ?? []
 }

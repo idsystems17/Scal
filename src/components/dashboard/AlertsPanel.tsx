@@ -45,7 +45,7 @@ export function AlertsPanel({ alertas }: AlertsPanelProps) {
     <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
-          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: 0 }}>Central de alertas de plano</h3>
+          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Central de alertas de plano</h3>
           <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Lojas que excederam limites do plano</p>
         </div>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '4px 10px', borderRadius: 20, background: '#fef3c7', color: '#d97706', fontSize: 12, fontWeight: 700 }}>
@@ -74,7 +74,7 @@ export function AlertsPanel({ alertas }: AlertsPanelProps) {
                   <Icon name={isResolved ? 'check' : isFat ? 'wallet' : 'users'} size={16} />
                 </div>
                 <div style={{ flex: 1 }}>
-                  <p style={{ fontSize: 13, fontWeight: 700, color: '#0f172a', margin: 0 }}>{alerta.cliente_nome}</p>
+                  <p style={{ fontSize: 13, fontWeight: 700, color: '#0B081A', margin: 0 }}>{alerta.cliente_nome}</p>
                   <p style={{ fontSize: 11, color: '#94a3b8', margin: '2px 0 0' }}>
                     {alerta.tipo === 'limite_parceiros' ? 'Limite de parceiros excedido' : 'Limite de faturamento excedido'}
                     {' — '}

@@ -95,15 +95,15 @@ export async function getMateriaisCliente(clienteId: string) {
   const supabase = await createClient()
   const { data } = await supabase
     .from('materiais')
-    .select('id, titulo, url, criado_em')
+    .select('id, titulo, url, tipo, criado_em')
     .eq('cliente_id', clienteId)
     .order('criado_em', { ascending: false })
   return data ?? []
 }
 
-export async function criarMaterialCliente(clienteId: string, titulo: string, url: string) {
+export async function criarMaterialCliente(clienteId: string, titulo: string, url: string, tipo: 'link' | 'video' | 'audio' = 'link') {
   const supabase = await createClient()
-  const { error } = await supabase.from('materiais').insert({ cliente_id: clienteId, titulo, url: validarUrlMaterial(url), criado_por: 'cliente' })
+  const { error } = await supabase.from('materiais').insert({ cliente_id: clienteId, titulo, url: validarUrlMaterial(url), tipo, criado_por: 'cliente' })
   if (error) throw error
 }
 

@@ -3,11 +3,11 @@ import { Icon } from './Icon'
 
 const iconColorMap: Record<string, string> = {
   click: '#2563eb',
-  cart: '#7c3aed',
+  cart: '#9B6AFF',
   wallet: '#0ea5e9',
   percent: '#f59e0b',
   mrr: '#2563eb',
-  globe: '#7c3aed',
+  globe: '#9B6AFF',
   activity: '#14b8a6',
   alert: '#f97316',
 }
@@ -52,7 +52,7 @@ export function KpiCard({ data }: KpiCardProps) {
         </div>
       </div>
 
-      <div style={{ fontSize: 28, fontWeight: 700, color: '#0f172a', lineHeight: 1 }}>
+      <div style={{ fontSize: 28, fontWeight: 700, color: '#0B081A', lineHeight: 1 }}>
         {data.value}
       </div>
 

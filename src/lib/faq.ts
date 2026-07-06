@@ -6,7 +6,7 @@ export interface FaqItem {
 export const FAQ_PARCEIRO: FaqItem[] = [
   {
     pergunta: 'Como funciona a atribuição de uma venda a mim?',
-    resposta: 'Quando alguém clica no seu link, o SCAL grava um cookie de atribuição válido por 30 dias. Se a compra acontecer dentro desse prazo, a venda é atribuída a você automaticamente quando a empresa confirma o pagamento.',
+    resposta: 'Quando alguém clica no seu link, o SCAL grava um cookie de atribuição válido por 30 dias. Se a compra acontecer dentro desse prazo, a venda é atribuída a você automaticamente quando o e-commerce confirma o pagamento.',
   },
   {
     pergunta: 'Como gero um novo link de divulgação?',
@@ -14,15 +14,15 @@ export const FAQ_PARCEIRO: FaqItem[] = [
   },
   {
     pergunta: 'Uma venda não apareceu no meu painel, por quê?',
-    resposta: 'Isso pode acontecer se a compra ocorreu fora da janela de 30 dias do cookie, se a empresa ainda não confirmou o pagamento via webhook, ou se o cliente comprou sem passar pelo seu link.',
+    resposta: 'Isso pode acontecer se a compra ocorreu fora da janela de 30 dias do cookie, se o e-commerce ainda não confirmou o pagamento via webhook, ou se o cliente comprou sem passar pelo seu link.',
   },
   {
     pergunta: 'Como funciona minha comissão?',
-    resposta: 'O SCAL rastreia o volume de vendas gerado pelos seus links, mas não calcula nem paga comissão. O percentual é combinado diretamente com a empresa.',
+    resposta: 'O SCAL rastreia o volume de vendas gerado pelos seus links, mas não calcula nem paga comissão. O percentual é combinado diretamente com o e-commerce.',
   },
   {
     pergunta: 'Fui bloqueado, o que aconteceu?',
-    resposta: 'A empresa que você representa pode bloquear ou reativar parceiros a qualquer momento pelo painel dela. Fale diretamente com a empresa para entender o motivo.',
+    resposta: 'O e-commerce que você representa pode bloquear ou reativar parceiros a qualquer momento pelo painel dele. Fale diretamente com o e-commerce para entender o motivo.',
   },
 ]
 
@@ -36,8 +36,8 @@ export const FAQ_CLIENTE: FaqItem[] = [
     resposta: 'No dashboard, clique em "Convidar parceiro", informe o e-mail (opcional) e envie o link de convite gerado. O parceiro cria a conta dele a partir desse link.',
   },
   {
-    pergunta: 'O que acontece quando minha empresa atinge o limite de faturamento?',
-    resposta: 'Ao ultrapassar R$ 50.000 em vendas confirmadas via SCAL, sua empresa passa a pagar uma taxa de 0,5% sobre o faturamento total gerado pela plataforma. Você recebe um alerta assim que isso acontece.',
+    pergunta: 'O que acontece quando meu e-commerce atinge o limite de faturamento?',
+    resposta: 'Ao ultrapassar R$ 50.000 em vendas confirmadas via SCAL, seu e-commerce passa a pagar uma taxa de 0,5% sobre o faturamento total gerado pela plataforma. Você recebe um alerta assim que isso acontece.',
   },
   {
     pergunta: 'Como bloqueio um parceiro?',
@@ -51,19 +51,19 @@ export const FAQ_CLIENTE: FaqItem[] = [
 
 export const FAQ_ADMIN: FaqItem[] = [
   {
-    pergunta: 'Como suspendo uma empresa?',
-    resposta: 'Na página "Empresas ativas", clique em "Suspender" ao lado da empresa. Isso bloqueia o acesso dela sem apagar nenhum dado histórico.',
+    pergunta: 'Como suspendo um e-commerce?',
+    resposta: 'Na página "E-commerces ativos", clique em "Suspender" ao lado do e-commerce. Isso bloqueia o acesso dele sem apagar nenhum dado histórico.',
   },
   {
     pergunta: 'O que significa um alerta de limite excedido?',
-    resposta: 'Alerta de faturamento significa que a empresa ultrapassou R$ 50.000 em vendas via SCAL e deve começar a pagar 0,5% sobre o total. Alerta de parceiros significa que ela excedeu o número de parceiros incluído no plano.',
+    resposta: 'Alerta de faturamento significa que o e-commerce ultrapassou R$ 50.000 em vendas via SCAL e deve começar a pagar 0,5% sobre o total. Alerta de parceiros significa que ele excedeu o número de parceiros incluído no plano.',
   },
   {
-    pergunta: 'Como aplico a taxa excedente de uma empresa?',
+    pergunta: 'Como aplico a taxa excedente de um e-commerce?',
     resposta: 'No painel de alertas, clique em "Aplicar taxa 0,5%" no alerta correspondente. Isso marca o alerta como resolvido e registra a ação no log de auditoria.',
   },
   {
-    pergunta: 'O que fazer se uma empresa tiver assinaturas de webhook inválidas?',
+    pergunta: 'O que fazer se um e-commerce tiver assinaturas de webhook inválidas?',
     resposta: 'Consulte a página "Segurança" — ela lista tentativas de webhook com assinatura HMAC inválida. Normalmente indica configuração incorreta da chave secreta do lado da plataforma de vendas do cliente.',
   },
 ]

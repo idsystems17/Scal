@@ -27,7 +27,7 @@ function CopyBlock({ texto, mono = false }: { texto: string; mono?: boolean }) {
   return (
     <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
       <pre style={{
-        flex: 1, margin: 0, padding: '12px 16px', background: '#0f172a', borderRadius: 10,
+        flex: 1, margin: 0, padding: '12px 16px', background: '#0B081A', borderRadius: 10,
         overflowX: 'auto', fontSize: 12, lineHeight: 1.7, color: '#e2e8f0',
         fontFamily: mono ? 'monospace' : 'inherit', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
       }}>{texto}</pre>
@@ -87,34 +87,34 @@ Qualquer dúvida, é só chamar.`
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
       {empresas.length > 0 && (
         <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-          <label style={{ fontSize: 13, fontWeight: 600, color: '#0f172a', display: 'block', marginBottom: 8 }}>
-            Gerar instruções para qual empresa?
+          <label style={{ fontSize: 13, fontWeight: 600, color: '#0B081A', display: 'block', marginBottom: 8 }}>
+            Gerar instruções para qual e-commerce?
           </label>
           <select
             value={empresaId}
             onChange={(e) => setEmpresaId(e.target.value)}
-            style={{ width: '100%', maxWidth: 360, padding: '9px 12px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 13, color: '#0f172a', background: 'white' }}
+            style={{ width: '100%', maxWidth: 360, padding: '9px 12px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 13, color: '#0B081A', background: 'white' }}
           >
             {empresas.map(e => (
               <option key={e.id} value={e.id}>{e.nome}</option>
             ))}
           </select>
           <p style={{ fontSize: 12, color: '#94a3b8', margin: '8px 0 0' }}>
-            A URL do webhook e a chave secreta abaixo já saem preenchidas com os dados reais dessa empresa.
+            A URL do webhook e a chave secreta abaixo já saem preenchidas com os dados reais desse e-commerce.
           </p>
         </div>
       )}
 
       <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: '0 0 6px' }}>Mensagem pronta para enviar ao dev</h3>
+        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: '0 0 6px' }}>Mensagem pronta para enviar ao dev</h3>
         <p style={{ fontSize: 12, color: '#64748b', margin: '0 0 14px' }}>
-          Copie e cole no WhatsApp, e-mail ou onde for conversar com o time técnico da empresa.
+          Copie e cole no WhatsApp, e-mail ou onde for conversar com o time técnico do e-commerce.
         </p>
         <CopyBlock texto={mensagemCompleta} />
       </div>
 
       <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: '0 0 6px' }}>Só o script (passo 1 isolado)</h3>
+        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: '0 0 6px' }}>Só o script (passo 1 isolado)</h3>
         <p style={{ fontSize: 12, color: '#64748b', margin: '0 0 14px' }}>
           Funciona em qualquer site, independente do gateway de pagamento usado (Mercado Pago, PagSeguro, Stripe, Yapay etc.) — é só captura no navegador.
         </p>
@@ -123,7 +123,7 @@ Qualquer dúvida, é só chamar.`
 
       <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12, padding: '16px 20px' }}>
         <p style={{ fontSize: 12, color: '#64748b', margin: 0, lineHeight: 1.6 }}>
-          <strong style={{ color: '#475569' }}>Por que isso funciona pra qualquer empresa com checkout próprio:</strong> o script (passo 1) e o formato do webhook (passo 3) não dependem do gateway de pagamento — são sempre os mesmos. Só o passo 2 (onde no código deles eles leem <code>window.getScalClickId()</code> e salvam junto ao pedido) precisa do dev deles, mas é a mesma receita pra Mercado Pago, PagSeguro, Stripe ou qualquer outro.
+          <strong style={{ color: '#475569' }}>Por que isso funciona pra qualquer e-commerce com checkout próprio:</strong> o script (passo 1) e o formato do webhook (passo 3) não dependem do gateway de pagamento — são sempre os mesmos. Só o passo 2 (onde no código deles eles leem <code>window.getScalClickId()</code> e salvam junto ao pedido) precisa do dev deles, mas é a mesma receita pra Mercado Pago, PagSeguro, Stripe ou qualquer outro.
         </p>
       </div>
     </div>

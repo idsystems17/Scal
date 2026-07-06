@@ -34,13 +34,13 @@ export default function EsqueciSenhaPage() {
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', background: '#f4f7fc' }}>
       <div style={{ background: '#fff', borderRadius: 16, width: '100%', maxWidth: 400, boxShadow: '0 4px 24px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
-        <div style={{ background: '#0d0d1a', padding: '28px 40px 24px', textAlign: 'center' }}>
-          <img src="/logo.png" alt="SCAL" style={{ width: 160, objectFit: 'contain', display: 'block', margin: '0 auto' }} />
+        <div style={{ background: '#0B081A', padding: '28px 40px 24px', textAlign: 'center' }}>
+          <img src="/logo.svg" alt="SCAL" style={{ width: 160, objectFit: 'contain', display: 'block', margin: '0 auto' }} />
         </div>
 
         <div style={{ padding: '32px 40px 40px' }}>
           <div style={{ marginBottom: 24, textAlign: 'center' }}>
-            <h1 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Esqueci minha senha</h1>
+            <h1 style={{ fontSize: 20, fontWeight: 700, color: '#0B081A', margin: 0 }}>Esqueci minha senha</h1>
             <p style={{ fontSize: 14, color: '#64748b', margin: '6px 0 0' }}>Informe seu e-mail para receber o link de redefinição</p>
           </div>
 
@@ -53,7 +53,7 @@ export default function EsqueciSenhaPage() {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder="seu@email.com"
-                style={{ width: '100%', padding: '10px 14px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 14, color: '#0f172a', outline: 'none', boxSizing: 'border-box', background: '#f8fafc' }}
+                style={{ width: '100%', padding: '10px 14px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 14, color: '#0B081A', outline: 'none', boxSizing: 'border-box', background: '#f8fafc' }}
               />
             </div>
 
@@ -72,13 +72,13 @@ export default function EsqueciSenhaPage() {
             <button
               type="submit"
               disabled={enviando}
-              style={{ padding: '12px', background: enviando ? '#a5b4fc' : 'linear-gradient(135deg, #6366f1, #8b5cf6)', color: '#fff', border: 'none', borderRadius: 8, fontSize: 14, fontWeight: 600, cursor: enviando ? 'not-allowed' : 'pointer', marginTop: 4 }}
+              style={{ padding: '12px', background: enviando ? '#a5b4fc' : 'linear-gradient(135deg, #9B6AFF, #C2A4FF)', color: '#fff', border: 'none', borderRadius: 8, fontSize: 14, fontWeight: 600, cursor: enviando ? 'not-allowed' : 'pointer', marginTop: 4 }}
             >
               {enviando ? 'Enviando...' : 'Enviar link de redefinição'}
             </button>
 
             <p style={{ textAlign: 'center', fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>
-              <a href="/login" style={{ color: '#6366f1', fontWeight: 600, textDecoration: 'none' }}>Voltar ao login</a>
+              <a href="/login" style={{ color: '#9B6AFF', fontWeight: 600, textDecoration: 'none' }}>Voltar ao login</a>
             </p>
           </form>
         </div>

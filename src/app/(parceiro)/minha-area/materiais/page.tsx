@@ -16,7 +16,7 @@ export default async function ParceiroMateriaisPage() {
 
   if (!parceiro) redirect('/minha-area')
 
-  const nomeLoja = (Array.isArray(parceiro.clientes) ? parceiro.clientes[0] : parceiro.clientes as { nome_loja: string } | null)?.nome_loja ?? 'sua empresa'
+  const nomeLoja = (Array.isArray(parceiro.clientes) ? parceiro.clientes[0] : parceiro.clientes as { nome_loja: string } | null)?.nome_loja ?? 'seu e-commerce'
 
   const todos = await getMateriaisParceiro()
   const globais = todos.filter(m => m.cliente_id === null)
@@ -25,15 +25,15 @@ export default async function ParceiroMateriaisPage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       <div>
-        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', margin: 0 }}>Materiais</h2>
+        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0B081A', margin: 0 }}>Materiais</h2>
         <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Banners, imagens e criativos para divulgação</p>
       </div>
 
       <MateriaisManager
         titulo={`Materiais de ${nomeLoja}`}
-        subtitulo="Fornecidos pela empresa que você representa"
+        subtitulo="Fornecidos pelo e-commerce que você representa"
         materiais={daEmpresa}
-        emptyText="A empresa ainda não cadastrou materiais."
+        emptyText="O e-commerce ainda não cadastrou materiais."
       />
 
       <MateriaisManager

@@ -8,9 +8,11 @@ interface RankingItem {
 
 interface BarRankingProps {
   items: RankingItem[]
+  titulo?: string
+  subtitulo?: string
 }
 
-export function BarRanking({ items }: BarRankingProps) {
+export function BarRanking({ items, titulo = 'Top parceiros', subtitulo = 'Ranking por faturamento gerado' }: BarRankingProps) {
   const fmt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0 })
 
   function initials(name: string) {
@@ -20,8 +22,8 @@ export function BarRanking({ items }: BarRankingProps) {
   return (
     <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
       <div style={{ marginBottom: 20 }}>
-        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', margin: 0 }}>Top parceiros</h3>
-        <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Ranking por faturamento gerado</p>
+        <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>{titulo}</h3>
+        <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>{subtitulo}</p>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -35,11 +37,11 @@ export function BarRanking({ items }: BarRankingProps) {
                 {initials(item.nome)}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <p style={{ fontSize: 13, fontWeight: 600, color: '#0f172a', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.nome}</p>
+                <p style={{ fontSize: 13, fontWeight: 600, color: '#0B081A', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.nome}</p>
                 <p style={{ fontSize: 11, color: '#94a3b8', margin: '2px 0 0', fontFamily: 'monospace' }}>{item.codigo}</p>
               </div>
               <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                <p style={{ fontSize: 13, fontWeight: 700, color: '#0f172a', margin: 0 }}>{fmt.format(item.total_faturado)}</p>
+                <p style={{ fontSize: 13, fontWeight: 700, color: '#0B081A', margin: 0 }}>{fmt.format(item.total_faturado)}</p>
                 <p style={{ fontSize: 11, color: '#94a3b8', margin: '2px 0 0' }}>{item.vendas} vendas</p>
               </div>
             </div>

@@ -10,7 +10,7 @@ import { ConviteModal } from '@/components/dashboard/ConviteModal'
 import { Delta } from '@/lib/deltas'
 
 const brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0 })
-const CANAL_COLORS = ['#6366f1', '#2563eb', '#16a34a', '#db2777', '#f59e0b', '#64748b']
+const CANAL_COLORS = ['#9B6AFF', '#2563eb', '#16a34a', '#db2777', '#f59e0b', '#64748b']
 
 interface CanalReceita {
   label: string
@@ -92,7 +92,7 @@ export function ClienteDashboardClient({ clienteId, webhookUrl, cliente, parceir
             style={{
               display: 'flex', alignItems: 'center', gap: 8,
               padding: '10px 20px',
-              background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+              background: 'linear-gradient(135deg, #9B6AFF, #C2A4FF)',
               color: 'white', border: 'none', borderRadius: 10,
               fontSize: 14, fontWeight: 600, cursor: 'pointer',
               boxShadow: '0 2px 8px rgba(99,102,241,0.3)',
