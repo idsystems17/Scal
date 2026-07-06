@@ -90,7 +90,7 @@ export function Sidebar({ role, counts = {}, logoUrl }: SidebarProps) {
     >
       {/* Logo */}
       <div style={{ background: '#0B081A', padding: '16px 20px', borderBottom: '1px solid #1e1e2e' }}>
-        <img src={logoUrl || '/logo.svg'} alt="SCAL" style={{ width: '100%', maxWidth: 160, objectFit: 'contain', display: 'block' }} />
+        <img src={logoUrl || '/logo.png'} alt="SCAL" style={{ width: '100%', maxWidth: 160, objectFit: 'contain', display: 'block' }} />
         <p style={{ fontSize: 11, color: '#9B6AFF', margin: '6px 0 0', fontWeight: 600, letterSpacing: '0.5px' }}>{roleLabels[role]}</p>
       </div>
 

@@ -35,7 +35,7 @@ export default function EsqueciSenhaPage() {
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', background: '#f4f7fc' }}>
       <div style={{ background: '#fff', borderRadius: 16, width: '100%', maxWidth: 400, boxShadow: '0 4px 24px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
         <div style={{ background: '#0B081A', padding: '28px 40px 24px', textAlign: 'center' }}>
-          <img src="/logo.svg" alt="SCAL" style={{ width: 160, objectFit: 'contain', display: 'block', margin: '0 auto' }} />
+          <img src="/logo.png" alt="SCAL" style={{ width: 160, objectFit: 'contain', display: 'block', margin: '0 auto' }} />
         </div>
 
         <div style={{ padding: '32px 40px 40px' }}>
