@@ -31,7 +31,7 @@ export function LogoConfigForm({ logoAtual, onSalvar }: LogoConfigFormProps) {
   }
 
   return (
-    <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+    <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
       <div style={{ marginBottom: 16 }}>
         <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Logo da plataforma</h3>
         <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Cole o link de uma imagem (PNG/SVG) hospedada em qualquer lugar. Deixe em branco pra voltar à logo padrão do Scal.</p>
@@ -41,7 +41,7 @@ export function LogoConfigForm({ logoAtual, onSalvar }: LogoConfigFormProps) {
           value={urlInput}
           onChange={e => setUrlInput(e.target.value)}
           placeholder="https://…/logo.png"
-          style={{ flex: '1 1 320px', padding: '9px 12px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 13, color: '#0B081A', outline: 'none' }}
+          style={{ flex: '1 1 320px', padding: '9px 12px', border: '1.5px solid #d7dce4', borderRadius: 8, fontSize: 13, color: '#0B081A', outline: 'none' }}
         />
         <button
           onClick={handleSalvar}

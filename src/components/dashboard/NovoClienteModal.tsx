@@ -73,7 +73,7 @@ export function NovoClienteModal({ onClose }: NovoClienteModalProps) {
                 value={nomeLoja}
                 onChange={e => setNomeLoja(e.target.value)}
                 placeholder="Ex: Loja da Maria"
-                style={{ width: '100%', padding: '10px 14px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 14, outline: 'none', boxSizing: 'border-box', background: '#f8fafc' }}
+                style={{ width: '100%', padding: '10px 14px', border: '1.5px solid #d7dce4', borderRadius: 8, fontSize: 14, outline: 'none', boxSizing: 'border-box', background: '#f8fafc' }}
               />
             </div>
             <div>
@@ -82,7 +82,7 @@ export function NovoClienteModal({ onClose }: NovoClienteModalProps) {
                 value={urlLoja}
                 onChange={e => setUrlLoja(e.target.value)}
                 placeholder="https://loja.com.br"
-                style={{ width: '100%', padding: '10px 14px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 14, outline: 'none', boxSizing: 'border-box', background: '#f8fafc' }}
+                style={{ width: '100%', padding: '10px 14px', border: '1.5px solid #d7dce4', borderRadius: 8, fontSize: 14, outline: 'none', boxSizing: 'border-box', background: '#f8fafc' }}
               />
             </div>
             <div>
@@ -92,7 +92,7 @@ export function NovoClienteModal({ onClose }: NovoClienteModalProps) {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder="contato@loja.com.br"
-                style={{ width: '100%', padding: '10px 14px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 14, outline: 'none', boxSizing: 'border-box', background: '#f8fafc' }}
+                style={{ width: '100%', padding: '10px 14px', border: '1.5px solid #d7dce4', borderRadius: 8, fontSize: 14, outline: 'none', boxSizing: 'border-box', background: '#f8fafc' }}
               />
             </div>
             <div>
@@ -100,7 +100,7 @@ export function NovoClienteModal({ onClose }: NovoClienteModalProps) {
               <select
                 value={status}
                 onChange={e => setStatus(e.target.value as 'trial' | 'ativo')}
-                style={{ width: '100%', padding: '10px 14px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 14, outline: 'none', background: '#f8fafc', color: '#0B081A' }}
+                style={{ width: '100%', padding: '10px 14px', border: '1.5px solid #d7dce4', borderRadius: 8, fontSize: 14, outline: 'none', background: '#f8fafc', color: '#0B081A' }}
               >
                 <option value="trial">Trial</option>
                 <option value="ativo">Ativo</option>
@@ -128,7 +128,7 @@ export function NovoClienteModal({ onClose }: NovoClienteModalProps) {
               <span style={{ fontSize: 13, color: '#15803d', fontWeight: 600 }}>E-commerce cadastrado com sucesso!</span>
             </div>
 
-            <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 10, padding: '16px' }}>
+            <div style={{ background: '#f8fafc', border: '1px solid #d7dce4', borderRadius: 10, padding: '16px' }}>
               <p style={{ fontSize: 12, color: '#94a3b8', margin: '0 0 8px' }}>Envie esses dados de acesso pro e-commerce (essa senha não fica salva em lugar nenhum, anote agora):</p>
               <p style={{ fontSize: 13, color: '#0B081A', margin: '0 0 4px' }}><strong>Email:</strong> {credenciais.email}</p>
               <p style={{ fontSize: 13, color: '#0B081A', margin: 0, fontFamily: 'monospace' }}><strong style={{ fontFamily: 'inherit' }}>Senha:</strong> {credenciais.senha}</p>
@@ -136,7 +136,7 @@ export function NovoClienteModal({ onClose }: NovoClienteModalProps) {
 
             <button
               onClick={handleCopiar}
-              style={{ padding: '10px 16px', background: copiado ? '#ecfdf3' : 'white', border: `1.5px solid ${copiado ? '#bbf7d0' : '#e2e8f0'}`, borderRadius: 8, cursor: 'pointer', color: copiado ? '#16a34a' : '#475569', fontWeight: 600, fontSize: 13, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}
+              style={{ padding: '10px 16px', background: copiado ? '#ecfdf3' : 'white', border: `1.5px solid ${copiado ? '#bbf7d0' : '#d7dce4'}`, borderRadius: 8, cursor: 'pointer', color: copiado ? '#16a34a' : '#475569', fontWeight: 600, fontSize: 13, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}
             >
               <Icon name={copiado ? 'check' : 'copy'} size={14} />
               {copiado ? 'Copiado!' : 'Copiar email e senha'}
@@ -144,7 +144,7 @@ export function NovoClienteModal({ onClose }: NovoClienteModalProps) {
 
             <button
               onClick={onClose}
-              style={{ padding: '10px', background: 'none', border: '1px solid #e2e8f0', borderRadius: 8, fontSize: 13, color: '#64748b', cursor: 'pointer' }}
+              style={{ padding: '10px', background: 'none', border: '1px solid #d7dce4', borderRadius: 8, fontSize: 13, color: '#64748b', cursor: 'pointer' }}
             >
               Fechar
             </button>

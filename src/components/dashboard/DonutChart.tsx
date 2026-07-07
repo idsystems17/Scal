@@ -14,7 +14,7 @@ interface DonutChartProps {
 
 export function DonutChart({ data, titulo = 'Receita por canal', subtitulo = 'Distribuição de origem das vendas' }: DonutChartProps) {
   return (
-    <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+    <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
       <div style={{ marginBottom: 16 }}>
         <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>{titulo}</h3>
         <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>{subtitulo}</p>
@@ -45,7 +45,7 @@ export function DonutChart({ data, titulo = 'Receita por canal', subtitulo = 'Di
               </Pie>
               <Tooltip
                 formatter={(value) => [`${value}%`, '']}
-                contentStyle={{ borderRadius: 8, border: '1px solid #e6ecf5', fontSize: 12 }}
+                contentStyle={{ borderRadius: 8, border: '1px solid #dbe0e9', fontSize: 12 }}
               />
             </PieChart>
           </ResponsiveContainer>

@@ -18,18 +18,18 @@ export function MonitorChart({ data }: MonitorChartProps) {
   }))
 
   return (
-    <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+    <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
       <div style={{ marginBottom: 16 }}>
         <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Monitor de redirecionamentos</h3>
         <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Últimas 24h — sucesso vs. erros</p>
       </div>
       <ResponsiveContainer width="100%" height={160}>
         <LineChart data={chartData} margin={{ top: 5, right: 5, bottom: 0, left: -20 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#e5e9ed" vertical={false} />
           <XAxis dataKey="label" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
           <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
           <Tooltip
-            contentStyle={{ borderRadius: 8, border: '1px solid #e6ecf5', fontSize: 12 }}
+            contentStyle={{ borderRadius: 8, border: '1px solid #dbe0e9', fontSize: 12 }}
             formatter={(value, name) => [(value ?? 0).toLocaleString('pt-BR'), name === 'sucesso' ? 'Sucesso' : 'Erros']}
           />
           <Line type="monotone" dataKey="sucesso" stroke="#2563eb" strokeWidth={2} dot={false} />

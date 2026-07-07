@@ -1,10 +1,10 @@
 export function SkeletonBlock({ width = '100%', height = 16, radius = 6 }: { width?: number | string; height?: number; radius?: number }) {
-  return <div className="skeleton-pulse" style={{ width, height, borderRadius: radius, background: '#e6ecf5' }} />
+  return <div className="skeleton-pulse" style={{ width, height, borderRadius: radius, background: '#dbe0e9' }} />
 }
 
 export function SkeletonCard({ children, padding = 24 }: { children: React.ReactNode; padding?: number }) {
   return (
-    <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding, boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+    <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding, boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
       {children}
     </div>
   )

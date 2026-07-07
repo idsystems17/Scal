@@ -42,7 +42,7 @@ export function TenantsTable({ tenants, searchQuery = '' }: TenantsTableProps) {
   }
 
   return (
-    <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+    <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
       <div style={{ marginBottom: 20 }}>
         <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>E-commerces ativos</h3>
         <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Visão geral dos e-commerces na plataforma</p>
@@ -51,7 +51,7 @@ export function TenantsTable({ tenants, searchQuery = '' }: TenantsTableProps) {
       <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
-            <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+            <tr style={{ borderBottom: '1px solid #e5e9ed' }}>
               <SortableTh label="E-COMMERCE" sortKey="nome" activeKey={sortKey} direction={direction} onSort={toggleSort} />
               <SortableTh label="PLATAFORMA" sortKey="plataforma" activeKey={sortKey} direction={direction} onSort={toggleSort} />
               <SortableTh label="PARCEIROS" sortKey="parceiros" activeKey={sortKey} direction={direction} onSort={toggleSort} />

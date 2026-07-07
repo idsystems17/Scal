@@ -64,7 +64,7 @@ function HeaderControls({ notifications = [] }: { notifications: Notification[] 
       <div style={{
         display: 'flex', alignItems: 'center', gap: 8,
         padding: '8px 14px', borderRadius: 10,
-        background: 'white', border: '1px solid #e6ecf5', minWidth: 200,
+        background: 'white', border: '1px solid #dbe0e9', minWidth: 200,
       }}>
         <Icon name="search" size={15} />
         <input
@@ -88,7 +88,7 @@ function HeaderControls({ notifications = [] }: { notifications: Notification[] 
       </div>
 
       {/* Period */}
-      <div style={{ display: 'flex', background: 'white', border: '1px solid #e6ecf5', borderRadius: 10, padding: 3, gap: 2 }}>
+      <div style={{ display: 'flex', background: 'white', border: '1px solid #dbe0e9', borderRadius: 10, padding: 3, gap: 2 }}>
         {([
           { value: 7, label: '7d' },
           { value: 30, label: '30d' },
@@ -115,7 +115,7 @@ function HeaderControls({ notifications = [] }: { notifications: Notification[] 
       <div style={{ position: 'relative' }}>
         <div
           onClick={() => setBellOpen(v => !v)}
-          style={{ padding: 8, borderRadius: 10, background: 'white', border: '1px solid #e6ecf5', color: '#64748b', display: 'flex', cursor: 'pointer', position: 'relative' }}
+          style={{ padding: 8, borderRadius: 10, background: 'white', border: '1px solid #dbe0e9', color: '#64748b', display: 'flex', cursor: 'pointer', position: 'relative' }}
         >
           <Icon name="bell" size={18} />
           {notifications.length > 0 && (
@@ -136,11 +136,11 @@ function HeaderControls({ notifications = [] }: { notifications: Notification[] 
             <div onClick={() => setBellOpen(false)} style={{ position: 'fixed', inset: 0, zIndex: 40 }} />
             <div style={{
               position: 'absolute', right: 0, top: 46,
-              background: 'white', border: '1px solid #e6ecf5',
+              background: 'white', border: '1px solid #dbe0e9',
               borderRadius: 12, boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
               overflow: 'hidden', minWidth: 300, maxWidth: 360, zIndex: 50,
             }}>
-              <div style={{ padding: '12px 16px', borderBottom: '1px solid #f1f5f9' }}>
+              <div style={{ padding: '12px 16px', borderBottom: '1px solid #e5e9ed' }}>
                 <span style={{ fontSize: 13, fontWeight: 700, color: '#0B081A' }}>Notificações</span>
               </div>
               {notifications.length === 0 ? (
@@ -211,7 +211,7 @@ function Avatar({ userName }: { userName: string }) {
           <div onClick={() => setMenuOpen(false)} style={{ position: 'fixed', inset: 0, zIndex: 40 }} />
           <div style={{
             position: 'absolute', right: 0, top: 46,
-            background: 'white', border: '1px solid #e6ecf5',
+            background: 'white', border: '1px solid #dbe0e9',
             borderRadius: 10, boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
             overflow: 'hidden', minWidth: 140, zIndex: 50,
           }}>
@@ -240,7 +240,7 @@ export function Header({ title, subtitle, background = 'rgba(244, 247, 252, 0.85
       position: 'sticky', top: 0, zIndex: 10,
       background,
       backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
-      borderBottom: '1px solid #e9eef6', padding: '16px 32px',
+      borderBottom: '1px solid #dde2ea', padding: '16px 32px',
       display: 'flex', alignItems: 'center', gap: 16,
     }}>
       <div style={{ flex: 1 }}>
