@@ -123,7 +123,7 @@ export default async function ComissoesPage({
                   <td style={{ padding: '14px 12px' }}>
                     <span style={{
                       padding: '3px 10px', borderRadius: 20, fontSize: 12, fontWeight: 600,
-                      background: c.status === 'confirmada' ? '#ecfdf3' : '#fff1f3',
+                      background: c.status === 'confirmada' ? '#d1fae5' : '#ffe4e6',
                       color: c.status === 'confirmada' ? '#16a34a' : '#e11d48',
                     }}>
                       {c.status === 'confirmada' ? 'Confirmada' : 'Cancelada'}

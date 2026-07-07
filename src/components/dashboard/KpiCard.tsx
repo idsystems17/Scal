@@ -66,7 +66,7 @@ export function KpiCard({ data }: KpiCardProps) {
             borderRadius: 20,
             fontSize: 12,
             fontWeight: 600,
-            background: data.deltaPositive ? '#ecfdf3' : '#fff1f3',
+            background: data.deltaPositive ? '#d1fae5' : '#ffe4e6',
             color: data.deltaPositive ? '#16a34a' : '#e11d48',
           }}
         >

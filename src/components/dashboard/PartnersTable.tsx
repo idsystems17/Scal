@@ -7,11 +7,11 @@ import { useSort } from '@/lib/useSort'
 import { SortableTh } from './SortableTh'
 
 const statusConfig: Record<string, { bg: string; color: string; label: string }> = {
-  top: { bg: '#eef4ff', color: '#1d4ed8', label: 'Top performer' },
-  ativo: { bg: '#ecfdf3', color: '#16a34a', label: 'Ativo' },
-  baixa_conversao: { bg: '#fff1f3', color: '#e11d48', label: 'Baixa conversão' },
-  inativo: { bg: '#f1f4f9', color: '#64748b', label: 'Inativo há 15 dias' },
-  bloqueado: { bg: '#f1f4f9', color: '#64748b', label: 'Bloqueado' },
+  top: { bg: '#d6e4fe', color: '#1d4ed8', label: 'Top performer' },
+  ativo: { bg: '#d1fae5', color: '#16a34a', label: 'Ativo' },
+  baixa_conversao: { bg: '#ffe4e6', color: '#e11d48', label: 'Baixa conversão' },
+  inativo: { bg: '#e1e6ee', color: '#64748b', label: 'Inativo há 15 dias' },
+  bloqueado: { bg: '#e1e6ee', color: '#64748b', label: 'Bloqueado' },
 }
 
 interface Partner {

@@ -30,7 +30,7 @@ export function BarRanking({ items, titulo = 'Top parceiros', subtitulo = 'Ranki
         {items.map((item, i) => (
           <div key={i}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
-              <div style={{ width: 22, height: 22, borderRadius: 6, background: i === 0 ? '#fef3c7' : '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: i === 0 ? '#d97706' : '#64748b', flexShrink: 0 }}>
+              <div style={{ width: 22, height: 22, borderRadius: 6, background: i === 0 ? '#fde68a' : '#e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: i === 0 ? '#d97706' : '#64748b', flexShrink: 0 }}>
                 {i + 1}
               </div>
               <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg, #2563eb, #1e40af)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: 'white', flexShrink: 0 }}>

@@ -48,7 +48,7 @@ export function AlertsPanel({ alertas }: AlertsPanelProps) {
           <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Central de alertas de plano</h3>
           <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Lojas que excederam limites do plano</p>
         </div>
-        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '4px 10px', borderRadius: 20, background: '#fef3c7', color: '#d97706', fontSize: 12, fontWeight: 700 }}>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '4px 10px', borderRadius: 20, background: '#fde68a', color: '#d97706', fontSize: 12, fontWeight: 700 }}>
           {alertasPendentes.length} pendentes
         </span>
       </div>

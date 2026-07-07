@@ -145,7 +145,7 @@ export function MateriaisManager({ titulo, subtitulo, materiais, onCreate, onDel
             return (
               <div key={m.id} style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '12px 14px', borderRadius: 10, border: '1px solid #cdd0d4' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <div style={{ width: 32, height: 32, borderRadius: 8, background: '#eef4ff', color: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <div style={{ width: 32, height: 32, borderRadius: 8, background: '#d6e4fe', color: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <Icon name={m.tipo === 'video' ? 'video' : m.tipo === 'audio' ? 'audio' : 'link'} size={16} />
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
@@ -162,7 +162,7 @@ export function MateriaisManager({ titulo, subtitulo, materiais, onCreate, onDel
                       disabled={excluindo === m.id}
                       style={{
                         padding: '6px 12px', borderRadius: 8, border: '1px solid #fecdd3',
-                        background: '#fff1f3', color: '#e11d48', fontSize: 12, fontWeight: 500,
+                        background: '#ffe4e6', color: '#e11d48', fontSize: 12, fontWeight: 500,
                         cursor: excluindo === m.id ? 'not-allowed' : 'pointer', whiteSpace: 'nowrap',
                       }}
                     >

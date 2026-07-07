@@ -75,7 +75,7 @@ export function TenantsTable({ tenants, searchQuery = '' }: TenantsTableProps) {
                     {t.nome}
                   </td>
                   <td style={{ padding: '14px 12px' }}>
-                    <span style={{ fontSize: 12, padding: '3px 8px', borderRadius: 6, background: '#f1f5f9', color: '#475569', fontWeight: 500 }}>
+                    <span style={{ fontSize: 12, padding: '3px 8px', borderRadius: 6, background: '#e2e8f0', color: '#475569', fontWeight: 500 }}>
                       {t.plataforma}
                     </span>
                   </td>
@@ -93,7 +93,7 @@ export function TenantsTable({ tenants, searchQuery = '' }: TenantsTableProps) {
                     <span style={{
                       display: 'inline-flex', alignItems: 'center', gap: 6,
                       padding: '4px 10px', borderRadius: 20, fontSize: 12, fontWeight: 600,
-                      background: t.webhook_status === 'connected' ? '#ecfdf3' : '#f1f4f9',
+                      background: t.webhook_status === 'connected' ? '#d1fae5' : '#e1e6ee',
                       color: t.webhook_status === 'connected' ? '#16a34a' : '#64748b',
                     }}>
                       <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'currentColor', display: 'inline-block' }} />
@@ -104,7 +104,7 @@ export function TenantsTable({ tenants, searchQuery = '' }: TenantsTableProps) {
                     <span style={{
                       display: 'inline-block', padding: '4px 10px', borderRadius: 20,
                       fontSize: 12, fontWeight: 600,
-                      background: isSuspenso ? '#fff1f3' : t.status === 'trial' ? '#fef3c7' : '#ecfdf3',
+                      background: isSuspenso ? '#ffe4e6' : t.status === 'trial' ? '#fde68a' : '#d1fae5',
                       color: isSuspenso ? '#e11d48' : t.status === 'trial' ? '#d97706' : '#16a34a',
                     }}>
                       {isSuspenso ? 'Suspenso' : t.status === 'trial' ? 'Trial' : 'Ativo'}

@@ -21,13 +21,13 @@ interface Channel {
 }
 
 const abbrColors: Record<string, { bg: string; color: string }> = {
-  IG: { bg: '#fce7f3', color: '#db2777' },
-  WA: { bg: '#dcfce7', color: '#16a34a' },
-  YT: { bg: '#fee2e2', color: '#dc2626' },
-  TT: { bg: '#ede9fe', color: '#9B6AFF' },
-  BL: { bg: '#dbeafe', color: '#2563eb' },
-  EM: { bg: '#fef3c7', color: '#d97706' },
-  DI: { bg: '#f1f5f9', color: '#64748b' },
+  IG: { bg: '#fbcfe8', color: '#db2777' },
+  WA: { bg: '#bbf7d0', color: '#16a34a' },
+  YT: { bg: '#fecaca', color: '#dc2626' },
+  TT: { bg: '#ddd6fe', color: '#9B6AFF' },
+  BL: { bg: '#bfdbfe', color: '#2563eb' },
+  EM: { bg: '#fde68a', color: '#d97706' },
+  DI: { bg: '#e2e8f0', color: '#64748b' },
 }
 
 const CANAIS = ['Instagram', 'WhatsApp', 'YouTube', 'TikTok', 'Blog', 'Email', 'Outro']
@@ -223,7 +223,7 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
               </thead>
               <tbody>
                 {sorted.map((ch) => {
-                  const colors = abbrColors[ch.abbr] || { bg: '#f1f5f9', color: '#64748b' }
+                  const colors = abbrColors[ch.abbr] || { bg: '#e2e8f0', color: '#64748b' }
                   return (
                     <tr key={ch.url} style={{ borderBottom: '1px solid #f8fafc' }}>
                       <td style={{ padding: '14px 12px' }}>

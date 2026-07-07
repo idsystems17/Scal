@@ -50,11 +50,11 @@ export default async function InfraestruturaPage() {
   const taxaErro = (cliques24h ?? 0) > 0 ? ((erros24h ?? 0) / (cliques24h ?? 1) * 100) : 0
 
   const TIPO_LABELS: Record<string, { label: string; color: string; bg: string }> = {
-    clique: { label: 'Clique', color: '#2563eb', bg: '#eff6ff' },
-    webhook_recebido: { label: 'Webhook', color: '#16a34a', bg: '#ecfdf3' },
-    conversao_confirmada: { label: 'Conversão', color: '#9B6AFF', bg: '#eef2ff' },
-    estorno: { label: 'Estorno', color: '#d97706', bg: '#fffbeb' },
-    erro: { label: 'Erro', color: '#e11d48', bg: '#fff1f3' },
+    clique: { label: 'Clique', color: '#2563eb', bg: '#dbeafe' },
+    webhook_recebido: { label: 'Webhook', color: '#16a34a', bg: '#d1fae5' },
+    conversao_confirmada: { label: 'Conversão', color: '#9B6AFF', bg: '#e0e7ff' },
+    estorno: { label: 'Estorno', color: '#d97706', bg: '#fef3c7' },
+    erro: { label: 'Erro', color: '#e11d48', bg: '#ffe4e6' },
   }
 
   return (
@@ -132,7 +132,7 @@ export default async function InfraestruturaPage() {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
           {(ultimosEventos ?? []).map(e => {
-            const info = TIPO_LABELS[e.tipo] ?? { label: e.tipo, color: '#64748b', bg: '#f1f5f9' }
+            const info = TIPO_LABELS[e.tipo] ?? { label: e.tipo, color: '#64748b', bg: '#e2e8f0' }
             const payload = e.payload_json as Record<string, unknown> | null
             const detalhe = payload?.cliente_id
               ? `cliente: ${String(payload.cliente_id).slice(0, 8)}…`

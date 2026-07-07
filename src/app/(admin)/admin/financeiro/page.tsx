@@ -135,7 +135,7 @@ export default async function FinanceiroPage() {
                   <td style={{ padding: '14px 12px' }}>
                     <span style={{
                       display: 'inline-block', padding: '4px 10px', borderRadius: 20, fontSize: 12, fontWeight: 600,
-                      background: e.status === 'suspenso' ? '#fff1f3' : e.status === 'trial' ? '#fef3c7' : '#ecfdf3',
+                      background: e.status === 'suspenso' ? '#ffe4e6' : e.status === 'trial' ? '#fde68a' : '#d1fae5',
                       color: e.status === 'suspenso' ? '#e11d48' : e.status === 'trial' ? '#d97706' : '#16a34a',
                     }}>
                       {e.status === 'suspenso' ? 'Suspenso' : e.status === 'trial' ? 'Trial' : e.status === 'cancelado' ? 'Cancelado' : 'Ativo'}

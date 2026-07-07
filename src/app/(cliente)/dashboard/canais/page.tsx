@@ -172,7 +172,7 @@ export default async function CanaisPage({
                   <td style={{ padding: '14px 12px' }}>
                     <span style={{
                       fontSize: 12, fontWeight: 600, padding: '3px 8px', borderRadius: 6,
-                      background: ctr >= 2 ? '#ecfdf3' : '#f1f5f9',
+                      background: ctr >= 2 ? '#d1fae5' : '#e2e8f0',
                       color: ctr >= 2 ? '#16a34a' : '#64748b',
                     }}>
                       {ctr.toFixed(1).replace('.', ',')}%
