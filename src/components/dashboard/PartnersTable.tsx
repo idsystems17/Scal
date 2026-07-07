@@ -55,7 +55,7 @@ export function PartnersTable({ parceiros, searchQuery = '' }: PartnersTableProp
 
   if (parceiros.length === 0) {
     return (
-      <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '40px 24px', textAlign: 'center', color: '#94a3b8' }}>
+      <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '40px 24px', textAlign: 'center', color: '#94a3b8' }}>
         <p style={{ fontSize: 14, margin: 0 }}>Nenhum parceiro ainda.</p>
         <p style={{ fontSize: 12, margin: '6px 0 0' }}>Use "Convidar parceiro" para adicionar o primeiro afiliado.</p>
       </div>
@@ -63,7 +63,7 @@ export function PartnersTable({ parceiros, searchQuery = '' }: PartnersTableProp
   }
 
   return (
-    <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+    <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
       <div style={{ marginBottom: 20 }}>
         <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Análise de parceiros</h3>
         <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Desempenho detalhado de todos os afiliados</p>
@@ -72,7 +72,7 @@ export function PartnersTable({ parceiros, searchQuery = '' }: PartnersTableProp
       <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
-            <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+            <tr style={{ borderBottom: '1px solid #cdd0d4' }}>
               <SortableTh label="PARCEIRO" sortKey="nome" activeKey={sortKey} direction={direction} onSort={toggleSort} />
               <SortableTh label="CÓDIGO" sortKey="codigo" activeKey={sortKey} direction={direction} onSort={toggleSort} />
               <SortableTh label="CLIQUES" sortKey="clicks" activeKey={sortKey} direction={direction} onSort={toggleSort} />

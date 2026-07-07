@@ -23,7 +23,7 @@ export function KpiCard({ data }: KpiCardProps) {
     <div
       style={{
         background: 'white',
-        border: '1px solid #dbe0e9',
+        border: '1px solid #c4c9d0',
         borderRadius: 16,
         padding: '24px',
         boxShadow: '0 1px 4px rgba(0,0,0,0.04)',

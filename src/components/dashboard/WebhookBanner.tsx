@@ -80,11 +80,11 @@ export function WebhookBanner({ status, clienteId, webhookUrl }: WebhookBannerPr
             <input
               readOnly
               value={webhookUrl}
-              style={{ flex: 1, padding: '9px 12px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 12, fontFamily: 'monospace', color: '#475569', background: 'white', outline: 'none' }}
+              style={{ flex: 1, padding: '9px 12px', border: '1.5px solid #c0c5cc', borderRadius: 8, fontSize: 12, fontFamily: 'monospace', color: '#475569', background: 'white', outline: 'none' }}
             />
             <button
               onClick={copiarUrl}
-              style={{ padding: '9px 14px', background: copiado ? '#ecfdf3' : 'white', border: `1.5px solid ${copiado ? '#bbf7d0' : '#e2e8f0'}`, borderRadius: 8, cursor: 'pointer', color: copiado ? '#16a34a' : '#475569', fontWeight: 600, fontSize: 13, display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' }}
+              style={{ padding: '9px 14px', background: copiado ? '#ecfdf3' : 'white', border: `1.5px solid ${copiado ? '#bbf7d0' : '#c0c5cc'}`, borderRadius: 8, cursor: 'pointer', color: copiado ? '#16a34a' : '#475569', fontWeight: 600, fontSize: 13, display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' }}
             >
               <Icon name={copiado ? 'check' : 'copy'} size={14} />
               {copiado ? 'Copiado!' : 'Copiar'}

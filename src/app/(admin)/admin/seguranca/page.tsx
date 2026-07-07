@@ -81,7 +81,7 @@ export default async function SegurancaPage({
           { label: 'Erros nas últimas 24h', value: num.format(erros24h?.length ?? 0), sub: 'webhooks e sistema', color: (erros24h?.length ?? 0) > 10 ? '#e11d48' : '#0B081A' },
           { label: 'Assinaturas inválidas', value: num.format(webhooksInvalidos?.length ?? 0), sub: `últimos ${days} dias`, color: (webhooksInvalidos?.length ?? 0) > 0 ? '#e11d48' : '#16a34a' },
         ].map((k, i) => (
-          <div key={i} style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+          <div key={i} style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
             <p style={{ fontSize: 11, color: '#94a3b8', margin: '0 0 8px', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{k.label}</p>
             <p style={{ fontSize: 24, fontWeight: 800, color: k.color, margin: 0 }}>{k.value}</p>
             <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>{k.sub}</p>
@@ -95,7 +95,7 @@ export default async function SegurancaPage({
       )}
 
       {anomalias.length === 0 && (
-        <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+        <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
           <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: '0 0 8px' }}>Detecção de anomalias</h3>
           <div style={{ padding: '24px 0', textAlign: 'center', color: '#16a34a' }}>
             <p style={{ fontSize: 14, fontWeight: 600, margin: 0 }}>Nenhuma anomalia nas últimas 24h</p>
@@ -105,7 +105,7 @@ export default async function SegurancaPage({
       )}
 
       {/* Audit log */}
-      <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+      <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         <div style={{ marginBottom: 20 }}>
           <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Log de auditoria</h3>
           <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>{num.format(totalAudits ?? 0)} ações nos últimos {days} dias</p>
@@ -118,7 +118,7 @@ export default async function SegurancaPage({
         ) : (
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid #e5e9ed' }}>
+              <tr style={{ borderBottom: '1px solid #cdd0d4' }}>
                 {['QUANDO', 'ATOR', 'AÇÃO', 'DETALHES', 'IP'].map(h => (
                   <th key={h} style={{ padding: '10px 12px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#94a3b8', letterSpacing: '0.05em' }}>{h}</th>
                 ))}

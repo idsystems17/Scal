@@ -14,7 +14,7 @@ const brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL',
 const brl0 = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0 })
 
 function statTileStyle(): React.CSSProperties {
-  return { background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }
+  return { background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }
 }
 
 export default async function FinanceiroPage() {
@@ -109,7 +109,7 @@ export default async function FinanceiroPage() {
         />
       </div>
 
-      <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+      <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         <div style={{ marginBottom: 20 }}>
           <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Taxa de uso por e-commerce</h3>
           <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Calculada sobre o faturamento acumulado processado via SCAL</p>
@@ -118,7 +118,7 @@ export default async function FinanceiroPage() {
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid #e5e9ed' }}>
+              <tr style={{ borderBottom: '1px solid #cdd0d4' }}>
                 <th style={{ padding: '10px 12px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#94a3b8' }}>E-COMMERCE</th>
                 <th style={{ padding: '10px 12px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#94a3b8' }}>STATUS</th>
                 <th style={{ padding: '10px 12px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#94a3b8' }}>FATURAMENTO PROCESSADO</th>

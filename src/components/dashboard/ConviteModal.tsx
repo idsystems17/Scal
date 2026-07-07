@@ -80,7 +80,7 @@ export function ConviteModal({ clienteId, onClose }: ConviteModalProps) {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder="parceiro@email.com"
-                style={{ width: '100%', padding: '10px 14px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 14, outline: 'none', boxSizing: 'border-box', background: '#f8fafc' }}
+                style={{ width: '100%', padding: '10px 14px', border: '1.5px solid #c0c5cc', borderRadius: 8, fontSize: 14, outline: 'none', boxSizing: 'border-box', background: '#f8fafc' }}
               />
               <p style={{ fontSize: 12, color: '#94a3b8', margin: '6px 0 0' }}>
                 Se informado, o parceiro só poderá cadastrar com esse email.
@@ -114,11 +114,11 @@ export function ConviteModal({ clienteId, onClose }: ConviteModalProps) {
                 <input
                   readOnly
                   value={link}
-                  style={{ flex: 1, padding: '10px 14px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 12, color: '#475569', background: '#f8fafc', fontFamily: 'monospace', outline: 'none' }}
+                  style={{ flex: 1, padding: '10px 14px', border: '1.5px solid #c0c5cc', borderRadius: 8, fontSize: 12, color: '#475569', background: '#f8fafc', fontFamily: 'monospace', outline: 'none' }}
                 />
                 <button
                   onClick={handleCopiar}
-                  style={{ padding: '10px 16px', background: copiado ? '#ecfdf3' : 'white', border: `1.5px solid ${copiado ? '#bbf7d0' : '#e2e8f0'}`, borderRadius: 8, cursor: 'pointer', color: copiado ? '#16a34a' : '#475569', fontWeight: 600, fontSize: 13, display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' }}
+                  style={{ padding: '10px 16px', background: copiado ? '#ecfdf3' : 'white', border: `1.5px solid ${copiado ? '#bbf7d0' : '#c0c5cc'}`, borderRadius: 8, cursor: 'pointer', color: copiado ? '#16a34a' : '#475569', fontWeight: 600, fontSize: 13, display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' }}
                 >
                   <Icon name={copiado ? 'check' : 'copy'} size={14} />
                   {copiado ? 'Copiado!' : 'Copiar'}
@@ -128,7 +128,7 @@ export function ConviteModal({ clienteId, onClose }: ConviteModalProps) {
 
             <button
               onClick={() => { setLink(''); setEmail('') }}
-              style={{ padding: '10px', background: 'none', border: '1px solid #e2e8f0', borderRadius: 8, fontSize: 13, color: '#64748b', cursor: 'pointer' }}
+              style={{ padding: '10px', background: 'none', border: '1px solid #c0c5cc', borderRadius: 8, fontSize: 13, color: '#64748b', cursor: 'pointer' }}
             >
               Gerar outro convite
             </button>

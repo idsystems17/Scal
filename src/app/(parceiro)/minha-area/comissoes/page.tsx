@@ -72,7 +72,7 @@ export default async function ComissoesPage({
       {/* KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
         {kpis.map((k, i) => (
-          <div key={i} style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+          <div key={i} style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
             <p style={{ fontSize: 12, color: '#94a3b8', margin: '0 0 8px', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{k.label}</p>
             <p style={{ fontSize: 26, fontWeight: 800, color: k.color, margin: 0, letterSpacing: '-0.5px' }}>{k.value}</p>
             <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>{k.sub}</p>
@@ -94,7 +94,7 @@ export default async function ComissoesPage({
       </div>
 
       {/* Tabela de vendas */}
-      <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+      <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         <div style={{ marginBottom: 20 }}>
           <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Histórico de vendas atribuídas</h3>
           <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>{confirmadas.length} venda{confirmadas.length !== 1 ? 's' : ''} confirmada{confirmadas.length !== 1 ? 's' : ''} no período</p>
@@ -108,7 +108,7 @@ export default async function ComissoesPage({
         ) : (
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+              <tr style={{ borderBottom: '1px solid #cdd0d4' }}>
                 {['DATA', 'PEDIDO', 'VALOR', 'STATUS'].map(h => (
                   <th key={h} style={{ padding: '10px 12px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#94a3b8', letterSpacing: '0.05em' }}>{h}</th>
                 ))}

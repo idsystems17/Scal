@@ -72,7 +72,7 @@ export default async function AdminPage({
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '12px 20px', borderRadius: 12, background: 'white', border: '1px solid #dbe0e9' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '12px 20px', borderRadius: 12, background: 'white', border: '1px solid #c4c9d0' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#16a34a', boxShadow: '0 0 0 3px #dcfce7' }} />
           <span style={{ fontSize: 13, color: '#475569', fontWeight: 500 }}>Infraestrutura operacional · Supabase + Vercel</span>

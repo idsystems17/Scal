@@ -72,7 +72,7 @@ export default async function InfraestruturaPage() {
           { label: 'Webhooks 24h', value: num.format(webhooks24h ?? 0), sub: 'eventos recebidos', color: '#16a34a' },
           { label: 'Taxa de erro', value: `${taxaErro.toFixed(1).replace('.', ',')}%`, sub: `${num.format(erros24h ?? 0)} erros`, color: (erros24h ?? 0) > 5 ? '#e11d48' : '#0B081A' },
         ].map((k, i) => (
-          <div key={i} style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+          <div key={i} style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
             <p style={{ fontSize: 11, color: '#94a3b8', margin: '0 0 8px', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{k.label}</p>
             <p style={{ fontSize: 24, fontWeight: 800, color: k.color, margin: 0 }}>{k.value}</p>
             <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>{k.sub}</p>
@@ -86,7 +86,7 @@ export default async function InfraestruturaPage() {
       {/* Estatística 7 dias + webhooks por empresa */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 16 }}>
         {/* Volume 7d */}
-        <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+        <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
           <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: '0 0 20px' }}>Volume 7 dias</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {[
@@ -102,7 +102,7 @@ export default async function InfraestruturaPage() {
         </div>
 
         {/* Status webhooks */}
-        <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+        <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
           <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: '0 0 8px' }}>Status webhooks por e-commerce</h3>
           <p style={{ fontSize: 12, color: '#94a3b8', margin: '0 0 16px' }}>
             {webhookStatus?.filter(w => w.webhook_confirmado).length ?? 0} de {webhookStatus?.length ?? 0} configurados
@@ -124,7 +124,7 @@ export default async function InfraestruturaPage() {
       </div>
 
       {/* Log de eventos recentes */}
-      <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+      <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         <div style={{ marginBottom: 20 }}>
           <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Eventos recentes</h3>
           <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Últimos 20 eventos do sistema</p>

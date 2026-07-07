@@ -33,7 +33,7 @@ function CopyBlock({ texto, mono = false }: { texto: string; mono?: boolean }) {
       }}>{texto}</pre>
       <button
         onClick={copiar}
-        style={{ padding: '9px 14px', background: copiado ? '#ecfdf3' : 'white', border: `1.5px solid ${copiado ? '#bbf7d0' : '#d7dce4'}`, borderRadius: 8, cursor: 'pointer', color: copiado ? '#16a34a' : '#475569', fontWeight: 600, fontSize: 13, display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap', flexShrink: 0 }}
+        style={{ padding: '9px 14px', background: copiado ? '#ecfdf3' : 'white', border: `1.5px solid ${copiado ? '#bbf7d0' : '#c0c5cc'}`, borderRadius: 8, cursor: 'pointer', color: copiado ? '#16a34a' : '#475569', fontWeight: 600, fontSize: 13, display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap', flexShrink: 0 }}
       >
         <Icon name={copiado ? 'check' : 'copy'} size={14} />
         {copiado ? 'Copiado!' : 'Copiar'}
@@ -86,14 +86,14 @@ Qualquer dúvida, é só chamar.`
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
       {empresas.length > 0 && (
-        <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+        <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
           <label style={{ fontSize: 13, fontWeight: 600, color: '#0B081A', display: 'block', marginBottom: 8 }}>
             Gerar instruções para qual e-commerce?
           </label>
           <select
             value={empresaId}
             onChange={(e) => setEmpresaId(e.target.value)}
-            style={{ width: '100%', maxWidth: 360, padding: '9px 12px', border: '1.5px solid #d7dce4', borderRadius: 8, fontSize: 13, color: '#0B081A', background: 'white' }}
+            style={{ width: '100%', maxWidth: 360, padding: '9px 12px', border: '1.5px solid #c0c5cc', borderRadius: 8, fontSize: 13, color: '#0B081A', background: 'white' }}
           >
             {empresas.map(e => (
               <option key={e.id} value={e.id}>{e.nome}</option>
@@ -105,7 +105,7 @@ Qualquer dúvida, é só chamar.`
         </div>
       )}
 
-      <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+      <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: '0 0 6px' }}>Mensagem pronta para enviar ao dev</h3>
         <p style={{ fontSize: 12, color: '#64748b', margin: '0 0 14px' }}>
           Copie e cole no WhatsApp, e-mail ou onde for conversar com o time técnico do e-commerce.
@@ -113,7 +113,7 @@ Qualquer dúvida, é só chamar.`
         <CopyBlock texto={mensagemCompleta} />
       </div>
 
-      <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+      <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: '0 0 6px' }}>Só o script (passo 1 isolado)</h3>
         <p style={{ fontSize: 12, color: '#64748b', margin: '0 0 14px' }}>
           Funciona em qualquer site, independente do gateway de pagamento usado (Mercado Pago, PagSeguro, Stripe, Yapay etc.) — é só captura no navegador.
@@ -121,7 +121,7 @@ Qualquer dúvida, é só chamar.`
         <CopyBlock texto={scriptTag} mono />
       </div>
 
-      <div style={{ background: '#f8fafc', border: '1px solid #d7dce4', borderRadius: 12, padding: '16px 20px' }}>
+      <div style={{ background: '#f8fafc', border: '1px solid #c0c5cc', borderRadius: 12, padding: '16px 20px' }}>
         <p style={{ fontSize: 12, color: '#64748b', margin: 0, lineHeight: 1.6 }}>
           <strong style={{ color: '#475569' }}>Por que isso funciona pra qualquer e-commerce com checkout próprio:</strong> o script (passo 1) e o formato do webhook (passo 3) não dependem do gateway de pagamento — são sempre os mesmos. Só o passo 2 (onde no código deles eles leem <code>window.getScalClickId()</code> e salvam junto ao pedido) precisa do dev deles, mas é a mesma receita pra Mercado Pago, PagSeguro, Stripe ou qualquer outro.
         </p>

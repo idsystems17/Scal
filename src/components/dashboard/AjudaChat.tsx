@@ -51,7 +51,7 @@ export function AjudaChat({ role, faq }: AjudaChatProps) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       {/* FAQ */}
-      <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+      <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         <div style={{ marginBottom: 16 }}>
           <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Perguntas frequentes</h3>
           <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Clique para expandir</p>
@@ -60,7 +60,7 @@ export function AjudaChat({ role, faq }: AjudaChatProps) {
           {faq.map((f, i) => {
             const aberto = faqAberto === i
             return (
-              <div key={i} style={{ border: '1px solid #e5e9ed', borderRadius: 10, overflow: 'hidden' }}>
+              <div key={i} style={{ border: '1px solid #cdd0d4', borderRadius: 10, overflow: 'hidden' }}>
                 <button
                   onClick={() => setFaqAberto(aberto ? null : i)}
                   style={{
@@ -85,7 +85,7 @@ export function AjudaChat({ role, faq }: AjudaChatProps) {
       </div>
 
       {/* Chat */}
-      <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+      <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         <div style={{ marginBottom: 16 }}>
           <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Pergunte para o assistente</h3>
           <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>Respostas baseadas no FAQ acima</p>
@@ -126,7 +126,7 @@ export function AjudaChat({ role, faq }: AjudaChatProps) {
             onKeyDown={handleKeyDown}
             placeholder="Digite sua pergunta..."
             disabled={enviando}
-            style={{ flex: 1, padding: '10px 14px', border: '1.5px solid #d7dce4', borderRadius: 10, fontSize: 13, color: '#0B081A', outline: 'none' }}
+            style={{ flex: 1, padding: '10px 14px', border: '1.5px solid #c0c5cc', borderRadius: 10, fontSize: 13, color: '#0B081A', outline: 'none' }}
           />
           <button
             onClick={enviarPergunta}

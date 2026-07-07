@@ -128,7 +128,7 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
                   <select
                     value={canal}
                     onChange={e => setCanal(e.target.value)}
-                    style={{ width: '100%', padding: '10px 12px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 14, color: '#0B081A', background: 'white', outline: 'none' }}
+                    style={{ width: '100%', padding: '10px 12px', border: '1.5px solid #c0c5cc', borderRadius: 8, fontSize: 14, color: '#0B081A', background: 'white', outline: 'none' }}
                   >
                     {CANAIS.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
@@ -141,7 +141,7 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
                     value={destinoUrl}
                     onChange={e => setDestinoUrl(e.target.value)}
                     placeholder="https://exemplo.com/produto"
-                    style={{ width: '100%', padding: '10px 12px', border: `1.5px solid ${erro ? '#fca5a5' : '#e2e8f0'}`, borderRadius: 8, fontSize: 14, color: '#0B081A', outline: 'none', boxSizing: 'border-box' }}
+                    style={{ width: '100%', padding: '10px 12px', border: `1.5px solid ${erro ? '#fca5a5' : '#c0c5cc'}`, borderRadius: 8, fontSize: 14, color: '#0B081A', outline: 'none', boxSizing: 'border-box' }}
                   />
                   {erro && <p style={{ fontSize: 12, color: '#dc2626', margin: '4px 0 0' }}>{erro}</p>}
                 </div>
@@ -165,11 +165,11 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
                   <input
                     readOnly
                     value={linkGerado}
-                    style={{ flex: 1, padding: '9px 12px', border: '1.5px solid #e2e8f0', borderRadius: 8, fontSize: 12, fontFamily: 'monospace', color: '#475569', background: 'white', outline: 'none' }}
+                    style={{ flex: 1, padding: '9px 12px', border: '1.5px solid #c0c5cc', borderRadius: 8, fontSize: 12, fontFamily: 'monospace', color: '#475569', background: 'white', outline: 'none' }}
                   />
                   <button
                     onClick={copiarLinkGerado}
-                    style={{ padding: '9px 14px', background: linkCopiado ? '#ecfdf3' : 'white', border: `1.5px solid ${linkCopiado ? '#bbf7d0' : '#e2e8f0'}`, borderRadius: 8, cursor: 'pointer', color: linkCopiado ? '#16a34a' : '#475569', fontWeight: 600, fontSize: 13, display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' }}
+                    style={{ padding: '9px 14px', background: linkCopiado ? '#ecfdf3' : 'white', border: `1.5px solid ${linkCopiado ? '#bbf7d0' : '#c0c5cc'}`, borderRadius: 8, cursor: 'pointer', color: linkCopiado ? '#16a34a' : '#475569', fontWeight: 600, fontSize: 13, display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' }}
                   >
                     <Icon name={linkCopiado ? 'check' : 'copy'} size={14} />
                     {linkCopiado ? 'Copiado!' : 'Copiar'}
@@ -178,7 +178,7 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
 
                 <button
                   onClick={() => { setLinkGerado(null); setCanal('Instagram'); setDestinoUrl(urlLojaDefault) }}
-                  style={{ padding: '9px', borderRadius: 8, border: '1px solid #e2e8f0', background: 'white', color: '#475569', fontWeight: 600, fontSize: 13, cursor: 'pointer' }}
+                  style={{ padding: '9px', borderRadius: 8, border: '1px solid #c0c5cc', background: 'white', color: '#475569', fontWeight: 600, fontSize: 13, cursor: 'pointer' }}
                 >
                   Gerar outro link
                 </button>
@@ -188,7 +188,7 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
         </div>
       )}
 
-      <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+      <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
           <div>
             <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Desempenho por canal</h3>
@@ -212,7 +212,7 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>
-                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                <tr style={{ borderBottom: '1px solid #cdd0d4' }}>
                   <SortableTh label="CANAL / LINK" sortKey="name" activeKey={sortKey} direction={direction} onSort={toggleSort} />
                   <SortableTh label="CLIQUES" sortKey="clicks" activeKey={sortKey} direction={direction} onSort={toggleSort} />
                   <SortableTh label="CONVERSÕES" sortKey="conversoes" activeKey={sortKey} direction={direction} onSort={toggleSort} />
@@ -256,7 +256,7 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
                           onClick={() => handleCopy(ch.url)}
                           style={{
                             display: 'flex', alignItems: 'center', gap: 4,
-                            padding: '6px 12px', borderRadius: 8, border: '1px solid #e6ecf5',
+                            padding: '6px 12px', borderRadius: 8, border: '1px solid #c4c9d0',
                             background: copiedUrl === ch.url ? '#ecfdf3' : 'white',
                             color: copiedUrl === ch.url ? '#16a34a' : '#475569',
                             fontSize: 12, fontWeight: 500, cursor: 'pointer',

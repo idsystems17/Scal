@@ -84,12 +84,12 @@ export default async function IntegracoesPage() {
       />
 
       {/* Segredo do webhook */}
-      <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+      <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: '0 0 8px' }}>Assinatura secreta (HMAC)</h3>
         <p style={{ fontSize: 12, color: '#64748b', margin: '0 0 12px' }}>
           Use esse valor para assinar os webhooks enviados pela plataforma. O SCAL valida cada requisição com HMAC-SHA256.
         </p>
-        <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 10, padding: '12px 16px', fontFamily: 'monospace', fontSize: 13, color: '#475569', wordBreak: 'break-all' }}>
+        <div style={{ background: '#f8fafc', border: '1px solid #c0c5cc', borderRadius: 10, padding: '12px 16px', fontFamily: 'monospace', fontSize: 13, color: '#475569', wordBreak: 'break-all' }}>
           {cliente.webhook_secret}
         </div>
         <p style={{ fontSize: 11, color: '#94a3b8', margin: '8px 0 0' }}>
@@ -104,7 +104,7 @@ export default async function IntegracoesPage() {
           {plataformas.map((p) => (
             <div
               key={p.nome}
-              style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}
+              style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
                 <div style={{ width: 12, height: 12, borderRadius: '50%', background: p.cor, flexShrink: 0 }} />
@@ -116,7 +116,7 @@ export default async function IntegracoesPage() {
                 ))}
               </ol>
               {p.nota && (
-                <p style={{ fontSize: 12, color: '#64748b', margin: '12px 0 0', padding: '10px 14px', background: '#f8fafc', borderRadius: 8, border: '1px solid #e2e8f0' }}>
+                <p style={{ fontSize: 12, color: '#64748b', margin: '12px 0 0', padding: '10px 14px', background: '#f8fafc', borderRadius: 8, border: '1px solid #c0c5cc' }}>
                   <strong style={{ color: '#475569' }}>Nota:</strong> {p.nota}
                 </p>
               )}
@@ -126,7 +126,7 @@ export default async function IntegracoesPage() {
       </div>
 
       {/* Payload de exemplo */}
-      <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+      <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: '0 0 12px' }}>Payload JSON aceito</h3>
         <pre style={{
           margin: 0, padding: '16px', background: '#0B081A', borderRadius: 10, overflowX: 'auto',

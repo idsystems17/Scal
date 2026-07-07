@@ -80,7 +80,7 @@ export function Sidebar({ role, counts = {}, logoUrl }: SidebarProps) {
         minWidth: 246,
         height: '100vh',
         background: 'white',
-        borderRight: '1px solid #dde2ea',
+        borderRight: '1px solid #c6cad1',
         display: 'flex',
         flexDirection: 'column',
         position: 'sticky',

@@ -71,7 +71,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder="seu@email.com"
-                style={{ width: '100%', padding: '10px 14px', border: '1.5px solid #d7dce4', borderRadius: 8, fontSize: 14, color: '#0B081A', outline: 'none', boxSizing: 'border-box', background: '#f8fafc' }}
+                style={{ width: '100%', padding: '10px 14px', border: '1.5px solid #c0c5cc', borderRadius: 8, fontSize: 14, color: '#0B081A', outline: 'none', boxSizing: 'border-box', background: '#f8fafc' }}
               />
             </div>
 
@@ -84,7 +84,7 @@ export default function LoginPage() {
                   value={senha}
                   onChange={e => setSenha(e.target.value)}
                   placeholder="••••••••"
-                  style={{ width: '100%', padding: '10px 44px 10px 14px', border: '1.5px solid #d7dce4', borderRadius: 8, fontSize: 14, color: '#0B081A', outline: 'none', boxSizing: 'border-box', background: '#f8fafc' }}
+                  style={{ width: '100%', padding: '10px 44px 10px 14px', border: '1.5px solid #c0c5cc', borderRadius: 8, fontSize: 14, color: '#0B081A', outline: 'none', boxSizing: 'border-box', background: '#f8fafc' }}
                 />
                 <button
                   type="button"

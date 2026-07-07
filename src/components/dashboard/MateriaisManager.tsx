@@ -82,7 +82,7 @@ export function MateriaisManager({ titulo, subtitulo, materiais, onCreate, onDel
   }
 
   return (
-    <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+    <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
       <div style={{ marginBottom: 20 }}>
         <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>{titulo}</h3>
         <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>{subtitulo}</p>
@@ -94,7 +94,7 @@ export function MateriaisManager({ titulo, subtitulo, materiais, onCreate, onDel
             <select
               value={tipoInput}
               onChange={e => setTipoInput(e.target.value as TipoMaterial)}
-              style={{ flex: '0 1 140px', padding: '9px 12px', border: '1.5px solid #d7dce4', borderRadius: 8, fontSize: 13, color: '#0B081A', outline: 'none', background: 'white' }}
+              style={{ flex: '0 1 140px', padding: '9px 12px', border: '1.5px solid #c0c5cc', borderRadius: 8, fontSize: 13, color: '#0B081A', outline: 'none', background: 'white' }}
             >
               <option value="link">Link / Doc</option>
               <option value="video">Vídeo</option>
@@ -104,13 +104,13 @@ export function MateriaisManager({ titulo, subtitulo, materiais, onCreate, onDel
               value={tituloInput}
               onChange={e => setTituloInput(e.target.value)}
               placeholder="Título do material"
-              style={{ flex: '1 1 160px', padding: '9px 12px', border: '1.5px solid #d7dce4', borderRadius: 8, fontSize: 13, color: '#0B081A', outline: 'none' }}
+              style={{ flex: '1 1 160px', padding: '9px 12px', border: '1.5px solid #c0c5cc', borderRadius: 8, fontSize: 13, color: '#0B081A', outline: 'none' }}
             />
             <input
               value={urlInput}
               onChange={e => setUrlInput(e.target.value)}
               placeholder={PLACEHOLDER_URL[tipoInput]}
-              style={{ flex: '2 1 260px', padding: '9px 12px', border: '1.5px solid #d7dce4', borderRadius: 8, fontSize: 13, color: '#0B081A', outline: 'none' }}
+              style={{ flex: '2 1 260px', padding: '9px 12px', border: '1.5px solid #c0c5cc', borderRadius: 8, fontSize: 13, color: '#0B081A', outline: 'none' }}
             />
             <button
               onClick={handleAdd}
@@ -143,7 +143,7 @@ export function MateriaisManager({ titulo, subtitulo, materiais, onCreate, onDel
           {materiais.map(m => {
             const embedUrl = (m.tipo === 'video' || m.tipo === 'audio') ? urlEmbedGoogleDrive(m.url) : null
             return (
-              <div key={m.id} style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '12px 14px', borderRadius: 10, border: '1px solid #e5e9ed' }}>
+              <div key={m.id} style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '12px 14px', borderRadius: 10, border: '1px solid #cdd0d4' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <div style={{ width: 32, height: 32, borderRadius: 8, background: '#eef4ff', color: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <Icon name={m.tipo === 'video' ? 'video' : m.tipo === 'audio' ? 'audio' : 'link'} size={16} />

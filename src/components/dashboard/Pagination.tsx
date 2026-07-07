@@ -24,7 +24,7 @@ function PaginationInner({ page, totalPages }: PaginationProps) {
   const btnStyle = (disabled: boolean) => ({
     padding: '6px 14px',
     borderRadius: 8,
-    border: '1px solid #dbe0e9',
+    border: '1px solid #c4c9d0',
     background: disabled ? '#f8fafc' : 'white',
     color: disabled ? '#cbd5e1' : '#475569',
     fontSize: 12,

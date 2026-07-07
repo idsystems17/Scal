@@ -42,7 +42,7 @@ export function AlertsPanel({ alertas }: AlertsPanelProps) {
   }
 
   return (
-    <div style={{ background: 'white', border: '1px solid #dbe0e9', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+    <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
           <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Central de alertas de plano</h3>
@@ -87,7 +87,7 @@ export function AlertsPanel({ alertas }: AlertsPanelProps) {
                   <button
                     onClick={() => handleResolver(alerta.id)}
                     disabled={pending}
-                    style={{ padding: '6px 12px', borderRadius: 8, border: '1px solid #dbe0e9', background: 'white', color: '#475569', fontSize: 12, fontWeight: 500, cursor: pending ? 'not-allowed' : 'pointer', opacity: pending ? 0.6 : 1 }}
+                    style={{ padding: '6px 12px', borderRadius: 8, border: '1px solid #c4c9d0', background: 'white', color: '#475569', fontSize: 12, fontWeight: 500, cursor: pending ? 'not-allowed' : 'pointer', opacity: pending ? 0.6 : 1 }}
                   >
                     Resolver
                   </button>

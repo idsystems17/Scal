@@ -53,7 +53,7 @@ export default async function CanaisPage({
           <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0B081A', margin: 0 }}>Canais</h2>
           <p style={{ fontSize: 13, color: '#64748b', margin: '4px 0 0' }}>Performance por canal de divulgação — últimos {days} dias</p>
         </div>
-        <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '48px', textAlign: 'center', color: '#94a3b8' }}>
+        <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '48px', textAlign: 'center', color: '#94a3b8' }}>
           <p style={{ fontSize: 15, fontWeight: 600, margin: 0 }}>Nenhum canal ainda</p>
           <p style={{ fontSize: 13, margin: '8px 0 0' }}>Os canais aparecem quando parceiros gerarem links de divulgação.</p>
         </div>
@@ -130,7 +130,7 @@ export default async function CanaisPage({
           { label: 'Cliques totais', value: num.format(totalCliques), sub: 'redirecionamentos' },
           { label: 'Conversões', value: num.format(totalConversoes), sub: 'vendas confirmadas' },
         ].map((k, i) => (
-          <div key={i} style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+          <div key={i} style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
             <p style={{ fontSize: 11, color: '#94a3b8', margin: '0 0 8px', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{k.label}</p>
             <p style={{ fontSize: 24, fontWeight: 800, color: '#0B081A', margin: 0 }}>{k.value}</p>
             <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>{k.sub}</p>
@@ -139,7 +139,7 @@ export default async function CanaisPage({
       </div>
 
       {/* Tabela de canais */}
-      <div style={{ background: 'white', border: '1px solid #e6ecf5', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+      <div style={{ background: 'white', border: '1px solid #c4c9d0', borderRadius: 16, padding: '24px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
         <div style={{ marginBottom: 20 }}>
           <h3 style={{ fontSize: 15, fontWeight: 600, color: '#0B081A', margin: 0 }}>Detalhamento por canal</h3>
           <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 0 0' }}>{canais.length} canal{canais.length !== 1 ? 'is' : ''} ativo{canais.length !== 1 ? 's' : ''}</p>
@@ -147,7 +147,7 @@ export default async function CanaisPage({
 
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
-            <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+            <tr style={{ borderBottom: '1px solid #cdd0d4' }}>
               {['CANAL', 'CLIQUES', 'CONVERSÕES', 'VOLUME', 'CTR', 'PARTICIPAÇÃO'].map(h => (
                 <th key={h} style={{ padding: '10px 12px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#94a3b8', letterSpacing: '0.05em' }}>{h}</th>
               ))}
