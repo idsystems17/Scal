@@ -2,7 +2,7 @@ import { createServerClient } from '@supabase/ssr'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function proxy(req: NextRequest) {
-  const res = NextResponse.next()
+  let res = NextResponse.next({ request: req })
 
   // Em desenvolvimento sem credenciais Supabase configuradas, permite acesso direto
   if (process.env.NODE_ENV === 'development' && !process.env.NEXT_PUBLIC_SUPABASE_URL?.includes('.supabase.co')) {
@@ -21,10 +21,16 @@ export async function proxy(req: NextRequest) {
     {
       cookies: {
         getAll: () => req.cookies.getAll(),
-        setAll: (cookiesToSet) =>
+        setAll: (cookiesToSet) => {
+          // Precisa atualizar req.cookies E recriar a response com base no req
+          // atualizado — senão a renderização da página (Server Component) continua
+          // lendo o token antigo mesmo depois do Supabase ter renovado a sessão.
+          cookiesToSet.forEach(({ name, value }) => req.cookies.set(name, value))
+          res = NextResponse.next({ request: req })
           cookiesToSet.forEach(({ name, value, options }) =>
             res.cookies.set(name, value, options)
-          ),
+          )
+        },
       },
     }
   )

@@ -106,6 +106,7 @@ export function Sidebar({ role, counts = {}, logoUrl }: SidebarProps) {
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={false}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
