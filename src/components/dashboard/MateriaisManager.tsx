@@ -127,7 +127,7 @@ export function MateriaisManager({ titulo, subtitulo, materiais, onCreate, onDel
           </div>
           {(tipoInput === 'video' || tipoInput === 'audio') && (
             <p style={{ fontSize: 12, color: '#94a3b8', margin: '8px 0 0' }}>
-              No Google Drive: clique com o botão direito no arquivo → Compartilhar → Copiar link. Pra decidir se dá pra baixar, ajuste em &quot;Leitores podem baixar, imprimir e copiar&quot; nas configurações de compartilhamento do próprio arquivo.
+              No Google Drive: clique com o botão direito no arquivo → Compartilhar → em &quot;Acesso geral&quot; escolha <strong style={{ color: '#64748b' }}>&quot;Qualquer pessoa com o link&quot;</strong> (se ficar restrito, quem abrir vai ver uma tela pedindo permissão em vez do vídeo/áudio) → Copiar link. Pra decidir se dá pra baixar, ajuste em &quot;Leitores podem baixar, imprimir e copiar&quot; nas mesmas configurações.
             </p>
           )}
         </div>
