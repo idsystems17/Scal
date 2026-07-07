@@ -113,7 +113,7 @@ export function Sidebar({ role, counts = {}, logoUrl }: SidebarProps) {
                   padding: '10px 12px',
                   borderRadius: 10,
                   cursor: 'pointer',
-                  background: active ? '#eff4ff' : 'transparent',
+                  background: active ? '#cbcfd9' : 'transparent',
                   color: active ? '#1d4ed8' : '#64748b',
                   transition: 'all 0.15s',
                   textDecoration: 'none',
@@ -129,7 +129,7 @@ export function Sidebar({ role, counts = {}, logoUrl }: SidebarProps) {
                       borderRadius: 20,
                       fontSize: 11,
                       fontWeight: 700,
-                      background: active ? '#dbeafe' : '#f1f5f9',
+                      background: active ? '#bac7d8' : '#f1f5f9',
                       color: active ? '#1d4ed8' : '#64748b',
                     }}
                   >
