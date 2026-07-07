@@ -108,7 +108,7 @@ export function ChannelTable({ channels, parceiroId, clienteId, urlLojaDefault }
       {modalAberto && (
         <div
           onClick={fecharModal}
-          style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}
+          style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}
         >
           <div
             onClick={e => e.stopPropagation()}
