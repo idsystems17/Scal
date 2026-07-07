@@ -63,7 +63,15 @@ export default async function ParceiroLayout({ children }: { children: React.Rea
     <div style={{ display: 'flex', minHeight: '100vh' }}>
       <Sidebar role="parceiro" counts={{ conversoes: conversaoCount }} logoUrl={logoUrl} />
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
-        <Header title={`Olá, ${primeiroNome}`} subtitle="Acompanhe o desempenho dos seus links" userName={iniciais} notifications={notifications} />
+        <Header
+          title={`Olá, ${primeiroNome}`}
+          subtitle="Acompanhe o desempenho dos seus links"
+          background="#9B6AFF"
+          titleColor="#ffffff"
+          subtitleColor="rgba(255,255,255,0.75)"
+          userName={iniciais}
+          notifications={notifications}
+        />
         <main style={{ flex: 1, padding: '32px', overflowY: 'auto' }}>
           {children}
         </main>

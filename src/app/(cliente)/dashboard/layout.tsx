@@ -60,7 +60,15 @@ export default async function ClienteLayout({ children }: { children: React.Reac
     <div style={{ display: 'flex', minHeight: '100vh' }}>
       <Sidebar role="cliente" counts={{ parceiros: parceiroCount }} logoUrl={logoUrl} />
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
-        <Header title="Dashboard" subtitle={`Visão geral — ${nome}`} userName={iniciais} notifications={notifications} />
+        <Header
+          title="Dashboard"
+          subtitle={`Visão geral — ${nome}`}
+          background="#9B6AFF"
+          titleColor="#ffffff"
+          subtitleColor="rgba(255,255,255,0.75)"
+          userName={iniciais}
+          notifications={notifications}
+        />
         <main style={{ flex: 1, padding: '32px', overflowY: 'auto' }}>
           {children}
         </main>

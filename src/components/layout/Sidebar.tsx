@@ -53,8 +53,8 @@ const navByRole: Record<Role, NavItem[]> = {
 }
 
 const roleLabels: Record<Role, string> = {
-  parceiro: 'Área do Parceiro',
-  cliente: 'Dashboard E-commerce',
+  parceiro: '',
+  cliente: '',
   admin: '',
 }
 
