@@ -26,7 +26,7 @@ O SCAL é uma plataforma SaaS multi-tenant de **rastreamento de atribuição de 
 | Hospedagem | Vercel |
 | Banco de dados + Auth | Supabase (Postgres + Supabase Auth) |
 | IA (Central de Ajuda) | Google Gemini (`gemini-3.5-flash`, com fallback) |
-| Repositório | `github.com/idsystems17/Scal` |
+| Repositório | a definir na conta que for hospedar o projeto dali em diante |
 | URL de produção | `https://scal-sigma.vercel.app` (domínio próprio `scal.admw.com.br` planejado, ainda não configurado) |
 
 ### Estrutura de pastas (resumida)
