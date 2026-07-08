@@ -49,16 +49,18 @@ Se o terminal pedir login do GitHub, siga as instruções na tela (normalmente a
 2. Clique em "Import" no repositório que você acabou de criar
 3. **Antes de clicar em "Deploy"**, abra a seção "Environment Variables" (variáveis de ambiente) e cadastre estas (uma por linha, nome e valor):
 
-| Nome | Onde conseguir o valor |
+| Nome | Valor |
 |---|---|
-| `NEXT_PUBLIC_SUPABASE_URL` | Painel do Supabase → Settings → API → "Project URL" |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Painel do Supabase → Settings → API → "anon public" |
-| `SUPABASE_SERVICE_ROLE_KEY` | Painel do Supabase → Settings → API → "service_role" (cuidado: essa é secreta, não compartilhar) |
+| `NEXT_PUBLIC_SUPABASE_URL` | Já é o mesmo Supabase que está em uso — quem te passou este material te envia esse valor pronto |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Idem — valor já em uso, é só colar o que foi te passado |
+| `SUPABASE_SERVICE_ROLE_KEY` | Idem — é secreta, não compartilhar com mais ninguém além de quem for mexer no sistema |
 | `GEMINI_API_KEY` | A chave que você já gerou na sua conta Gemini |
-| `WEBHOOK_HMAC_SALT` | Qualquer texto aleatório e longo (ex: peça pra alguém gerar com o comando `openssl rand -hex 32`, ou use qualquer gerador de senha grande) |
-| `SEED_DEV_TOKEN` | Mesma ideia acima — um texto aleatório e longo, guarde ele anotado |
+| `WEBHOOK_HMAC_SALT` | Valor já em uso, é só colar o que foi te passado (não precisa gerar um novo) |
+| `SEED_DEV_TOKEN` | Valor já em uso, é só colar o que foi te passado (não precisa gerar um novo) |
 | `NEXT_PUBLIC_APP_URL` | Deixe em branco por enquanto — depois do primeiro deploy a Vercel mostra o endereço do site, aí você volta aqui e preenche com esse endereço |
 | `KIWIFY_WEBHOOK_TOKEN` | Deixe em branco por enquanto — só preencher quando configurar o webhook da Kiwify (ver `docs/pendencias-scal.md`, item 2) |
+
+Como o banco de dados (Supabase) e a chave do Gemini já são os mesmos que o sistema já usa hoje, não é preciso ir atrás desses valores em nenhum painel — são os mesmos de sempre, só mudando onde o site fica hospedado.
 
 4. Clique em **Deploy** e aguarde alguns minutos
 
