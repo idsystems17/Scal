@@ -37,12 +37,26 @@ export default async function VendasPage({
 
   if (!clienteRow) redirect('/dashboard')
 
+  let buscaOr = ''
+  if (q) {
+    const { data: parceirosMatch } = await supabase
+      .from('parceiros')
+      .select('id')
+      .eq('cliente_id', clienteRow.id)
+      .ilike('nome', `%${q}%`)
+    const parceiroIds = (parceirosMatch ?? []).map(p => p.id)
+    const termo = q.replace(/[,()]/g, '')
+    const condicoes = [`pedido_externo_id.ilike.%${termo}%`]
+    if (parceiroIds.length > 0) condicoes.push(`parceiro_id.in.(${parceiroIds.join(',')})`)
+    buscaOr = condicoes.join(',')
+  }
+
   let totalsQuery = supabase
     .from('conversoes')
     .select('valor_venda, status')
     .eq('cliente_id', clienteRow.id)
     .gte('criado_em', since)
-  if (q) totalsQuery = totalsQuery.ilike('pedido_externo_id', `%${q}%`)
+  if (buscaOr) totalsQuery = totalsQuery.or(buscaOr)
   const { data: todasNoPeriodo } = await totalsQuery
   const total = (todasNoPeriodo ?? []).filter(c => c.status === 'confirmada').reduce((s, c) => s + Number(c.valor_venda), 0)
 
@@ -54,9 +68,7 @@ export default async function VendasPage({
     .order('criado_em', { ascending: false })
     .range((page - 1) * PAGE_SIZE, page * PAGE_SIZE - 1)
 
-  if (q) {
-    query = query.ilike('pedido_externo_id', `%${q}%`)
-  }
+  if (buscaOr) query = query.or(buscaOr)
 
   const { data: conversoes, count } = await query
   const totalPages = Math.max(1, Math.ceil((count ?? 0) / PAGE_SIZE))
